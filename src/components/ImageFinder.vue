@@ -65,7 +65,7 @@
             toImage,
             ...mapActions('user/image', ['fetchData']),
             onUploadSucceeded(file) {
-                this.fetchData(this.orderId);
+                this.fetchData();
                 this.formError = [];
                 this.$refs.dropzone.$_dropzone.removeFile(file);
                 return file;

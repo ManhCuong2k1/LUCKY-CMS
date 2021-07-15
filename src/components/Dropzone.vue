@@ -9,7 +9,7 @@
         props: {
             url: {
                 type: String,
-                default: '/api/upload/single-upload',
+                default: '/api/upload/multi-upload',
             },
             method: {
                 type: String,

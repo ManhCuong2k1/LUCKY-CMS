@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
-                    <p>{{ luckyForm.type }}</p>
+                    <p>{{ luckyForm.type == 'keno' ? 'Keno' : '' }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
@@ -35,7 +35,7 @@
             </el-form-item>
             <el-form-item label="Trạng thái" prop="status">
                 <el-col :span="12" class="order-detail">
-                    <p>{{ luckyForm.orderStatus }}</p>
+                    <p>{{ luckyForm.orderStatus == 'delay' ? 'Chờ in vé' : '' }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Lấy ảnh vé" class="content-center">

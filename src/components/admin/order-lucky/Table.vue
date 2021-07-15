@@ -12,12 +12,12 @@
         </el-table-column>
         <el-table-column prop="phone" label="Thời gian đặt">
             <template slot-scope="scope">
-                <span>{{ scope.row.createdAt | formatDate }}</span>
+                <span>{{ scope.row.user.phone }}</span>
             </template>
         </el-table-column>
         <el-table-column prop="transporter" label="Loại vé" width="200">
             <template slot-scope="scope">
-                <span>{{ scope.row.type }}</span>
+                <span>{{ scope.row.type == 'keno' ? 'Keno' : '' }}</span>
             </template>
         </el-table-column>
         <el-table-column prop="total" label="Nội dung">
@@ -34,7 +34,7 @@
         </el-table-column>
         <el-table-column prop="orderStatus" label="Trạng thái">
             <template slot-scope="scope">
-                <span>{{ scope.row.orderStatus }}</span>
+                <span>{{ scope.row.orderStatus == 'delay' ? 'Chờ in vé' : ''}}</span>
             </template>
         </el-table-column>
         <el-table-column label="Công cụ" width="170">
