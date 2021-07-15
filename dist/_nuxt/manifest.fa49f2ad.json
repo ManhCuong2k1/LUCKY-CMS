@@ -1,0 +1,9 @@
+{
+  "name": "ls",
+  "short_name": "ls",
+  "icons": [],
+  "start_url": "/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en"
+}

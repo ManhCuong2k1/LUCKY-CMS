@@ -1,0 +1,174 @@
+<template>
+    <div>
+        <el-form
+            ref="luckyForm"
+            :model="luckyForm"
+            label-width="120px"
+            class="w-full"
+        >
+            <el-form-item label="Mã vé" prop="id">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyForm.id }}</p>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Khách hàng" prop="">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyForm.user.phone }}</p>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Loại vé" prop="">
+                <el-col :span="6" class="order-detail">
+                    <p>{{ luckyForm.type }}</p>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Nội dung" prop="LuckyCategoryId">
+                <el-col :span="12" class="order-detail pb-4">
+                    <span v-for="orderDetail in orderDetails" :key="orderDetail" class="block h-6">
+                        {{ orderDetail }}
+                    </span>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Số kỳ" prop="LuckyCategoryId">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyForm.orders.length }}</p>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Trạng thái" prop="status">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyForm.orderStatus }}</p>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Lấy ảnh vé" class="content-center">
+                <el-button class="dropzone el-col-3" @click="openLuckyGallery">
+                    <div>
+                        <div><img class="w-32"></div>
+                        <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
+                    </div>
+                </el-button>
+                <el-button class="dropzone el-col-3">
+                    <div>
+                        <div><img class="w-32"></div>
+                        <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
+                    </div>
+                </el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary">
+                    Lưu ảnh
+                </el-button>
+            </el-form-item>
+        </el-form>
+        <el-dialog
+            title="Chọn ảnh"
+            :visible.sync="dialogGallery1"
+        >
+            <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
+        </el-dialog>
+        <el-dialog
+            title="Chọn ảnh"
+            :visible.sync="dialogGallery2"
+        >
+            <ImageFinder />
+        </el-dialog>
+    </div>
+</template>
+
+<script>
+    // import { mapState } from 'vuex';
+    import cloneDeep from 'lodash/cloneDeep';
+    // import Tinymce from '~/components/editor/Tinymce.vue';
+    import ImageFinder from '~/components/ImageFinder.vue';
+    import { image as toImage } from '~/utils/url';
+    // import Currency from '~/components/admin/shared/form/Currency.vue';
+    // import Attributes from './Attributes.vue';
+
+    const modelForm = {
+        id: '',
+        name: '',
+        type: '',
+        orderDetail: '',
+        periodNumber: '',
+        status: '',
+        images: [],
+    };
+
+    export default {
+        components: {
+            // Tinymce,
+            // Currency,
+            ImageFinder,
+            // Attributes,
+        },
+
+        props: {
+            luckyData: {
+                type: Object,
+                required: false,
+            },
+            orderDetails: {
+                type: Array,
+                required: true,
+            },
+        },
+        data() {
+            const luckyForm = this.luckyData ? cloneDeep(this.luckyData) : cloneDeep(modelForm);
+            return {
+                dialogGallery1: false,
+                dialogGallery2: false,
+                loading: false,
+                luckyForm,
+            };
+        },
+        methods: {
+            toImage,
+            openLuckyGallery() {
+                this.dialogGallery1 = true;
+            },
+            // openProductGallery() {
+            //     this.dialogProductGallery = true;
+            // },
+            // deleteImage(id) {
+            //     const array = this.productForm.images;
+            //     const imageIndex = array.indexOf(id);
+            //     this.productForm.images.splice(imageIndex, 1);
+            // },
+            // ProductconfirmPick(name) {
+            //     this.dialogProductGallery = false;
+            //     const imagePick = { url: name, name: name.split('/')[1] };
+            //     if (this.productForm.images === null) {
+            //         this.productForm.images = [];
+            //     }
+            //     this.productForm.images.push(imagePick);
+            // },
+            confirmPick(name) {
+                this.dialogGallery1 = false;
+                this.luckyForm.id = name;
+                console.log('herer');
+            },
+            // contentChange(content) {
+            //     this.productForm.content = content;
+            // },
+            // handleSubmit(formName, data) {
+            //     this.$refs[formName].validate((valid) => {
+            //         if (valid) {
+            //             this.$emit('finishForm', cloneDeep(data));
+            //         } else {
+            //             this.$message.error('Oops, Vui lòng nhập đầy đủ thông tin.');
+            //             return false;
+            //         }
+            //     });
+            // },
+            // resetForm(formName) {
+            //     this.$refs[formName].resetFields();
+            // },
+        },
+    };
+</script>
+
+<style>
+.order-detail {
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 4px;
+    padding-left: 16px;
+}
+</style>
