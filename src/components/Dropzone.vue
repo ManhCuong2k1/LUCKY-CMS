@@ -41,7 +41,7 @@
             },
             maxFiles: {
                 type: Number,
-                default: 5,
+                default: 1,
             },
             autoProcessQueue: {
                 type: Boolean,

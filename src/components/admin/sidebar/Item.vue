@@ -1,5 +1,5 @@
 <template functional>
-    <nuxt-link :to="props.link" class="">
+    <nuxt-link :to="props.link" class="menu-active">
         <el-menu-item :index="props.link">
             <i v-if="props.icon" :class="props.icon" class="" />
             <template #title>
@@ -17,3 +17,9 @@
         },
     };
 </script>
+
+<style>
+.menu-active li:hover {
+    color: black !important;
+}
+</style>

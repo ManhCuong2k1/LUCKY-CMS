@@ -2,7 +2,6 @@
     <div>
         <PageHeader />
         <LuckyForm :lucky-data="lucky" :order-details="configString" />
-        <!--  @finishForm="updateProduct"  -->
     </div>
 </template>
 
@@ -31,7 +30,7 @@
                 const str = [];
                 data.forEach((element) => {
                     const string = `${element.number[0]} ${element.number[1]}`;
-                    str.push(`${element.price}K - ${string}`);
+                    str.push(`${element.price / 1000}K - ${string}`);
                 });
                 return str;
             },

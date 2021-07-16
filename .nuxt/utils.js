@@ -200,7 +200,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
-      env: {"APP_URL":"http://web.lc:8000/","API_HOST":"http://read_nginx_1/api","API_PATH":"/api","IMAGE_BASE_URL":"http://web.lc:8000/","GOOGLE_ANALYTICS_ID":"asdkjhaskdbhbabo876cw73cb4q8w73y4boi2364o9823cb6"}
+      env: {"APP_URL":"http://web.lc:8000/","API_HOST":"http://read_nginx_1/api","API_PATH":"/api","IMAGE_BASE_URL":"http://images.web.lc:8000/","GOOGLE_ANALYTICS_ID":"asdkjhaskdbhbabo876cw73cb4q8w73y4boi2364o9823cb6"}
     }
     // Only set once
 

@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
-                    <p>{{ luckyForm.type }}</p>
+                    <p>{{ type(luckyForm.type) }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
@@ -35,29 +35,32 @@
             </el-form-item>
             <el-form-item label="Trạng thái" prop="status">
                 <el-col :span="12" class="order-detail">
-                    <p>{{ luckyForm.orderStatus }}</p>
+                    <p>{{ status( luckyForm.orderStatus) }}</p>
                 </el-col>
             </el-form-item>
+
             <el-form-item label="Lấy ảnh vé" class="content-center">
                 <el-button class="dropzone el-col-3" @click="openLuckyGallery">
                     <div>
-                        <div><img class="w-32"></div>
+                        <div><img class="w-32" :src="toImage(luckyForm.image.avatar)"></div>
                         <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                     </div>
                 </el-button>
-                <el-button class="dropzone el-col-3">
+                <el-button class="dropzone el-col-3" @click="openLuckyGallery1">
                     <div>
                         <div><img class="w-32"></div>
                         <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                     </div>
                 </el-button>
             </el-form-item>
+
             <el-form-item>
                 <el-button type="primary">
                     Lưu ảnh
                 </el-button>
             </el-form-item>
         </el-form>
+
         <el-dialog
             title="Chọn ảnh"
             :visible.sync="dialogGallery1"
@@ -68,7 +71,7 @@
             title="Chọn ảnh"
             :visible.sync="dialogGallery2"
         >
-            <ImageFinder />
+            <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
         </el-dialog>
     </div>
 </template>
@@ -76,11 +79,9 @@
 <script>
     // import { mapState } from 'vuex';
     import cloneDeep from 'lodash/cloneDeep';
-    // import Tinymce from '~/components/editor/Tinymce.vue';
     import ImageFinder from '~/components/ImageFinder.vue';
     import { image as toImage } from '~/utils/url';
-    // import Currency from '~/components/admin/shared/form/Currency.vue';
-    // import Attributes from './Attributes.vue';
+    import { checkType, checkStatus } from '~/utils/configData';
 
     const modelForm = {
         id: '',
@@ -94,10 +95,7 @@
 
     export default {
         components: {
-            // Tinymce,
-            // Currency,
             ImageFinder,
-            // Attributes,
         },
 
         props: {
@@ -124,9 +122,15 @@
             openLuckyGallery() {
                 this.dialogGallery1 = true;
             },
-            // openProductGallery() {
-            //     this.dialogProductGallery = true;
-            // },
+            openLuckyGallery1() {
+                this.dialogGallery2 = true;
+            },
+            type(type) {
+                return checkType(type);
+            },
+            status(status) {
+                return checkStatus(status);
+            },
             // deleteImage(id) {
             //     const array = this.productForm.images;
             //     const imageIndex = array.indexOf(id);
@@ -143,7 +147,6 @@
             confirmPick(name) {
                 this.dialogGallery1 = false;
                 this.luckyForm.id = name;
-                console.log('herer');
             },
             // contentChange(content) {
             //     this.productForm.content = content;
