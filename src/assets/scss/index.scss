@@ -596,3 +596,6 @@ input:checked + img {
 .admin-sidebar {
     background: linear-gradient(175.62deg, #1D0404 57.15%, #D40B02 92.94%);
 }
+.submenu .el-submenu__title:hover {
+    color: black !important;
+}
