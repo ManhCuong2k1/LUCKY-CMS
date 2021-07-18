@@ -91,13 +91,20 @@
                     arrOrder.push(element.data);
                 });
                 arrOrder.forEach((element, index) => {
-                    // eslint-disable-next-line no-unused-vars
                     const str = [];
-                    element.forEach((s) => {
-                        const string = `${s.number[0]} ${s.number[1]}`;
-                        str.push(`${s.price / 1000}K - ${string}`);
-                    });
-                    this.dataForm[index].orders.orderDetail = str;
+                    if (arr[index].childgame === 'basic') {
+                        element.forEach((s) => {
+                            const string = `${s.number[0]} ${s.number[1]}`;
+                            str.push(`${s.price / 1000}K - ${string}`);
+                        });
+                        this.dataForm[index].orders.orderDetail = str;
+                    } else if (arr[index].childgame === 'chanle') {
+                        element.forEach((s) => {
+                            const string = `${s.price / 1000}K - ${s.select}`;
+                            str.push(string);
+                        });
+                        this.dataForm[index].orders.orderDetail = str;
+                    }
                 });
                 return this.dataForm;
             },

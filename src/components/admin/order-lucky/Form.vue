@@ -42,16 +42,16 @@
             <el-form-item label="Lấy ảnh vé" class="content-center">
                 <el-button class="dropzone el-col-3" @click="openLuckyGallery">
                     <div>
-                        <div><img class="w-32" :src="toImage(luckyForm.image.avatar)"></div>
+                        <div><img class="w-32" :src="toImage(luckyForm.imageslist)"></div>
                         <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                     </div>
                 </el-button>
-                <el-button class="dropzone el-col-3" @click="openLuckyGallery1">
+                <!-- <el-button class="dropzone el-col-3" @click="openLuckyGallery1">
                     <div>
                         <div><img class="w-32"></div>
                         <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                     </div>
-                </el-button>
+                </el-button> -->
             </el-form-item>
 
             <el-form-item>
@@ -67,12 +67,12 @@
         >
             <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
         </el-dialog>
-        <el-dialog
+        <!-- <el-dialog
             title="Chọn ảnh"
             :visible.sync="dialogGallery2"
         >
             <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
-        </el-dialog>
+        </el-dialog> -->
     </div>
 </template>
 
@@ -116,6 +116,11 @@
                 loading: false,
                 luckyForm,
             };
+        },
+        watch: {
+            luckyForm() {
+                console.log(this.luckyForm);
+            },
         },
         methods: {
             toImage,

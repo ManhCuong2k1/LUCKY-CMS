@@ -25,13 +25,21 @@
         },
         computed: {
             configString() {
-                const data = JSON.parse(this.lucky.orders[0].orderDetail).data;
+                const orderDetail = JSON.parse(this.lucky.orders[0].orderDetail);
+                const data = orderDetail.data;
                 // eslint-disable-next-line no-unused-vars
                 const str = [];
-                data.forEach((element) => {
-                    const string = `${element.number[0]} ${element.number[1]}`;
-                    str.push(`${element.price / 1000}K - ${string}`);
-                });
+                if (orderDetail.childgame === 'basic') {
+                    data.forEach((e) => {
+                        const string = `${e.number[0]} ${e.number[1]}`;
+                        str.push(`${e.price / 1000}K - ${string}`);
+                    });
+                } else if (orderDetail.childgame === 'chanle') {
+                    data.forEach((e) => {
+                        const string = `${e.price / 1000}K - ${e.select}`;
+                        str.push(string);
+                    });
+                }
                 return str;
             },
         },
