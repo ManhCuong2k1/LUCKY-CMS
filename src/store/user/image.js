@@ -19,4 +19,8 @@ export const actions = {
         const res = await this.$axios.get('/upload/images');
         commit('setimagesData', res.data);
     },
+    async getImagesDetail({ commit }, id) {
+        const res = await this.$axios.get(`/upload/images/${id}`);
+        commit('setimagesData', res);
+    },
 };

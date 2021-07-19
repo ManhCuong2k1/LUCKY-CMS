@@ -9,6 +9,7 @@
     import cloneDeep from 'lodash/cloneDeep';
     import LuckyForm from '~/components/admin/order-lucky/Form.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
+    import { checkName } from '~/utils/configData';
 
     export default {
         layout: 'admin',
@@ -25,29 +26,26 @@
         },
         computed: {
             configString() {
-                const data = JSON.parse(this.lucky.orders[0].orderDetail).data;
+                const luckyDetail = JSON.parse(this.lucky.orders[0].orderDetail);
+                const data = luckyDetail.data;
                 // eslint-disable-next-line no-unused-vars
                 const str = [];
-                data.forEach((element) => {
-                    const string = `${element.number[0]} ${element.number[1]}`;
-                    str.push(`${element.price / 1000}K - ${string}`);
-                });
+                if (luckyDetail.childgame === 'basic') {
+                    data.forEach((element) => {
+                        let string = '';
+                        element.number.forEach((e) => {
+                            string += `${e} `;
+                        });
+                        str.push(`${element.price / 1000}K - ${string}`);
+                    });
+                } else if (luckyDetail.childgame === 'chanle_lonnho') {
+                    data.forEach((element) => {
+                        const string = checkName(element.select);
+                        str.push(`${element.price / 1000}K - ${string}`);
+                    });
+                }
                 return str;
             },
         },
-
-        // methods: {
-        //     async updateProduct(form) {
-        //         try {
-        //             await this.$store.dispatch('admin/product/update', { id: this.product.id, data: form });
-        //             this.$router.push('/admin/product/');
-        //         } catch ($e) {
-        //             this.$message({
-        //                 message: 'Thay đổi lỗi',
-        //                 type: 'error',
-        //             });
-        //         }
-        //     },
-        // },
     };
 </script>

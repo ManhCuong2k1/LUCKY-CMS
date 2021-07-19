@@ -2,6 +2,21 @@
     <div>
         <div>
             <PageHeader :title="'Đặt vé'" />
+            <div class="w-1/2">
+                <div class="mt-5 flex">
+                    <el-input
+                        v-model="tableFilter.searchKey"
+                        placeholder="Tìm kiếm"
+                        class="input-with-select mr-5"
+                        clearable
+                        @clear="updateSearchKeyTicket"
+                    />
+                    <el-button type="primary" icon="el-icon-search" @click="updateSearchKeyTicket">
+                        Tìm kiếm
+                    </el-button>
+                </div>
+            </div>
+
             <div>
                 <TableOrder :data-order="order" />
             </div>
@@ -48,11 +63,17 @@
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
+                await this.$store.dispatch('admin/orderLucky/fetch', this.tableFilter);
                 this.$router.push({ query: filter });
             },
-            updatePage(page) {
+            async updatePage(page) {
                 this.fetchData({ page });
             },
+            updateSearchKeyTicket() {
+                const page = null;
+                this.fetchData({ page });
+            },
+
         },
     };
 </script>

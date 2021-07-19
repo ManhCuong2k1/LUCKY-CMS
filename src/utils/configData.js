@@ -53,3 +53,37 @@ export const checkStatus = (status) => {
     }
     return message;
 };
+
+export const checkName = (name) => {
+    let message = '';
+    switch (name) {
+        case 'chanle_chansm':
+            message = '( Chẵn lẻ ) - Chẵn nhỏ';
+            break;
+        case 'chanle_lesm':
+            message = '( Chẵn lẻ ) - Lẻ nhỏ';
+            break;
+        case 'chanle_chanlg':
+            message = '( Chẵn lẻ ) - Chẵn lớn';
+            break;
+        case 'chanle_lelg':
+            message = '( Chẵn lẻ ) - Lẻ lớn';
+            break;
+        case 'chanle_hoa':
+            message = '( Chẵn lẻ ) - Hòa';
+            break;
+        case 'lonnho_lon':
+            message = '( Lớn nhỏ ) - Lớn';
+            break;
+        case 'lonnho_hoa':
+            message = '( Lớn nhỏ ) - Hòa';
+            break;
+        case 'lonnho_nho':
+            message = '( Lớn nhỏ ) - Nhỏ';
+            break;
+        default:
+            message = '';
+            break;
+    }
+    return message;
+};

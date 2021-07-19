@@ -16,8 +16,8 @@
                     >
                         <img
                             class="w-full transform transition duration-300 hover:scale-110 hover:shadow-md cursor-pointer"
-                            :src="toImage(i.imageUrl, 'thumbnail')"
-                            @click="confirmPick(i.imageUrl)"
+                            :src="toImage(i.imageslist, 'thumbnail')"
+                            @click="confirmPick(i.imageslist)"
                         >
                     </div>
                 </div>
@@ -47,7 +47,7 @@
             },
         },
         data() {
-            this.fetchData(this.orderId);
+            this.fetchData();
             return {
                 selectedFile: [],
                 dialogVisible: false,

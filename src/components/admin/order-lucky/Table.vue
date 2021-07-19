@@ -1,70 +1,87 @@
 <template>
-    <el-table :data="changeData" class="w-full">
-        <el-table-column prop="name" label="Mã vé" width="120">
-            <template slot-scope="scope">
-                <span>{{ scope.row.id }}</span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="city" label="Khách hàng" width="180">
-            <template slot-scope="scope">
-                <span>{{ scope.row.user.phone }}</span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="phone" label="Thời gian đặt">
-            <template slot-scope="scope">
-                <span>{{ scope.row.createdAt | formatDate }}</span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="transporter" label="Loại vé" width="200">
-            <template slot-scope="scope">
-                <span>{{ type(scope.row.type) }}</span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="total" label="Nội dung">
-            <template slot-scope="scope">
-                <p v-for="orderDetail in scope.row.orders.orderDetail" :key="orderDetail">
-                    {{ orderDetail }}
-                </p>
-            </template>
-        </el-table-column>
-        <el-table-column prop="total" label="Số kỳ">
-            <template slot-scope="scope">
-                <span>{{ scope.row.orders.length }}</span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="orderStatus" label="Trạng thái">
-            <template slot-scope="scope">
-                <div style="height: 40px; line-height:40px;">
-                    <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : ''">
-                        {{ status(scope.row.orderStatus) }}
-                    </span>
-                </div>
-            </template>
-        </el-table-column>
-        <el-table-column label="Công cụ" width="170">
-            <template slot-scope="scope">
-                <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/order-lucky/${scope.row.id}/edit`">
+    <div>
+        <el-table :data="changeData" class="w-full">
+            <el-table-column prop="name" label="Mã vé" width="120">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.id }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="city" label="Khách hàng" width="180">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.user.phone }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="phone" label="Thời gian đặt">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.createdAt | formatDate }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="transporter" label="Loại vé" width="130">
+                <template slot-scope="scope">
+                    <span>{{ type(scope.row.type) }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="total" label="Nội dung" width="400">
+                <template slot-scope="scope">
+                    <p v-for="orderDetail in scope.row.orders.orderDetail" :key="orderDetail">
+                        {{ orderDetail }}
+                    </p>
+                </template>
+            </el-table-column>
+            <el-table-column prop="total" label="Số kỳ">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.orders.length }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="orderStatus" label="Trạng thái">
+                <template slot-scope="scope">
+                    <div style="height: 40px; line-height:40px;">
+                        <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : ''">
+                            {{ status(scope.row.orderStatus) }}
+                        </span>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="Công cụ" width="170">
+                <template slot-scope="scope">
+                    <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/order-lucky/${scope.row.id}/edit`">
+                        <el-button
+                            icon="el-icon-camera-solid"
+                            class="button-upload"
+                        >
+                            Up ảnh vé
+                        </el-button>
+                    </router-link>
                     <el-button
-                        icon="el-icon-camera-solid"
-                        class="button-upload"
-                    >
-                        Up ảnh vé
-                    </el-button>
-                </router-link>
-                <router-link v-else to="/">
-                    <el-button
+                        v-else
                         icon="el-icon-view"
                         class="button-view"
+                        @click="viewImage(scope.row.id)"
                     />
-                </router-link>
-            </template>
-        </el-table-column>
-    </el-table>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div v-if="showImages" class="show-images">
+            <div class="relative cursor-pointer" @click="close()">
+                <i class="el-icon-close absolute right-2 top-2" />
+                <div>
+                    <h4 class="text-2xl pt-4 pb-4 ml-4 mr-4 border-b">Images</h4>
+                </div>
+            </div>
+            <div class="flex flex-wrap">
+                <span v-for="i in images" :key="i.id" class="w-1/3">
+                    <img :src="toImage(i.imageslist)" alt="" class="h-56 p-4">
+                </span>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
     import cloneDeep from 'lodash/cloneDeep';
-    import { checkType, checkStatus } from '~/utils/configData';
+    import { mapState } from 'vuex';
+    import { image as toImage } from '~/utils/url';
+    import { checkType, checkStatus, checkName } from '~/utils/configData';
 
     export default {
         props: {
@@ -73,14 +90,14 @@
                 required: true,
             },
         },
-
         data() {
-            const dataForm = cloneDeep(this.dataOrder);
             return {
-                dataForm,
+                dataForm: cloneDeep(this.dataOrder),
+                showImages: false,
             };
         },
         computed: {
+            ...mapState('user/image', ['images']),
             changeData() {
                 const arr = [];
                 const arrOrder = [];
@@ -93,21 +110,44 @@
                 arrOrder.forEach((element, index) => {
                     // eslint-disable-next-line no-unused-vars
                     const str = [];
-                    element.forEach((s) => {
-                        const string = `${s.number[0]} ${s.number[1]}`;
-                        str.push(`${s.price / 1000}K - ${string}`);
-                    });
+                    if (arr[index].childgame === 'basic') {
+                        element.forEach((s) => {
+                            let string = '';
+                            s.number.forEach((e) => {
+                                string += `${e} `;
+                            });
+                            str.push(`${s.price / 1000}K - ${string}`);
+                        });
+                    } else if (arr[index].childgame === 'chanle_lonnho') {
+                        element.forEach((s) => {
+                            const string = checkName(s.select);
+                            str.push(`${s.price / 1000}K - ${string}`);
+                        });
+                    }
                     this.dataForm[index].orders.orderDetail = str;
                 });
                 return this.dataForm;
             },
         },
+        // watch: {
+        //     dataOrder() {
+        //         this.dataForm = cloneDeep(this.dataOrder);
+        //     },
+        // },
         methods: {
+            toImage,
             type(type) {
                 return checkType(type);
             },
             status(status) {
                 return checkStatus(status);
+            },
+            close() {
+                this.showImages = false;
+            },
+            async viewImage(id) {
+                this.showImages = true;
+                await this.$store.dispatch('user/image/getImagesDetail', id);
             },
         },
     };
@@ -137,5 +177,15 @@
 }
 .el-table td, .el-table th {
     vertical-align: text-top;
+}
+.show-images {
+    box-shadow: 0px 0px 10px 0px grey;
+    position: absolute;
+    width: 50rem;
+    height: 40rem;
+    top: 12rem;
+    left: 26%;
+    background: white;
+    border-radius: 6px;
 }
 </style>
