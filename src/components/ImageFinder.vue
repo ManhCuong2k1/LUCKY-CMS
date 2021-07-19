@@ -68,7 +68,7 @@
                 this.fetchData();
                 this.formError = [];
                 this.$refs.dropzone.$_dropzone.removeFile(file);
-                this.$router.push(`/admin/order-lucky/${this.orderId}/edit`);
+                this.$router.push('/admin/order-lucky/');
                 return file;
             },
             updateUploadFiles() {

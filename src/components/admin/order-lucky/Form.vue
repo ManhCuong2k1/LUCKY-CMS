@@ -42,16 +42,20 @@
             <el-form-item label="Lấy ảnh vé" class="content-center">
                 <el-button class="dropzone el-col-3" @click="openLuckyGallery">
                     <div>
+<<<<<<< HEAD
                         <div><img class="w-32" :src="toImage(luckyForm.listsimages)"></div>
+=======
+                        <div><img class="w-32" :src="toImage(luckyForm.imageslist)"></div>
+>>>>>>> 3b2faa1f650839f37c4bb93635f3d7b7d0f22985
                         <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                     </div>
                 </el-button>
-                <el-button class="dropzone el-col-3" @click="openLuckyGallery1">
+                <!-- <el-button class="dropzone el-col-3" @click="openLuckyGallery1">
                     <div>
                         <div><img class="w-32" :src="toImage(luckyForm.listsimages)"></div>
                         <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                     </div>
-                </el-button>
+                </el-button> -->
             </el-form-item>
 
             <el-form-item>
@@ -67,12 +71,17 @@
         >
             <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
         </el-dialog>
-        <el-dialog
+        <!-- <el-dialog
             title="Chọn ảnh"
             :visible.sync="dialogGallery2"
         >
+<<<<<<< HEAD
             <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick1" />
         </el-dialog>
+=======
+            <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
+        </el-dialog> -->
+>>>>>>> 3b2faa1f650839f37c4bb93635f3d7b7d0f22985
     </div>
 </template>
 
@@ -116,6 +125,11 @@
                 loading: false,
                 luckyForm,
             };
+        },
+        watch: {
+            luckyForm() {
+                console.log(this.luckyForm);
+            },
         },
         methods: {
             toImage,

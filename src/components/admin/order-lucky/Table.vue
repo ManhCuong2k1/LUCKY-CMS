@@ -108,10 +108,10 @@
                     arrOrder.push(element.data);
                 });
                 arrOrder.forEach((element, index) => {
-                    // eslint-disable-next-line no-unused-vars
                     const str = [];
                     if (arr[index].childgame === 'basic') {
                         element.forEach((s) => {
+<<<<<<< HEAD
                             let string = '';
                             s.number.forEach((e) => {
                                 string += `${e} `;
@@ -125,6 +125,19 @@
                         });
                     }
                     this.dataForm[index].orders.orderDetail = str;
+=======
+                            const string = `${s.number[0]} ${s.number[1]}`;
+                            str.push(`${s.price / 1000}K - ${string}`);
+                        });
+                        this.dataForm[index].orders.orderDetail = str;
+                    } else if (arr[index].childgame === 'chanle') {
+                        element.forEach((s) => {
+                            const string = `${s.price / 1000}K - ${s.select}`;
+                            str.push(string);
+                        });
+                        this.dataForm[index].orders.orderDetail = str;
+                    }
+>>>>>>> 3b2faa1f650839f37c4bb93635f3d7b7d0f22985
                 });
                 return this.dataForm;
             },
