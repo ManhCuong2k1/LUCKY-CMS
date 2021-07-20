@@ -75,13 +75,8 @@
             title="Chọn ảnh"
             :visible.sync="dialogGallery2"
         >
-<<<<<<< HEAD
             <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick1" />
-        </el-dialog>
-=======
-            <ImageFinder :order-id="luckyForm.id" @confirmPick="confirmPick" />
-        </el-dialog> -->
->>>>>>> 3b2faa1f650839f37c4bb93635f3d7b7d0f22985
+        </el-dialog>-->
     </div>
 </template>
 
