@@ -23,7 +23,7 @@
             </el-table-column>
             <el-table-column prop="total" label="Nội dung" width="400">
                 <template slot-scope="scope">
-                    <p v-for="orderDetail in scope.row.orders.orderDetail" :key="orderDetail">
+                    <p v-for="orderDetail in scope.row.orders[0].orderDetail" :key="orderDetail">
                         {{ orderDetail }}
                     </p>
                 </template>
@@ -61,16 +61,18 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div v-if="showImages" class="show-images">
-            <div class="relative cursor-pointer" @click="close()">
+        <div v-if="showImages" class="show-images overflow-y-scroll">
+            <div class=" cursor-pointer sticky top-0 bg-white z-50" @click="close()">
                 <i class="el-icon-close absolute right-2 top-2" />
                 <div>
-                    <h4 class="text-2xl pt-4 pb-4 ml-4 mr-4 border-b">Images</h4>
+                    <h4 class="text-2xl pt-4 pb-4 ml-4 mr-4 border-b">
+                        Images
+                    </h4>
                 </div>
             </div>
             <div class="flex flex-wrap">
-                <span v-for="i in images" :key="i.id" class="w-1/3">
-                    <img :src="toImage(i.imageslist)" alt="" class="h-56 p-4">
+                <span v-for="i in images" :key="i.id" class="w-1/3 p-4">
+                    <img :src="toImage(i.imageslist)" alt="" class="h-56">
                 </span>
             </div>
         </div>
@@ -98,10 +100,11 @@
         },
         computed: {
             ...mapState('user/image', ['images']),
+            ...mapState('admin/orderLucky', ['order']),
             changeData() {
                 const arr = [];
                 const arrOrder = [];
-                this.dataForm.forEach((element) => {
+                this.dataOrder.forEach((element) => {
                     arr.push(JSON.parse(element.orders[0].orderDetail));
                 });
                 arr.forEach((element) => {
@@ -123,16 +126,16 @@
                             str.push(`${s.price / 1000}K - ${string}`);
                         });
                     }
-                    this.dataForm[index].orders.orderDetail = str;
+                    this.dataForm[index].orders[0].orderDetail = str;
                 });
                 return this.dataForm;
             },
         },
-        // watch: {
-        //     dataOrder() {
-        //         this.dataForm = cloneDeep(this.dataOrder);
-        //     },
-        // },
+        watch: {
+            dataOrder() {
+                this.dataForm = cloneDeep(this.dataOrder);
+            },
+        },
         methods: {
             toImage,
             type(type) {
@@ -186,5 +189,14 @@
     left: 26%;
     background: white;
     border-radius: 6px;
+}
+.show-images::-webkit-scrollbar {
+width: 4px;
+background-color: #F5F5F5;
+}
+
+.show-images::-webkit-scrollbar-thumb {
+background-color: #000000;
+border: 2px solid #555555;
 }
 </style>

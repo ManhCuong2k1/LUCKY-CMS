@@ -17,7 +17,7 @@
                         <img
                             class="w-full transform transition duration-300 hover:scale-110 hover:shadow-md cursor-pointer"
                             :src="toImage(i.imageslist, 'thumbnail')"
-                            @click="confirmPick(i.imageslist)"
+                            @click="confirmPick(i)"
                         >
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 this.fetchData();
                 this.formError = [];
                 this.$refs.dropzone.$_dropzone.removeFile(file);
-                this.$router.push('/admin/order-lucky/');
+                // this.$router.push('/admin/order-lucky/');
                 return file;
             },
             updateUploadFiles() {

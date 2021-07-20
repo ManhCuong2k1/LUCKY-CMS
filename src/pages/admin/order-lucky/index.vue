@@ -64,6 +64,7 @@
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
                 await this.$store.dispatch('admin/orderLucky/fetch', this.tableFilter);
+                console.log(this.order);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {

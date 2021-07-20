@@ -19,7 +19,7 @@
         },
         async asyncData({ store, params }) {
             await store.dispatch('admin/orderLucky/getDetail', params.id);
-            const lucky = cloneDeep(store.state.admin.orderLucky.order);
+            const lucky = cloneDeep(store.state.admin.orderLucky.orderDetail);
             return {
                 lucky,
             };
