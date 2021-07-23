@@ -3,7 +3,7 @@
         <Dropzone
             ref="dropzone"
             class="mb-5"
-            :url="`/api/admin/lottery-order/${orderId}/images`"
+            :url="orderId ? `/api/admin/lottery-order/${orderId}/images` : '/api/admin/lottery-order/banner'"
             @success="onUploadSucceeded"
         />
         <div class="w-full">
@@ -16,7 +16,7 @@
                     >
                         <img
                             class="w-full transform transition duration-300 hover:scale-110 hover:shadow-md cursor-pointer"
-                            :src="toImage(i.imageslist, 'thumbnail')"
+                            :src="toImage(i.imageslist, 'full')"
                             @click="confirmPick(i)"
                         >
                     </div>

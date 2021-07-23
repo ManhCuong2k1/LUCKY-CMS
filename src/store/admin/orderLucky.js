@@ -12,7 +12,6 @@ export const mutations = {
             page: payload.page,
             pageSize: payload.pageSize,
             total: payload.total,
-            // lastPage: Math.ceil(payload.total / payload.pageSize),
         };
     },
     setOrderDetail(state, payload) {

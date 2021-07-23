@@ -42,6 +42,27 @@
     "_name": "_62c5fd8a"
   },
   {
+    "name": "admin-banner",
+    "path": "/admin/banner",
+    "component": "/web/src/pages/admin/banner/index.vue",
+    "chunkName": "pages/admin/banner/index",
+    "_name": "_05204ad1"
+  },
+  {
+    "name": "admin-dashboard",
+    "path": "/admin/dashboard",
+    "component": "/web/src/pages/admin/dashboard/index.vue",
+    "chunkName": "pages/admin/dashboard/index",
+    "_name": "_7f8b98e5"
+  },
+  {
+    "name": "admin-history-user",
+    "path": "/admin/history-user",
+    "component": "/web/src/pages/admin/history-user/index.vue",
+    "chunkName": "pages/admin/history-user/index",
+    "_name": "_443208ee"
+  },
+  {
     "name": "admin-order-lucky",
     "path": "/admin/order-lucky",
     "component": "/web/src/pages/admin/order-lucky/index.vue",

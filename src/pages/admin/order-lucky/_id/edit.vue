@@ -1,7 +1,7 @@
 <template>
     <div>
         <PageHeader />
-        <LuckyForm :lucky-data="lucky" :order-details="configString" />
+        <LuckyForm :lucky-data="configString" />
     </div>
 </template>
 
@@ -44,7 +44,11 @@
                         str.push(`${element.price / 1000}K - ${string}`);
                     });
                 }
-                return str;
+                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                this.lucky.orders[0].orderDetail = JSON.parse(this.lucky.orders[0].orderDetail);
+                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                this.lucky.orders[0].orderDetail.data = str;
+                return this.lucky;
             },
         },
     };

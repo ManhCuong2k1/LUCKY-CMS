@@ -6,10 +6,10 @@
                 <div class="mt-5 flex">
                     <el-input
                         v-model="tableFilter.searchKey"
-                        placeholder="Tìm kiếm"
+                        placeholder="Tìm theo khách hàng"
                         class="input-with-select mr-5"
                         clearable
-                        @clear="updateSearchKeyTicket"
+                        @clear="updatePage"
                     />
                     <el-button type="primary" icon="el-icon-search" @click="updateSearchKeyTicket">
                         Tìm kiếm
@@ -48,6 +48,7 @@
         },
         async asyncData({ query, store }) {
             const initFilter = {
+                searchKey: null,
                 page: query.page || 1,
             };
             const filter = { ...initFilter, ...query };
@@ -63,16 +64,17 @@
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                await this.$store.dispatch('admin/orderLucky/fetch', this.tableFilter);
-                console.log(this.order);
+                await this.$store.dispatch('admin/orderLucky/fetch', filter);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {
                 this.fetchData({ page });
             },
             updateSearchKeyTicket() {
-                const page = null;
-                this.fetchData({ page });
+                if (this.tableFilter.searchKey) {
+                    const page = null;
+                    this.fetchData({ page });
+                }
             },
 
         },

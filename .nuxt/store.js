@@ -20,6 +20,7 @@ let store = {};
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../src/store/validation.js'), 'validation.js')
+  resolveStoreModules(require('../src/store/admin/banner.js'), 'admin/banner.js')
   resolveStoreModules(require('../src/store/admin/orderLucky.js'), 'admin/orderLucky.js')
   resolveStoreModules(require('../src/store/admin/user.js'), 'admin/user.js')
   resolveStoreModules(require('../src/store/user/image.js'), 'user/image.js')
@@ -31,6 +32,7 @@ let store = {};
     module.hot.accept([
       '../src/store/index.js',
       '../src/store/validation.js',
+      '../src/store/admin/banner.js',
       '../src/store/admin/orderLucky.js',
       '../src/store/admin/user.js',
       '../src/store/user/image.js',

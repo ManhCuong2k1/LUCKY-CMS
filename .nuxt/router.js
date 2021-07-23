@@ -10,6 +10,9 @@ const _4c8c7f12 = () => interopDefault(import('../src/pages/login.vue' /* webpac
 const _6efe435c = () => interopDefault(import('../src/pages/login-trans.vue' /* webpackChunkName: "pages/login-trans" */))
 const _95151df6 = () => interopDefault(import('../src/pages/register.vue' /* webpackChunkName: "pages/register" */))
 const _62c5fd8a = () => interopDefault(import('../src/pages/reset-password.vue' /* webpackChunkName: "pages/reset-password" */))
+const _05204ad1 = () => interopDefault(import('../src/pages/admin/banner/index.vue' /* webpackChunkName: "pages/admin/banner/index" */))
+const _7f8b98e5 = () => interopDefault(import('../src/pages/admin/dashboard/index.vue' /* webpackChunkName: "pages/admin/dashboard/index" */))
+const _443208ee = () => interopDefault(import('../src/pages/admin/history-user/index.vue' /* webpackChunkName: "pages/admin/history-user/index" */))
 const _cdb4338c = () => interopDefault(import('../src/pages/admin/order-lucky/index.vue' /* webpackChunkName: "pages/admin/order-lucky/index" */))
 const _3b7f1730 = () => interopDefault(import('../src/pages/admin/user/index.vue' /* webpackChunkName: "pages/admin/user/index" */))
 const _3bdd92f2 = () => interopDefault(import('../src/pages/admin/order-lucky/_id/edit.vue' /* webpackChunkName: "pages/admin/order-lucky/_id/edit" */))
@@ -51,6 +54,18 @@ export const routerOptions = {
     path: "/reset-password",
     component: _62c5fd8a,
     name: "reset-password"
+  }, {
+    path: "/admin/banner",
+    component: _05204ad1,
+    name: "admin-banner"
+  }, {
+    path: "/admin/dashboard",
+    component: _7f8b98e5,
+    name: "admin-dashboard"
+  }, {
+    path: "/admin/history-user",
+    component: _443208ee,
+    name: "admin-history-user"
   }, {
     path: "/admin/order-lucky",
     component: _cdb4338c,

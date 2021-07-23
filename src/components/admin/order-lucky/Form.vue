@@ -18,12 +18,12 @@
             </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
-                    <p>{{ type(luckyData.type) }}</p>
+                    <p>{{ type(luckyData.type) }} ({{ luckyData.orders[0].orderDetail.childgame == 'chanle_lonnho' ? 'Chẵn lẻ' : luckyData.orders[0].orderDetail.childgame == 'basic' ? `bậc ${luckyData.orders[0].orderDetail.level}` : '' }})</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
                 <el-col :span="12" class="order-detail pb-4">
-                    <span v-for="orderDetail in orderDetails" :key="orderDetail" class="block h-6">
+                    <span v-for="orderDetail in luckyData.orders[0].orderDetail.data" :key="orderDetail" class="block h-6">
                         {{ orderDetail }}
                     </span>
                 </el-col>
@@ -40,17 +40,17 @@
             </el-form-item>
 
             <el-form-item label="Lấy ảnh vé" class="content-center">
-                <el-button class="dropzone el-col-3" @click="openLuckyGallery">
-                    <div>
-                        <div><img class="w-32" :src="toImage(imagesList.listsimages1)"></div>
-                        <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
+                <el-button :class="imagesList.listsimages1 ? '': 'dropzone'" class="el-col-3 p-0" @click="openLuckyGallery">
+                    <div v-if="imagesList.listsimages1">
+                        <img class="w-full h-40" :src="toImage(imagesList.listsimages1, 'full')">
                     </div>
+                    <span v-else class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                 </el-button>
-                <el-button class="dropzone el-col-3" @click="openLuckyGallery1">
-                    <div>
-                        <div><img class="w-32" :src="toImage(imagesList.listsimages2)"></div>
-                        <span class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
+                <el-button :class="imagesList.listsimages2 ? '': 'dropzone'" class="el-col-3" @click="openLuckyGallery1">
+                    <div v-if="imagesList.listsimages2">
+                        <img class="w-full h-40" :src="toImage(imagesList.listsimages2, 'full')">
                     </div>
+                    <span v-else class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
                 </el-button>
             </el-form-item>
 
@@ -77,8 +77,6 @@
 </template>
 
 <script>
-    // import { mapState } from 'vuex';
-    // import cloneDeep from 'lodash/cloneDeep';
     import ImageFinder from '~/components/ImageFinder.vue';
     import { image as toImage } from '~/utils/url';
     import { checkType, checkStatus } from '~/utils/configData';
@@ -93,13 +91,8 @@
                 type: Object,
                 required: false,
             },
-            orderDetails: {
-                type: Array,
-                required: true,
-            },
         },
         data() {
-            // const luckyForm = cloneDeep(this.luckyData);
             return {
                 dialogGallery1: false,
                 dialogGallery2: false,
@@ -108,7 +101,6 @@
                     listsimages1: '',
                     listsimages2: '',
                 },
-                // luckyForm,
                 idImages1: '',
                 idImages2: '',
             };
@@ -130,18 +122,16 @@
             confirmPick(name) {
                 this.dialogGallery1 = false;
                 this.imagesList.listsimages1 = name.imageslist;
-                // this.luckyForm.listsimages1 = name.imageslist;
                 this.idImages1 = name.id;
             },
             confirmPick1(name) {
                 this.dialogGallery2 = false;
                 this.imagesList.listsimages2 = name.imageslist;
-                // this.luckyForm.listsimages2 = name.imageslist;
                 this.idImages2 = name.id;
             },
             saveImages() {
                 this.$store.dispatch('admin/orderLucky/updateImage', { data: { imageId1: this.idImages1, imageId2: this.idImages2 }, id: this.luckyData.id });
-                this.$router.push('/admin/order-lucky');
+                // this.$router.push('/admin/order-lucky');
                 this.$message({
                     message: 'Gửi ảnh thành công!',
                     type: 'success',
@@ -156,5 +146,8 @@
     border: 1px solid rgb(194, 194, 194);
     border-radius: 4px;
     padding-left: 16px;
+}
+.content-center button {
+    padding: 0;
 }
 </style>
