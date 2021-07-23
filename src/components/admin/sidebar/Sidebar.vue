@@ -25,17 +25,14 @@
             <SidebarItem icon="el-icon-collection" link="/admin/order-lucky">
                 Đặt vé
             </SidebarItem>
-            <el-submenu index="3" class="submenu">
-                <template slot="title">
-                    <i class="el-icon-time" />
-                    <span :style="!collapsed ? 'padding-right: 20px' : 'padding-right: 0px'" :class="collapsed ? 'pl-4': ''">Lịch sử giao dịch</span>
-                </template>
-            </el-submenu>
+            <SidebarItem icon="el-icon-time" link="/admin/history-user">
+                Lịch sử giao dịch
+            </SidebarItem>
             <SidebarItem icon="el-icon-user" link="/">
                 Người dùng
             </SidebarItem>
-            <SidebarItem icon="el-icon-files" link="/">
-                Quảng cáo
+            <SidebarItem icon="el-icon-files" link="/admin/banner">
+                Banner
             </SidebarItem>
             <el-submenu index="6" class="submenu">
                 <template slot="title">

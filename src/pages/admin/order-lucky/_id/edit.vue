@@ -1,7 +1,7 @@
 <template>
     <div>
         <PageHeader />
-        <LuckyForm :lucky-data="lucky" :order-details="configString" />
+        <LuckyForm :lucky-data="configString" />
     </div>
 </template>
 
@@ -19,7 +19,7 @@
         },
         async asyncData({ store, params }) {
             await store.dispatch('admin/orderLucky/getDetail', params.id);
-            const lucky = cloneDeep(store.state.admin.orderLucky.order);
+            const lucky = cloneDeep(store.state.admin.orderLucky.orderDetail);
             return {
                 lucky,
             };
@@ -44,7 +44,11 @@
                         str.push(`${element.price / 1000}K - ${string}`);
                     });
                 }
-                return str;
+                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                this.lucky.orders[0].orderDetail = JSON.parse(this.lucky.orders[0].orderDetail);
+                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                this.lucky.orders[0].orderDetail.data = str;
+                return this.lucky;
             },
         },
     };
