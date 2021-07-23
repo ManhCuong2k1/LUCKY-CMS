@@ -121,6 +121,7 @@
         },
         computed: {
             ...mapState('user/image', ['images']),
+            ...mapState('admin/orderLucky', ['order']),
             changeData() {
                 const arr = [];
                 const arrOrder = [];
@@ -214,6 +215,15 @@
     background: white;
     border-radius: 6px;
     transition: 0.3s ease all;
+}
+.show-images::-webkit-scrollbar {
+width: 4px;
+background-color: #F5F5F5;
+}
+
+.show-images::-webkit-scrollbar-thumb {
+background-color: #000000;
+border: 2px solid #555555;
 }
 .show-images::-webkit-scrollbar {
 width: 4px;
