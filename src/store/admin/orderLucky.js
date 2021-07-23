@@ -1,5 +1,6 @@
 export const state = () => ({
     order: [],
+    orderDetail: null,
     image: [],
     pagination: null,
 });
@@ -11,8 +12,10 @@ export const mutations = {
             page: payload.page,
             pageSize: payload.pageSize,
             total: payload.total,
-            // lastPage: Math.ceil(payload.total / payload.pageSize),
         };
+    },
+    setOrderDetail(state, payload) {
+        state.orderDetail = payload.data;
     },
     setImage(state, payload) {
         state.image = payload;
@@ -26,10 +29,10 @@ export const actions = {
     },
     async getDetail({ commit }, id) {
         const res = await this.$axios.get(`/admin/lottery-order/detail/${id}`);
-        commit('setOrder', res.data);
+        commit('setOrderDetail', res.data);
     },
-    async upload({ commit }, payload) {
-        const res = await this.$axios.post(`/admin/lottery-order/${payload.id}/images`, payload.image);
+    async updateImage({ commit }, payload) {
+        const res = await this.$axios.put(`/admin/lottery-order/updateImage/${payload.id}`, payload.data);
         commit('setImage', res);
     },
 };

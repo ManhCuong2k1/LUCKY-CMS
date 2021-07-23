@@ -6,13 +6,6 @@
 
         <el-container direction="vertical" class="w-full h-full">
             <el-header class="admin__navbar flex items-center justify-end border-b">
-                <el-badge v-if="order.length > 0" :value="order.length" class="item">
-                    <nuxt-link :to="'/admin/order-producer/create'">
-                        <div class="text-2xl cursor-pointer">
-                            <i class="el-icon-shopping-cart-full" />
-                        </div>
-                    </nuxt-link>
-                </el-badge>
                 <UserMenu class="ml-10" />
             </el-header>
 

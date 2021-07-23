@@ -21,26 +21,7 @@ let store = {};
 
   resolveStoreModules(require('../src/store/validation.js'), 'validation.js')
   resolveStoreModules(require('../src/store/admin/banner.js'), 'admin/banner.js')
-  resolveStoreModules(require('../src/store/admin/city.js'), 'admin/city.js')
-  resolveStoreModules(require('../src/store/admin/common.js'), 'admin/common.js')
-  resolveStoreModules(require('../src/store/admin/distributor.js'), 'admin/distributor.js')
-  resolveStoreModules(require('../src/store/admin/district.js'), 'admin/district.js')
-  resolveStoreModules(require('../src/store/admin/group.js'), 'admin/group.js')
-  resolveStoreModules(require('../src/store/admin/image.js'), 'admin/image.js')
-  resolveStoreModules(require('../src/store/admin/news.js'), 'admin/news.js')
-  resolveStoreModules(require('../src/store/admin/notify.js'), 'admin/notify.js')
-  resolveStoreModules(require('../src/store/admin/order.js'), 'admin/order.js')
   resolveStoreModules(require('../src/store/admin/orderLucky.js'), 'admin/orderLucky.js')
-  resolveStoreModules(require('../src/store/admin/orderProducer.js'), 'admin/orderProducer.js')
-  resolveStoreModules(require('../src/store/admin/pointofsale.js'), 'admin/pointofsale.js')
-  resolveStoreModules(require('../src/store/admin/product.js'), 'admin/product.js')
-  resolveStoreModules(require('../src/store/admin/productCategory.js'), 'admin/productCategory.js')
-  resolveStoreModules(require('../src/store/admin/productGroup.js'), 'admin/productGroup.js')
-  resolveStoreModules(require('../src/store/admin/productPromotion.js'), 'admin/productPromotion.js')
-  resolveStoreModules(require('../src/store/admin/promotion.js'), 'admin/promotion.js')
-  resolveStoreModules(require('../src/store/admin/reportRevenue.js'), 'admin/reportRevenue.js')
-  resolveStoreModules(require('../src/store/admin/sms.js'), 'admin/sms.js')
-  resolveStoreModules(require('../src/store/admin/transporter.js'), 'admin/transporter.js')
   resolveStoreModules(require('../src/store/admin/user.js'), 'admin/user.js')
   resolveStoreModules(require('../src/store/user/image.js'), 'user/image.js')
 
@@ -52,26 +33,7 @@ let store = {};
       '../src/store/index.js',
       '../src/store/validation.js',
       '../src/store/admin/banner.js',
-      '../src/store/admin/city.js',
-      '../src/store/admin/common.js',
-      '../src/store/admin/distributor.js',
-      '../src/store/admin/district.js',
-      '../src/store/admin/group.js',
-      '../src/store/admin/image.js',
-      '../src/store/admin/news.js',
-      '../src/store/admin/notify.js',
-      '../src/store/admin/order.js',
       '../src/store/admin/orderLucky.js',
-      '../src/store/admin/orderProducer.js',
-      '../src/store/admin/pointofsale.js',
-      '../src/store/admin/product.js',
-      '../src/store/admin/productCategory.js',
-      '../src/store/admin/productGroup.js',
-      '../src/store/admin/productPromotion.js',
-      '../src/store/admin/promotion.js',
-      '../src/store/admin/reportRevenue.js',
-      '../src/store/admin/sms.js',
-      '../src/store/admin/transporter.js',
       '../src/store/admin/user.js',
       '../src/store/user/image.js',
     ], () => {

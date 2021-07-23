@@ -3,7 +3,7 @@
         <Dropzone
             ref="dropzone"
             class="mb-5"
-            :url="`/api/admin/lottery-order/${orderId}/images`"
+            :url="orderId ? `/api/admin/lottery-order/${orderId}/images` : '/api/admin/lottery-order/banner'"
             @success="onUploadSucceeded"
         />
         <div class="w-full">
@@ -16,8 +16,8 @@
                     >
                         <img
                             class="w-full transform transition duration-300 hover:scale-110 hover:shadow-md cursor-pointer"
-                            :src="toImage(i.imageslist, 'thumbnail')"
-                            @click="confirmPick(i.imageslist)"
+                            :src="toImage(i.imageslist, 'full')"
+                            @click="confirmPick(i)"
                         >
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 this.fetchData();
                 this.formError = [];
                 this.$refs.dropzone.$_dropzone.removeFile(file);
-                this.$router.push('/admin/order-lucky/');
+                // this.$router.push('/admin/order-lucky/');
                 return file;
             },
             updateUploadFiles() {
