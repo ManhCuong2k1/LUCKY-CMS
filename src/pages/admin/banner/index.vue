@@ -106,7 +106,7 @@
             },
             confirmPick(name) {
                 this.dialogVisible = false;
-                this.tableData[this.editRow].image = name;
+                this.tableData[this.editRow].image = name.imageslist;
                 this.editRow = -1;
             },
             removeRow(index) {
