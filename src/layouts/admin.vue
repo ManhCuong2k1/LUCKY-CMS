@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    // import { mapState } from 'vuex';
     import Sidebar from '~/components/admin/sidebar/Sidebar.vue';
     import UserMenu from '~/components/layout/UserMenu.vue';
 
@@ -33,8 +33,5 @@
         data: () => ({
             collapsed: false,
         }),
-        computed: {
-            ...mapState('admin/orderProducer', ['order']),
-        },
     };
 </script>
