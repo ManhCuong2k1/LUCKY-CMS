@@ -3,6 +3,30 @@
         <div>
             <PageHeader :title="'Đặt vé'" />
             <div class="w-1/2">
+                <div class="flex">
+                    <div class="mr-5">
+                        <DateRange
+                            :selected-range="[$route.query.fromDate, $route.query.toDate]"
+                            @changeDateRange="updateDaterange"
+                        />
+                    </div>
+                    <div class="flex-1 mr-5">
+                        <Select
+                            :options="optionGame"
+                            :placeholder="'Loại vé'"
+                            :selected="$route.query.type"
+                            @changeValue="updateSelectType"
+                        />
+                    </div>
+                    <div class="flex-1">
+                        <Select
+                            :options="optionStatus"
+                            :placeholder="'Trạng thái'"
+                            :selected="$route.query.orderStatus"
+                            @changeValue="updateSelectStatus"
+                        />
+                    </div>
+                </div>
                 <div class="mt-5 flex">
                     <el-input
                         v-model="tableFilter.searchKey"
@@ -34,7 +58,12 @@
 
 <script>
     import { mapState } from 'vuex';
+    import { format } from 'date-fns';
     import { cleanObject } from '~/utils/object';
+    import { OPTION_GAME } from '~/constants/game';
+    import { OPTION_STATUS } from '~/constants/status';
+    import DateRange from '~/components/admin/shared/form/Datepicker.vue';
+    import Select from '~/components/admin/shared/form/Select.vue';
     import TableOrder from '~/components/admin/order-lucky/Table.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
     import Pagination from '~/components/Pagination.vue';
@@ -45,6 +74,8 @@
             TableOrder,
             PageHeader,
             Pagination,
+            DateRange,
+            Select,
         },
         async asyncData({ query, store }) {
             const initFilter = {
@@ -58,6 +89,12 @@
                 tableFilter: filter,
             };
         },
+        data() {
+            return {
+                optionGame: OPTION_GAME,
+                optionStatus: OPTION_STATUS,
+            };
+        },
         computed: {
             ...mapState('admin/orderLucky', ['order', 'pagination']),
         },
@@ -69,6 +106,25 @@
             },
             async updatePage(page) {
                 this.fetchData({ page });
+            },
+            updateDaterange(value) {
+                let fromDate = null;
+                let toDate = null;
+                const page = null;
+
+                if (value !== null) {
+                    fromDate = format(new Date(value[0]), 'yyyy-MM-dd');
+                    toDate = format(new Date(value[1]), 'yyyy-MM-dd');
+                }
+                this.fetchData({ fromDate, toDate, page });
+            },
+            updateSelectType(type) {
+                const page = null;
+                this.fetchData({ type, page });
+            },
+            updateSelectStatus(orderStatus) {
+                const page = null;
+                this.fetchData({ orderStatus, page });
             },
             updateSearchKeyTicket() {
                 if (this.tableFilter.searchKey) {

@@ -71,7 +71,7 @@
                         },
                     });
 
-                    this.$router.push('/admin/order-lucky');
+                    this.$router.push('/admin/dashboard');
                     this.$message({
                         message: 'Đăng nhập thành công!',
                         type: 'success',
@@ -83,9 +83,9 @@
                     }, 5000);
                 }
             },
-            regGoogle() {
-                window.location.href = `${process.env.APP_URL}/api/auth/login/google`;
-            },
+            // regGoogle() {
+            //     window.location.href = `${process.env.APP_URL}/api/auth/login/google`;
+            // },
         },
     };
 </script>

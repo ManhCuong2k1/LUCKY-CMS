@@ -30,17 +30,17 @@
                 const data = luckyDetail.data;
                 // eslint-disable-next-line no-unused-vars
                 const str = [];
-                if (luckyDetail.childgame === 'basic') {
+                if (luckyDetail.childgame === 'chanle_lonnho') {
+                    data.forEach((element) => {
+                        const string = checkName(element.select);
+                        str.push(`${element.price / 1000}K - ${string}`);
+                    });
+                } else {
                     data.forEach((element) => {
                         let string = '';
                         element.number.forEach((e) => {
                             string += `${e} `;
                         });
-                        str.push(`${element.price / 1000}K - ${string}`);
-                    });
-                } else if (luckyDetail.childgame === 'chanle_lonnho') {
-                    data.forEach((element) => {
-                        const string = checkName(element.select);
                         str.push(`${element.price / 1000}K - ${string}`);
                     });
                 }

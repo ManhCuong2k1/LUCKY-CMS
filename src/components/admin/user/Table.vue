@@ -3,36 +3,45 @@
         <el-table :data="dataTable" class="w-full">
             <el-table-column
                 fixed
+                type="index"
+            />
+            <el-table-column
+                fixed
                 prop="username"
                 label="Username"
                 width="150"
             />
-            <el-table-column prop="post_count" label="Posts" width="120">
+            <el-table-column prop="phone" label="Số điện thoại">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.post_count | formatNumber }}</span>
+                    <span>{{ scope.row.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="review_count" label="Reviews" width="120">
+            <el-table-column prop="gender" label="Giới tính">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.review_count | formatNumber }}</span>
+                    <span>{{ scope.row.gender }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="reputation_point" label="Reputations" width="120">
+            <el-table-column prop="status" label="Trạng thái">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.reputation_point | formatNumber }}</span>
+                    <span>{{ scope.row.status }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="subscriber_count" label="Subs" width="120">
+            <el-table-column prop="totalCoin" label="Tổng tiền">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.subscriber_count | formatNumber }}</span>
+                    <span>{{ scope.row.totalCoin }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="totalReward" label="Tổng phần thưởng">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.totalReward }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="Created At">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.created_at | formatDate }}</span>
+                    <span>{{ scope.row.createdAt | formatDate }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="Operations" fixed="right" width="220">
+            <!-- <el-table-column label="Operations" fixed="right" width="220">
                 <template slot-scope="scope">
                     <el-button
                         :type="scope.row.deleted_at == null ? '' : 'danger'"
@@ -42,7 +51,7 @@
                     <el-button icon="el-icon-edit" @click="$router.push(`/admin/user/${scope.row.username}/edit`)" />
                     <el-button icon="el-icon-key" @click="openChangePass(scope.row.id)" />
                 </template>
-            </el-table-column>
+            </el-table-column> -->
         </el-table>
         <el-dialog
             title="Đổi mật khẩu"

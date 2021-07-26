@@ -28,7 +28,7 @@
             <SidebarItem icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
             </SidebarItem>
-            <SidebarItem icon="el-icon-user" link="/">
+            <SidebarItem icon="el-icon-user" link="/admin/user">
                 Người dùng
             </SidebarItem>
             <SidebarItem icon="el-icon-files" link="/admin/banner">
