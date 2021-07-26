@@ -6,7 +6,7 @@
     export default {
         layout: 'admin',
         beforeCreate() {
-            this.$router.push('/admin/order-lucky');
+            this.$router.push('/admin/dashboard');
         },
     };
 </script>

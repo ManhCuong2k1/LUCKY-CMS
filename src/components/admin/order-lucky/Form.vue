@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
-                    <p>{{ type(luckyData.type) }} ({{ luckyData.orders[0].orderDetail.childgame == 'chanle_lonnho' ? 'Chẵn lẻ' : luckyData.orders[0].orderDetail.childgame == 'basic' ? `bậc ${luckyData.orders[0].orderDetail.level}` : '' }})</p>
+                    <p>{{ type(luckyData.type) }} {{ checkLevel(luckyData.orders[0].orderDetail) }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
@@ -136,6 +136,25 @@
                     message: 'Gửi ảnh thành công!',
                     type: 'success',
                 });
+            },
+            checkLevel(dataDetail) {
+                let numberLevel = '';
+                switch (dataDetail.childgame) {
+                    case 'chanle_lonnho':
+                        numberLevel = '( Chẵn lẻ )';
+                        break;
+                    case 'basic':
+                        if (dataDetail.level !== undefined) {
+                            numberLevel = `( bậc ${dataDetail.level})`;
+                        } else {
+                            numberLevel = '';
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                return numberLevel;
             },
         },
     };

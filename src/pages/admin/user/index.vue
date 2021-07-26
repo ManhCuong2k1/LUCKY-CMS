@@ -2,7 +2,7 @@
     <div>
         <PageHeader :title="'Thành viên'" />
         <div class="w-1/2">
-            <div class="flex">
+            <!-- <div class="flex">
                 <div class="mr-5">
                     <DateRange
                         :selected-range="[$route.query.fromDate, $route.query.toDate]"
@@ -17,7 +17,7 @@
                         @changeValue="updateSelect"
                     />
                 </div>
-            </div>
+            </div> -->
             <div class="mt-5 flex">
                 <el-input
                     v-model="tableFilter.searchKey"
@@ -36,9 +36,9 @@
         </div>
         <div>
             <Pagination
-                :page-size="pagination.per_page"
+                :page-size="pagination.pageSize"
                 :total="pagination.total"
-                :current-page="pagination.current_page"
+                :current-page="pagination.page"
                 @changePage="updatePage"
             />
         </div>
@@ -48,10 +48,10 @@
 <script>
     import { format } from 'date-fns';
     import { omitBy, isNull } from 'lodash';
-    // import { mapState } from 'vuex';
+    import { mapState } from 'vuex';
     import { USER_POSITION } from '~/constants/user';
-    import DateRange from '~/components/admin/shared/form/Datepicker.vue';
-    import Select from '~/components/admin/shared/form/Select.vue';
+    // import DateRange from '~/components/admin/shared/form/Datepicker.vue';
+    // import Select from '~/components/admin/shared/form/Select.vue';
     import TableUser from '~/components/admin/user/Table.vue';
     import Pagination from '~/components/Pagination.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
@@ -62,29 +62,27 @@
 
         components: {
             PageHeader,
-            DateRange,
-            Select,
+            // DateRange,
+            // Select,
             TableUser,
             Pagination,
         },
 
         watchQuery: true,
 
-        async asyncData({ query, $axios }) {
+        async asyncData({ query, store }) {
             const initFilter = {
-                fromDate: null,
-                toDate: null,
-                position: null,
+                // fromDate: null,
+                // toDate: null,
+                // position: null,
                 searchKey: null,
                 page: query.page || 1,
             };
             const filter = { ...initFilter, ...query };
             const params = omitBy(filter, isNull);
-            const { data, meta } = await $axios.$get('/admin/user', { params });
+            await store.dispatch('admin/user/fetch', { params });
             return {
                 tableFilter: filter,
-                users: data,
-                pagination: meta,
             };
         },
 
@@ -94,7 +92,9 @@
                 dateValue: undefined,
             };
         },
-
+        computed: {
+            ...mapState('admin/user', ['users', 'pagination']),
+        },
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });

@@ -13,11 +13,11 @@ export const checkType = (type) => {
         case 'plus3d':
             message = 'PUSH 3D';
             break;
-        case '3d':
-            message = '3D';
+        case 'max3d':
+            message = 'MAX3D';
             break;
-        case '4d':
-            message = '4D';
+        case 'max4d':
+            message = 'MAX4D';
             break;
         default:
             message = '';

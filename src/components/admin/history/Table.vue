@@ -1,45 +1,30 @@
 <template>
     <div>
-        <el-table :data="changeData" class="w-full">
-            <el-table-column prop="name" label="Mã vé" width="100">
+        <el-table :data="dataForm" class="w-full">
+            <el-table-column type="index" width="50" />
+            <el-table-column prop="name" label="Khách hàng">
                 <template slot-scope="scope">
-                    <span>{{ scope.row }}</span>
+                    <span>{{ scope.row.user.username }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="city" label="Khách hàng">
+            <el-table-column prop="phone" label="Số điện thoại">
                 <template slot-scope="scope">
-                    <span>{{ scope.row }}</span>
+                    <span>{{ scope.row.user.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="phone" label="Thời gian đặt">
+            <el-table-column prop="phone" label="Hành động">
                 <template slot-scope="scope">
-                    <span>{{ scope.row }}</span>
+                    <span>{{ scope.row.actionName }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="transporter" label="Loại vé" width="200">
+            <el-table-column prop="transporter" label="Nội dung">
                 <template slot-scope="scope">
-                    <span>{{ scope.row }} </span>
+                    <span>{{ scope.row.detail }} </span>
                 </template>
             </el-table-column>
-            <el-table-column prop="total" label="Nội dung" width="300">
+            <el-table-column prop="total" label="Thời gian">
                 <template slot-scope="scope">
-                    <p>
-                        {{ scope.row }}
-                    </p>
-                </template>
-            </el-table-column>
-            <el-table-column prop="total" label="Số kỳ">
-                <template slot-scope="scope">
-                    <span>{{ scope.row }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="orderStatus" label="Trạng thái">
-                <template slot-scope="scope">
-                    <div style="height: 40px; line-height:40px;">
-                        <span :class="scope.row == 'printed' ? 'active-order' : ''">
-                            {{ scope.row }}
-                        </span>
-                    </div>
+                    {{ scope.row.createdAt | formatDate }}
                 </template>
             </el-table-column>
         </el-table>
@@ -47,7 +32,30 @@
 </template>
 
 <script>
+    import cloneDeep from 'lodash/cloneDeep';
+    // import { mapState } from 'vuex';
+    // import { image as toImage } from '~/utils/url';
+    // import { checkType, checkStatus, checkName } from '~/utils/configData';
+
     export default {
+        props: {
+            dataHistory: {
+                type: Array,
+                required: true,
+            },
+        },
+        data() {
+            const dataForm = cloneDeep(this.dataHistory);
+            return {
+                dataForm,
+                showImages: false,
+            };
+        },
+        watch: {
+            dataHistory() {
+                this.dataForm = cloneDeep(this.dataHistory);
+            },
+        },
     };
 </script>
 

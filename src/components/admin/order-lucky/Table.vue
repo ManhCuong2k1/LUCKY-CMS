@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 <template>
     <div>
         <el-table :data="changeData" class="w-full">
@@ -18,7 +19,7 @@
             </el-table-column>
             <el-table-column prop="transporter" label="Loại vé" width="200">
                 <template slot-scope="scope">
-                    <span>{{ type(scope.row.type) }} ({{ scope.row.orders[0].orderDetail.childgame == 'chanle_lonnho' ? 'Chẵn lẻ' : scope.row.orders[0].orderDetail.childgame == 'basic' ? `bậc ${scope.row.orders[0].orderDetail.level}` : '' }}) </span>
+                    <span>{{ type(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
                 </template>
             </el-table-column>
             <el-table-column prop="total" label="Nội dung" width="300">
@@ -30,7 +31,7 @@
             </el-table-column>
             <el-table-column prop="total" label="Số kỳ">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.orders.length }}</span>
+                    <span>{{ scope.row.preriod }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="orderStatus" label="Trạng thái">
@@ -133,17 +134,17 @@
                     });
                     arrOrder.forEach((element, index) => {
                         const str = [];
-                        if (arr[index].childgame === 'basic') {
+                        if (arr[index].childgame === 'chanle_lonnho') {
+                            element.forEach((s) => {
+                                const string = checkName(s.select);
+                                str.push(`${s.price / 1000}K - ${string}`);
+                            });
+                        } else {
                             element.forEach((s) => {
                                 let string = '';
                                 s.number.forEach((e) => {
                                     string += `${e} `;
                                 });
-                                str.push(`${s.price / 1000}K - ${string}`);
-                            });
-                        } else if (arr[index].childgame === 'chanle_lonnho') {
-                            element.forEach((s) => {
-                                const string = checkName(s.select);
                                 str.push(`${s.price / 1000}K - ${string}`);
                             });
                         }
@@ -174,6 +175,25 @@
             async viewImage(id) {
                 this.showImages = true;
                 await this.$store.dispatch('user/image/getImagesDetail', id);
+            },
+            checkLevel(dataDetail) {
+                let numberLevel = '';
+                switch (dataDetail.childgame) {
+                    case 'chanle_lonnho':
+                        numberLevel = '( Chẵn lẻ )';
+                        break;
+                    case 'basic':
+                        if (dataDetail.level !== undefined) {
+                            numberLevel = `( bậc ${dataDetail.level})`;
+                        } else {
+                            numberLevel = '';
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                return numberLevel;
             },
         },
     };
