@@ -41,17 +41,17 @@
                     <span>{{ scope.row.createdAt | formatDate }}</span>
                 </template>
             </el-table-column>
-            <!-- <el-table-column label="Operations" fixed="right" width="220">
+            <el-table-column label="Operations" fixed="right" width="220">
                 <template slot-scope="scope">
                     <el-button
-                        :type="scope.row.deleted_at == null ? '' : 'danger'"
+                        :type="scope.row.deletedAt == null ? '' : 'danger'"
                         icon="el-icon-remove-outline"
-                        @click="switchLockUser(scope.row.id, scope.row.deleted_at)"
+                        @click="switchLockUser(scope.row.id, scope.row.deletedAt)"
                     />
-                    <el-button icon="el-icon-edit" @click="$router.push(`/admin/user/${scope.row.username}/edit`)" />
+                    <el-button icon="el-icon-edit" @click="$router.push(`/admin/user/${scope.row.id}/edit`)" />
                     <el-button icon="el-icon-key" @click="openChangePass(scope.row.id)" />
                 </template>
-            </el-table-column> -->
+            </el-table-column>
         </el-table>
         <el-dialog
             title="Đổi mật khẩu"

@@ -53,12 +53,18 @@
                             Up ảnh vé
                         </el-button>
                     </router-link>
-                    <el-button
-                        v-else
-                        icon="el-icon-view"
-                        class="button-view"
-                        @click="viewImage(scope.row.id)"
-                    />
+                    <div v-else class="flex">
+                        <el-button
+                            icon="el-icon-view"
+                            class="button-view"
+                            @click="viewImage(scope.row.id)"
+                        />
+                        <router-link :to="`/admin/order-lucky/${scope.row.id}/edit`">
+                            <el-button
+                                icon="el-icon-camera-solid"
+                            />
+                        </router-link>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -218,6 +224,7 @@
     padding: 8px;
 }
 .button-view {
+    margin-right: 5px;
     background-color: #67C23A;
     color: white;
 }
