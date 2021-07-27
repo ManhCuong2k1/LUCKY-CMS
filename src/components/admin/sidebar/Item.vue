@@ -20,6 +20,10 @@
 
 <style>
 .menu-active li:hover {
-    color: black !important;
+    color: rgb(255, 208, 75) !important;
+    background-color: transparent;
+}
+.menu-active li:focus {
+    background-color: transparent;
 }
 </style>

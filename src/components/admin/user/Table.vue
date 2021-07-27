@@ -142,7 +142,7 @@
 
             async updatePassword(payload) {
                 try {
-                    await this.$axios.put(`/admin/user/${this.userIdChangePass}/change-pass`, payload);
+                    await this.$axios.put(`/admin/users/${this.userIdChangePass}`, payload);
                     this.dialogVisibleInstant = false;
                     this.$message({
                         message: 'Update success.',

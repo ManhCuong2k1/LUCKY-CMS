@@ -597,5 +597,12 @@ input:checked + img {
     background: linear-gradient(175.62deg, #1D0404 57.15%, #D40B02 92.94%);
 }
 .submenu .el-submenu__title:hover {
-    color: black !important;
+    color: rgb(255, 208, 75) !important;
+    background-color: transparent;
+}
+.submenu .el-submenu__title:focus {
+    background-color: transparent;
+}
+.toggle-sidebar:hover {
+    background-color: transparent;
 }

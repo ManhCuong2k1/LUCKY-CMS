@@ -7,12 +7,12 @@
             class="w-2/3"
             :rules="rules"
         >
-            <el-form-item label="Tên đăng nhập" prop="username">
+            <el-form-item label="Tên khách hàng" prop="username">
                 <el-col :span="12">
-                    <el-input v-model="userForm.username" placeholder="Username" disabled />
+                    <el-input v-model="userForm.username" placeholder="Username" />
                 </el-col>
             </el-form-item>
-            <el-form-item label="Họ" prop="last_name">
+            <!-- <el-form-item label="Họ" prop="last_name">
                 <el-col :span="12">
                     <el-input v-model="userForm.last_name" placeholder="Họ" />
                 </el-col>
@@ -21,7 +21,7 @@
                 <el-col :span="12">
                     <el-input v-model="userForm.first_name" placeholder="Tên đệm & Tên" />
                 </el-col>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="Email" prop="email">
                 <el-col :span="12">
                     <el-input v-model="userForm.email" placeholder="Email" />
@@ -29,7 +29,7 @@
             </el-form-item>
             <el-form-item label="Phone" prop="phone">
                 <el-col :span="12">
-                    <el-input v-model="userForm.phone" placeholder="Phone" />
+                    <el-input v-model="userForm.phone" placeholder="Phone" disabled />
                 </el-col>
             </el-form-item>
             <el-form-item label="Ngày sinh" prop="birthday">
@@ -86,17 +86,17 @@
             return {
                 userForm: this.userData,
                 rules: {
-                    last_name: [
-                        {
-                            min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                        },
-                    ],
-                    first_name: [
-                        { required: true, message: 'Please input name', trigger: 'blur' },
-                        {
-                            min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                        },
-                    ],
+                    // last_name: [
+                    //     {
+                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
+                    //     },
+                    // ],
+                    // first_name: [
+                    //     { required: true, message: 'Please input name', trigger: 'blur' },
+                    //     {
+                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
+                    //     },
+                    // ],
                     email: [
                         { required: true, message: 'Please input email', trigger: 'blur' },
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] },

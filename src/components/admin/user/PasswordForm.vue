@@ -101,7 +101,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$emit('finishForm', { pass: this.ruleForm.pass });
+                        this.$emit('finishForm', { password: this.ruleForm.pass });
                     }
                 });
             },
