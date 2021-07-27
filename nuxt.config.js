@@ -12,7 +12,6 @@ import {
     API_HOST,
     API_PATH,
     IMAGE_BASE_URL,
-    GOOGLE_ANALYTICS_ID,
     isProduction,
 } from './nuxt/env';
 
@@ -45,7 +44,6 @@ export default {
         API_HOST,
         API_PATH,
         IMAGE_BASE_URL,
-        GOOGLE_ANALYTICS_ID,
     },
 
     head: {
@@ -161,12 +159,6 @@ export default {
     render: {
         http2: {
             push: true,
-        },
-    },
-
-    publicRuntimeConfig: {
-        googleAnalytics: {
-            id: GOOGLE_ANALYTICS_ID,
         },
     },
 

@@ -11,5 +11,3 @@ IMAGE_BASE_URL=http://images.web.lc:8000/
 REDIS_HOST=redis
 REDIS_PORT=6379
 REDIS_PASSWORD=null
-
-GOOGLE_ANALYTICS_ID="asdkjhaskdbhbabo876cw73cb4q8w73y4boi2364o9823cb6"

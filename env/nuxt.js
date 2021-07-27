@@ -41,11 +41,6 @@ const validEnv = cleanEnv(env, {
     IMAGE_BASE_URL: url({
         desc: 'Base url for images',
     }),
-
-    GOOGLE_ANALYTICS_ID: str({
-        desc: 'Google tracking ID for Analytics',
-        devDefault: 'UA-00000000-0',
-    }),
 }, {
     strict: true,
 });
@@ -58,7 +53,6 @@ export const {
     API_HOST,
     API_PATH,
     IMAGE_BASE_URL,
-    GOOGLE_ANALYTICS_ID,
     isDev,
     isProduction,
 } = validEnv;
