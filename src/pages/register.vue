@@ -7,7 +7,7 @@
             <div class="mb-5">
                 <el-alert
                     v-if="errorLogin"
-                    title="Tên đăng nhập hoặc email đã được sử dụng."
+                    title="Tên đăng nhập hoặc số điện thoại đã được sử dụng."
                     type="error"
                 />
             </div>

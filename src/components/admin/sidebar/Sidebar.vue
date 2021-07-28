@@ -10,7 +10,7 @@
         active-text-color="#ffd04b"
         :collapse-transition="false"
     >
-        <nuxt-link to="/admin/user">
+        <nuxt-link to="/admin/dashboard">
             <div class="py-4" :class="collapsed ? 'text-center' : 'flex justify-center'">
                 <img v-if="!collapsed" src="/images/logo.png" class="w-16">
                 <img v-else src="/images/logo.png" class="w-10 mx-auto">
@@ -41,7 +41,7 @@
                 </template>
             </el-submenu>
         </el-scrollbar>
-        <ElMenuItem @click="toggleSidebar">
+        <ElMenuItem class="toggle-sidebar" @click="toggleSidebar">
             <i :class="`el-icon-d-arrow-${collapsed ? 'right' : 'left'}`" />
             <template #title>
                 <span>Thu gọn menu</span>
