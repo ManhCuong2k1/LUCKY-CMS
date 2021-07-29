@@ -93,7 +93,7 @@
                         this.sendError('Nhập đúng định dạng email Example@gmail.com!');
                     } else {
                         const token = await this.$recaptcha.execute('register');
-                        await this.$axios.post('/auth/registerAdmin', {
+                        await this.$axios.post('/auth/register', {
                             username: this.username,
                             password: this.password,
                             name: this.name,
