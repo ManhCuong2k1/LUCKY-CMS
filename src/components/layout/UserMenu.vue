@@ -1,20 +1,31 @@
 <template>
-    <el-dropdown trigger="click">
-        <img class="user-icon" src="/images/avatar-default.png">
-        <el-dropdown-menu slot="dropdown" class="user-menu">
-            <el-dropdown-item disabled>
-                <div class="text-md text-center leading-6 p-1 w-full my-2">
-                    <div class="font-semibold user-fullname"></div>
-                    <div class="font-thin"></div>
-                </div>
-            </el-dropdown-item>
-            <el-dropdown-item class="user-menu-item sign-out">
-                <div @click="signOut()">
-                    <i class="mr-1 fas fa-sign-out-alt" /> Đăng xuất
-                </div>
-            </el-dropdown-item>
-        </el-dropdown-menu>
-    </el-dropdown>
+    <div class="flex">
+        <div class="name-user">
+            <span>{{ userLoged.name }}</span>
+        </div>
+        <el-dropdown trigger="click">
+            <img class="user-icon" src="/images/avatar-default.png">
+            <el-dropdown-menu slot="dropdown" class="user-menu">
+                <el-dropdown-item disabled>
+                    <div class="text-md text-center leading-6 p-1 w-full my-2">
+                        <div class="font-thin">
+                            {{ userLoged.email }}
+                        </div>
+                    </div>
+                </el-dropdown-item>
+                <el-dropdown-item class="user-menu-item">
+                    <nuxt-link :to="`/admin/u/${userLoged.id}`">
+                        <i class="el-icon-user-solid mr-1" /> Cá nhân
+                    </nuxt-link>
+                </el-dropdown-item>
+                <el-dropdown-item class="user-menu-item sign-out">
+                    <div @click="signOut()">
+                        <i class="mr-1 fas fa-sign-out-alt" /> Đăng xuất
+                    </div>
+                </el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+    </div>
 </template>
 
 <script>
@@ -40,6 +51,11 @@
 </script>
 
 <style lang="sass" scoped>
+.name-user
+    line-height: 32px
+    padding-right: 10px
+    font-size: 18px
+    color: #777
 .user-fullname
     color: #5c7293
 .user-icon

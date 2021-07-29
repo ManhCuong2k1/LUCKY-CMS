@@ -30,8 +30,26 @@
             Sidebar,
             UserMenu,
         },
-        data: () => ({
-            collapsed: false,
-        }),
+        data() {
+            return {
+                collapsed: false,
+            };
+        },
     };
 </script>
+
+<style>
+.popup-user {
+    position: absolute;
+    background: white;
+    width: 44rem;
+    padding-top: 4rem;
+    z-index: 50;
+    box-shadow: 0px 0px 13px 0px #ccc;
+    border-radius: 8px;
+    top: 10rem;
+    left: 30%;
+    height: 33rem;
+
+}
+</style>

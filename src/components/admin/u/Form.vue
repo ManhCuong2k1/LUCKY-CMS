@@ -7,21 +7,11 @@
             class="w-2/3"
             :rules="rules"
         >
-            <el-form-item label="Tên khách hàng" prop="username">
+            <el-form-item label="Tên hiển thị" prop="name">
                 <el-col :span="12">
-                    <el-input v-model="userForm.username" placeholder="Username" />
+                    <el-input v-model="userForm.name" placeholder="Name" />
                 </el-col>
             </el-form-item>
-            <!-- <el-form-item label="Họ" prop="last_name">
-                <el-col :span="12">
-                    <el-input v-model="userForm.last_name" placeholder="Họ" />
-                </el-col>
-            </el-form-item>
-            <el-form-item label="Tên" prop="first_name">
-                <el-col :span="12">
-                    <el-input v-model="userForm.first_name" placeholder="Tên đệm & Tên" />
-                </el-col>
-            </el-form-item> -->
             <el-form-item label="Email" prop="email">
                 <el-col :span="12">
                     <el-input v-model="userForm.email" placeholder="Email" />
@@ -52,16 +42,6 @@
                     </el-select>
                 </el-col>
             </el-form-item>
-            <el-form-item label="Trạng thái" prop="is_block">
-                <el-col :span="6">
-                    <el-switch v-model="userForm.is_active" />
-                </el-col>
-            </el-form-item>
-            <el-form-item label="Admin" prop="is_admin">
-                <el-col :span="6">
-                    <el-switch v-model="userForm.is_admin" />
-                </el-col>
-            </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('userForm')">
                     Lưu
@@ -83,8 +63,9 @@
             },
         },
         data() {
+            const userForm = this.userData;
             return {
-                userForm: this.userData,
+                userForm,
                 rules: {
                     // last_name: [
                     //     {

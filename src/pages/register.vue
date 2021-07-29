@@ -12,17 +12,17 @@
                 />
             </div>
             <div class="mb-2">
-                <el-input v-model="username" placeholder="Tên đăng nhập" />
+                <el-input v-model="name" placeholder="Tên hiển thị" />
             </div>
             <div class="mb-2">
-                <el-input v-model="fullname" placeholder="Tên hiển thị" />
-            </div>
-            <!-- <div class="mb-2">
                 <el-input v-model="email" placeholder="Email" />
-            </div> -->
+            </div>
             <div class="mb-2">
                 <el-input v-model="phone" placeholder="Phone" />
             </div>
+            <!-- <div class="mb-2">
+                <el-input v-model="username" placeholder="Tên đăng nhập" />
+            </div> -->
             <div class="mb-2">
                 <el-input
                     v-model="password"
@@ -47,21 +47,6 @@
                     Đăng ký
                 </el-button>
             </div>
-            <div class="flex align-items-center justify-content-between my-4">
-                <hr class="flex-1 m-auto">
-                <span class="mx-3">
-                    Hoặc sử dụng
-                </span>
-                <hr class="flex-1 m-auto">
-            </div>
-            <div class="flex justify-center">
-                <!-- <el-button>
-                    <i class="text-blue-600 mr-2 fab fa-facebook-f" />Facebook
-                </el-button> -->
-                <el-button @click="regGoogle">
-                    <i class="text-red-600 mr-2 fab fa-google" />Google
-                </el-button>
-            </div>
         </el-card>
     </div>
 </template>
@@ -71,8 +56,9 @@
         data() {
             return {
                 username: '',
-                fullname: '',
+                name: '',
                 phone: '',
+                email: '',
                 password: '',
                 repassword: '',
                 errorLogin: false,
@@ -96,20 +82,24 @@
             },
             async regAction() {
                 try {
-                    // const checkEmail = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+                    const checkEmail = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
                     const checkPhone = /^[0-9]{10}$/;
                     // eslint-disable-next-line eqeqeq
-                    if (this.username == '' || this.fullname == '' || this.password == '' || this.phone == '' || this.repassword == '') {
+                    if (this.username == '' || this.name == '' || this.password == '' || this.phone == '' || this.repassword == '' || this.email == '') {
                         this.sendError('Điền đầy đủ các trường');
                     } else if (!checkPhone.test(this.phone)) {
                         this.sendError('Số điện thoại không đủ ký tự');
+                    } else if (!checkEmail.test(this.email)) {
+                        this.sendError('Nhập đúng định dạng email Example@gmail.com!');
                     } else {
                         const token = await this.$recaptcha.execute('register');
                         await this.$axios.post('/auth/register', {
-                            name: this.fullname,
-                            username: this.username,
+                            // username: this.username,
                             password: this.password,
+                            name: this.name,
+                            email: this.email,
                             phone: this.phone,
+                            role: 'admin',
                             token,
                         });
                         this.$message({

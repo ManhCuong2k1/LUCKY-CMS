@@ -1,0 +1,43 @@
+<template>
+    <div>
+        <PageHeader :title="user.username" />
+        <UserForm :user-data="user" @submitForm="updateUser" />
+    </div>
+</template>
+
+<script>
+    import cloneDeep from 'lodash/cloneDeep';
+    import UserForm from '~/components/admin/u/Form.vue';
+    import PageHeader from '~/components/admin/shared/PageHeader.vue';
+
+    export default {
+        layout: 'admin',
+        components: {
+            UserForm,
+            PageHeader,
+        },
+        async asyncData({ params, store }) {
+            await store.dispatch('admin/user/show', params.id);
+            const user = cloneDeep(store.state.admin.user.user);
+            // user.is_active = user.deletedAt === null;
+            // user.is_admin = user.is_admin === 1;
+            return {
+                user,
+            };
+        },
+        methods: {
+            async updateUser(form) {
+                try {
+                    console.log(form);
+                    await this.$store.dispatch('admin/user/update', { id: this.user.id, data: form });
+                    this.$router.push('/admin/dashboard/');
+                } catch ($e) {
+                    this.$message({
+                        message: 'Update error.',
+                        type: 'error',
+                    });
+                }
+            },
+        },
+    };
+</script>
