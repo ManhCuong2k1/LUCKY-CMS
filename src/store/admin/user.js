@@ -1,6 +1,7 @@
 export const state = () => ({
     users: [],
     user: null,
+    id: null,
     pagination: null,
 });
 
@@ -21,6 +22,9 @@ export const mutations = {
     },
     setUser(state, payload) {
         state.user = payload.data;
+    },
+    setIdUser(state, payload) {
+        state.id = payload;
     },
 };
 
@@ -48,5 +52,8 @@ export const actions = {
     async unLock({ commit }, payload) {
         const data = await this.$axios.put(`/admin/user/restore/${payload.id}`);
         commit('setUser', data);
+    },
+    fetchIdUser({ commit }, id) {
+        commit('setIdUser', id);
     },
 };
