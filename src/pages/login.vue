@@ -12,12 +12,12 @@
                 />
             </div>
             <div class="mb-2">
-                <el-input v-model="username" placeholder="Username" @keyup.enter.native="loginAction" />
+                <el-input v-model="username" placeholder="Tên đăng nhập" @keyup.enter.native="loginAction" />
             </div>
             <div class="mb-2">
                 <el-input
                     v-model="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     show-password
                     @keyup.enter.native="loginAction"
                 />
