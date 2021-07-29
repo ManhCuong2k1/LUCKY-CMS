@@ -7,6 +7,11 @@
             class="w-2/3"
             :rules="rules"
         >
+            <el-form-item label="Username" prop="username">
+                <el-col :span="12">
+                    <el-input v-model="userForm.username" placeholder="Username" disabled />
+                </el-col>
+            </el-form-item>
             <el-form-item label="Tên hiển thị" prop="name">
                 <el-col :span="12">
                     <el-input v-model="userForm.name" placeholder="Name" />
@@ -19,7 +24,7 @@
             </el-form-item>
             <el-form-item label="Phone" prop="phone">
                 <el-col :span="12">
-                    <el-input v-model="userForm.phone" placeholder="Phone" disabled />
+                    <el-input v-model="userForm.phone" placeholder="Phone" />
                 </el-col>
             </el-form-item>
             <el-form-item label="Ngày sinh" prop="birthday">
@@ -46,9 +51,9 @@
                 <el-button type="primary" @click="submitForm('userForm')">
                     Lưu
                 </el-button>
-                <el-button @click="resetForm('userForm')">
+                <!-- <el-button @click="resetForm('userForm')">
                     Làm mới
-                </el-button>
+                </el-button> -->
             </el-form-item>
         </el-form>
     </div>
@@ -72,12 +77,12 @@
                     //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
                     //     },
                     // ],
-                    // first_name: [
-                    //     { required: true, message: 'Please input name', trigger: 'blur' },
-                    //     {
-                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                    //     },
-                    // ],
+                    phone: [
+                        { required: true, message: 'Please input name', trigger: 'blur' },
+                        {
+                            min: 10, max: 10, message: 'Length should be 10', trigger: 'blur',
+                        },
+                    ],
                     email: [
                         { required: true, message: 'Please input email', trigger: 'blur' },
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] },
@@ -95,9 +100,9 @@
                     }
                 });
             },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
-            },
+            // resetForm(formName) {
+            //     this.$refs[formName].resetFields();
+            // },
         },
     };
 </script>

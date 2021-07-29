@@ -7,21 +7,16 @@
             class="w-2/3"
             :rules="rules"
         >
-            <el-form-item label="Tên khách hàng" prop="username">
+            <el-form-item label="Username" prop="username">
                 <el-col :span="12">
-                    <el-input v-model="userForm.username" placeholder="Username" />
+                    <el-input v-model="userForm.username" placeholder="Username" disabled />
                 </el-col>
             </el-form-item>
-            <!-- <el-form-item label="Họ" prop="last_name">
+            <el-form-item label="Tên hiển thị" prop="username">
                 <el-col :span="12">
-                    <el-input v-model="userForm.last_name" placeholder="Họ" />
+                    <el-input v-model="userForm.name" placeholder="Username" />
                 </el-col>
             </el-form-item>
-            <el-form-item label="Tên" prop="first_name">
-                <el-col :span="12">
-                    <el-input v-model="userForm.first_name" placeholder="Tên đệm & Tên" />
-                </el-col>
-            </el-form-item> -->
             <el-form-item label="Email" prop="email">
                 <el-col :span="12">
                     <el-input v-model="userForm.email" placeholder="Email" />
@@ -29,7 +24,7 @@
             </el-form-item>
             <el-form-item label="Phone" prop="phone">
                 <el-col :span="12">
-                    <el-input v-model="userForm.phone" placeholder="Phone" disabled />
+                    <el-input v-model="userForm.phone" placeholder="Phone" />
                 </el-col>
             </el-form-item>
             <el-form-item label="Ngày sinh" prop="birthday">
@@ -52,23 +47,29 @@
                     </el-select>
                 </el-col>
             </el-form-item>
-            <el-form-item label="Trạng thái" prop="is_block">
+            <el-form-item label="Trạng thái" prop="status">
                 <el-col :span="6">
-                    <el-switch v-model="userForm.is_active" />
+                    <el-select v-model="userForm.status" placeholder="Trạng thái">
+                        <el-option label="Tạm khóa" value="blocked" />
+                        <el-option label="Đang hoạt động" value="working" />
+                    </el-select>
                 </el-col>
             </el-form-item>
-            <el-form-item label="Admin" prop="is_admin">
+            <el-form-item label="Quyền" prop="permission">
                 <el-col :span="6">
-                    <el-switch v-model="userForm.is_admin" />
+                    <el-select v-model="userForm.role" placeholder="Quyền">
+                        <el-option label="Admin" value="admin" />
+                        <el-option label="Nhân viên" value="employe" />
+                    </el-select>
                 </el-col>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('userForm')">
                     Lưu
                 </el-button>
-                <el-button @click="resetForm('userForm')">
+                <!-- <el-button @click="resetForm('userForm')">
                     Làm mới
-                </el-button>
+                </el-button> -->
             </el-form-item>
         </el-form>
     </div>
@@ -109,14 +110,15 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$emit('submitForm', this.userForm);
+                        console.log(this.userForm);
                     } else {
                         return false;
                     }
                 });
             },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
-            },
+            // resetForm(formName) {
+            //     this.$refs[formName].resetFields();
+            // },
         },
     };
 </script>
