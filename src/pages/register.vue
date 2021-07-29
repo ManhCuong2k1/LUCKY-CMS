@@ -55,7 +55,7 @@
     export default {
         data() {
             return {
-                username: '',
+                // username: '',
                 name: '',
                 phone: '',
                 email: '',
@@ -85,7 +85,7 @@
                     const checkEmail = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
                     const checkPhone = /^[0-9]{10}$/;
                     // eslint-disable-next-line eqeqeq
-                    if (this.username == '' || this.name == '' || this.password == '' || this.phone == '' || this.repassword == '' || this.email == '') {
+                    if (this.name == '' || this.password == '' || this.phone == '' || this.repassword == '' || this.email == '') {
                         this.sendError('Điền đầy đủ các trường');
                     } else if (!checkPhone.test(this.phone)) {
                         this.sendError('Số điện thoại không đủ ký tự');
