@@ -7,8 +7,8 @@
             />
             <el-table-column
                 fixed
-                prop="username"
-                label="Username"
+                prop="name"
+                label="Name"
                 width="150"
             />
             <el-table-column prop="phone" label="Số điện thoại">
@@ -16,14 +16,19 @@
                     <span>{{ scope.row.phone }}</span>
                 </template>
             </el-table-column>
+            <el-table-column prop="email" label="Email">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.email }}</span>
+                </template>
+            </el-table-column>
             <el-table-column prop="gender" label="Giới tính">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.gender }}</span>
+                    <span>{{ gender(scope.row.gender) }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="status" label="Trạng thái">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.status }}</span>
+                    <span>{{ status(scope.row.status) }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="totalCoin" label="Tổng tiền">
@@ -43,11 +48,6 @@
             </el-table-column>
             <el-table-column label="Operations" fixed="right" width="220">
                 <template slot-scope="scope">
-                    <el-button
-                        :type="scope.row.deletedAt == null ? '' : 'danger'"
-                        icon="el-icon-remove-outline"
-                        @click="switchLockUser(scope.row.id, scope.row.deletedAt)"
-                    />
                     <el-button icon="el-icon-edit" @click="$router.push(`/admin/user/${scope.row.id}/edit`)" />
                     <el-button icon="el-icon-key" @click="openChangePass(scope.row.id)" />
                 </template>
@@ -67,6 +67,7 @@
     import { findIndex } from 'lodash';
     import cloneDeep from 'lodash/cloneDeep';
     import { mapState } from 'vuex';
+    import { statusUser, checkGender } from '~/utils/configData';
     import PasswordForm from '~/components/admin/user/PasswordForm.vue';
 
     export default {
@@ -159,6 +160,12 @@
             openChangePass(id) {
                 this.dialogVisibleInstant = true;
                 this.userIdChangePass = id;
+            },
+            status(status) {
+                return statusUser(status);
+            },
+            gender(gender) {
+                return checkGender(gender);
             },
         },
     };

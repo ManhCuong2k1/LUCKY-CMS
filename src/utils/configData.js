@@ -87,3 +87,35 @@ export const checkName = (name) => {
     }
     return message;
 };
+
+export const statusUser = (status) => {
+    let message = '';
+    switch (status) {
+        case 'working':
+            message = 'Đang hoạt động';
+            break;
+        case 'blocked':
+            message = 'Tạm khóa';
+            break;
+        default:
+            message = '';
+            break;
+    }
+    return message;
+};
+
+export const checkGender = (gender) => {
+    let message = '';
+    switch (gender) {
+        case 'male':
+            message = 'Nam';
+            break;
+        case 'female':
+            message = 'Nữ';
+            break;
+        default:
+            message = 'Khác';
+            break;
+    }
+    return message;
+};

@@ -20,9 +20,9 @@
             <div class="mb-2">
                 <el-input v-model="phone" placeholder="Phone" />
             </div>
-            <div class="mb-2">
+            <!-- <div class="mb-2">
                 <el-input v-model="username" placeholder="Tên đăng nhập" />
-            </div>
+            </div> -->
             <div class="mb-2">
                 <el-input
                     v-model="password"
@@ -94,7 +94,7 @@
                     } else {
                         const token = await this.$recaptcha.execute('register');
                         await this.$axios.post('/auth/register', {
-                            username: this.username,
+                            // username: this.username,
                             password: this.password,
                             name: this.name,
                             email: this.email,

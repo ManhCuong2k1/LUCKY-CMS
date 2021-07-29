@@ -40,7 +40,7 @@ export const actions = {
     },
 
     async update({ commit }, payload) {
-        await this.$axios.put(`/admin/user/${payload.id}`, payload.data);
+        await this.$axios.put(`/admin/users/${payload.id}`, payload.data);
         commit('setUser', payload.data);
     },
 

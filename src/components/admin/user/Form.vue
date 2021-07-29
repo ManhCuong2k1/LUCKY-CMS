@@ -35,7 +35,7 @@
             <el-form-item label="Ngày sinh" prop="birthday">
                 <el-col :span="6">
                     <el-date-picker
-                        v-model="userForm.birthday"
+                        v-model="userForm.dateOfBirth"
                         type="date"
                         value-format="yyyy-MM-dd"
                         placeholder="Pick a date"

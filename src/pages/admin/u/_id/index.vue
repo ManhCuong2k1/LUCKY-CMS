@@ -28,8 +28,9 @@
         methods: {
             async updateUser(form) {
                 try {
+                    console.log(form);
                     await this.$store.dispatch('admin/user/update', { id: this.user.id, data: form });
-                    this.$router.push('/admin/user/');
+                    this.$router.push('/admin/dashboard/');
                 } catch ($e) {
                     this.$message({
                         message: 'Update error.',

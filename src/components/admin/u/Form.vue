@@ -7,9 +7,9 @@
             class="w-2/3"
             :rules="rules"
         >
-            <el-form-item label="Tên hiển thị" prop="username">
+            <el-form-item label="Tên hiển thị" prop="name">
                 <el-col :span="12">
-                    <el-input v-model="userForm.username" placeholder="Username" />
+                    <el-input v-model="userForm.name" placeholder="Name" />
                 </el-col>
             </el-form-item>
             <el-form-item label="Email" prop="email">
@@ -35,7 +35,7 @@
             </el-form-item>
             <el-form-item label="Giới tính" prop="gender">
                 <el-col :span="6">
-                    <el-select v-model="userForm" placeholder="Gender">
+                    <el-select v-model="userForm.gender" placeholder="Gender">
                         <el-option label="Nam" value="male" />
                         <el-option label="Nữ" value="female" />
                         <el-option label="Khác" value="other" />
@@ -63,8 +63,9 @@
             },
         },
         data() {
+            const userForm = this.userData;
             return {
-                userForm: this.userData,
+                userForm,
                 rules: {
                     // last_name: [
                     //     {
