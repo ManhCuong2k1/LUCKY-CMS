@@ -12,12 +12,12 @@
                 />
             </div>
             <div class="mb-2">
-                <el-input v-model="phone" placeholder="Phone Number" @keyup.enter.native="loginAction" />
+                <el-input v-model="username" placeholder="Tên đăng nhập" @keyup.enter.native="loginAction" />
             </div>
             <div class="mb-2">
                 <el-input
                     v-model="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     show-password
                     @keyup.enter.native="loginAction"
                 />
@@ -56,7 +56,7 @@
     export default {
         data() {
             return {
-                phone: '',
+                username: '',
                 password: '',
                 errorLogin: false,
             };
@@ -64,18 +64,28 @@
         methods: {
             async loginAction() {
                 try {
-                    await this.$auth.loginWith('local', {
-                        data: {
-                            username: this.phone,
-                            password: this.password,
-                        },
-                    });
-
-                    this.$router.push('/admin/dashboard');
-                    this.$message({
-                        message: 'Đăng nhập thành công!',
-                        type: 'success',
-                    });
+                    await this.$store.dispatch('admin/user/show', this.username);
+                    const user = this.$store.state.admin.user.user;
+                    if (user) {
+                        if (user.status === 'blocked') {
+                            this.$message({
+                                message: 'Tài khoản đang chờ xét duyệt',
+                                type: 'error',
+                            });
+                        } else {
+                            await this.$auth.loginWith('local', {
+                                data: {
+                                    username: this.username,
+                                    password: this.password,
+                                },
+                            });
+                            this.$router.push('/admin/dashboard');
+                            this.$message({
+                                message: 'Đăng nhập thành công!',
+                                type: 'success',
+                            });
+                        }
+                    }
                 } catch (e) {
                     this.errorLogin = true;
                     setTimeout(() => {

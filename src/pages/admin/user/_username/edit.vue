@@ -1,6 +1,6 @@
 <template>
     <div>
-        <PageHeader :title="user.username" />
+        <PageHeader :title="user.name" />
         <UserForm :user-data="user" @submitForm="updateUser" />
     </div>
 </template>
@@ -32,7 +32,7 @@
                     this.$router.push('/admin/user/');
                 } catch ($e) {
                     this.$message({
-                        message: 'Update error.',
+                        message: 'Không có quyền chỉnh sửa.',
                         type: 'error',
                     });
                 }
