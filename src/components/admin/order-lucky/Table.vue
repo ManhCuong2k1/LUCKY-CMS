@@ -53,7 +53,7 @@
                             Up ảnh vé
                         </el-button>
                     </router-link>
-                    <div v-else class="flex">
+                    <div v-if="scope.row.orderStatus == 'printed'" class="flex">
                         <el-button
                             icon="el-icon-view"
                             class="button-view"

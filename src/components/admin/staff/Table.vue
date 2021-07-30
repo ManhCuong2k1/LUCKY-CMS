@@ -31,16 +31,6 @@
                     <span>{{ status(scope.row.status) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="totalCoin" label="Tổng tiền">
-                <template slot-scope="scope">
-                    <span>{{ formatPrice(scope.row.totalCoin) }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="totalReward" label="Tổng phần thưởng">
-                <template slot-scope="scope">
-                    <span>{{ formatPrice(scope.row.totalReward) }}</span>
-                </template>
-            </el-table-column>
             <el-table-column label="Created At">
                 <template slot-scope="scope">
                     <span>{{ scope.row.createdAt | formatDate }}</span>
@@ -48,7 +38,7 @@
             </el-table-column>
             <el-table-column label="Operations" fixed="right" width="220">
                 <template slot-scope="scope">
-                    <el-button icon="el-icon-edit" @click="$router.push(`/admin/user/${scope.row.id}/edit`)" />
+                    <el-button icon="el-icon-edit" @click="$router.push(`/admin/staff/${scope.row.id}/edit`)" />
                     <el-button icon="el-icon-key" @click="openChangePass(scope.row.id)" />
                 </template>
             </el-table-column>

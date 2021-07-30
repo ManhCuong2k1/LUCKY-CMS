@@ -21,7 +21,7 @@
             <div class="mt-5 flex">
                 <el-input
                     v-model="tableFilter.searchKey"
-                    placeholder="Search"
+                    placeholder="Tìm kiếm theo số điện thoại"
                     class="input-with-select mr-5"
                     clearable
                     @clear="updateSearchKey"
@@ -47,7 +47,6 @@
 
 <script>
     import { format } from 'date-fns';
-    import { omitBy, isNull } from 'lodash';
     import { mapState } from 'vuex';
     import { USER_POSITION } from '~/constants/user';
     // import DateRange from '~/components/admin/shared/form/Datepicker.vue';
@@ -72,15 +71,12 @@
 
         async asyncData({ query, store }) {
             const initFilter = {
-                // fromDate: null,
-                // toDate: null,
-                // position: null,
                 searchKey: null,
                 page: query.page || 1,
             };
             const filter = { ...initFilter, ...query };
-            const params = omitBy(filter, isNull);
-            await store.dispatch('admin/user/fetch', { params });
+            const clean = cleanObject(filter);
+            await store.dispatch('admin/user/fetch', clean);
             return {
                 tableFilter: filter,
             };

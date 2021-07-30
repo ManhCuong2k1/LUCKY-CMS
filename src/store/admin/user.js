@@ -30,8 +30,13 @@ export const actions = {
         commit('setUsersData', res.data);
     },
 
+    async fetchStaff({ commit }, params) {
+        const res = await this.$axios.get('/admin/users/staff', { params });
+        commit('setUsersData', res.data);
+    },
+
     async show({ commit }, id) {
-        const res = await this.$axios.get(`/admin/users/${id}`);
+        const res = await this.$axios.get(`/admin/users/detail/${id}`);
         commit('setUser', res.data);
     },
 

@@ -29,7 +29,7 @@
                 Lịch sử giao dịch
             </SidebarItem>
             <SidebarItem icon="el-icon-user" link="/admin/user">
-                Người dùng
+                Khách hàng
             </SidebarItem>
             <SidebarItem icon="el-icon-files" link="/admin/banner">
                 Banner
@@ -39,6 +39,9 @@
                     <i class="el-icon-setting" />
                     <span :class="collapsed ? 'pl-4': ''">Cài đặt</span>
                 </template>
+                <SidebarItem icon="el-icon-user" link="/admin/staff">
+                    Nhân viên
+                </SidebarItem>
             </el-submenu>
         </el-scrollbar>
         <ElMenuItem class="toggle-sidebar" @click="toggleSidebar">

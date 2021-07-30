@@ -10,8 +10,8 @@ export const checkType = (type) => {
         case 'mega':
             message = 'MEGA';
             break;
-        case 'plus3d':
-            message = 'PUSH 3D';
+        case 'max3dplus':
+            message = 'MAX 3D PLUSH';
             break;
         case 'max3d':
             message = 'MAX3D';
@@ -35,18 +35,9 @@ export const checkStatus = (status) => {
         case 'printed':
             message = 'Đã in vé bởi Admin';
             break;
-        // case 'mega':
-        //     message = 'MEGA';
-        //     break;
-        // case 'plus3d':
-        //     message = 'PUSH 3D';
-        //     break;
-        // case '3d':
-        //     message = '3D';
-        //     break;
-        // case '4d':
-        //     message = '4D';
-        //     break;
+        case 'drawned':
+            message = 'Đã xổ';
+            break;
         default:
             message = '';
             break;
@@ -93,6 +84,9 @@ export const statusUser = (status) => {
     switch (status) {
         case 'working':
             message = 'Đang hoạt động';
+            break;
+        case 'pending':
+            message = 'Chờ duyệt';
             break;
         case 'blocked':
             message = 'Tạm khóa';

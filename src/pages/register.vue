@@ -99,7 +99,7 @@
                             name: this.name,
                             email: this.email,
                             phone: this.phone,
-                            status: 'blocked',
+                            status: 'pending',
                             role: 'employe',
                             token,
                         });
