@@ -603,6 +603,9 @@ input:checked + img {
 .submenu .el-submenu__title:focus {
     background-color: transparent;
 }
+.submenu ul {
+    background-color: transparent;
+}
 .toggle-sidebar:hover {
     background-color: transparent;
 }

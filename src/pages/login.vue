@@ -67,9 +67,14 @@
                     await this.$store.dispatch('admin/user/show', this.username);
                     const user = this.$store.state.admin.user.user;
                     if (user) {
-                        if (user.status === 'blocked') {
+                        if (user.status === 'pending') {
                             this.$message({
                                 message: 'Tài khoản đang chờ xét duyệt',
+                                type: 'error',
+                            });
+                        } else if (user.role === 'user') {
+                            this.$message({
+                                message: 'Bạn không có quyền đăng nhập vào đây',
                                 type: 'error',
                             });
                         } else {

@@ -1,41 +1,38 @@
 <template>
     <div>
-        <div>
-            <PageHeader :title="'Lịch sử giao dịch'" />
-            <div class="w-1/2">
-                <div class="flex">
-                    <div class="mr-5">
-                        <DateRange
-                            :selected-range="[$route.query.fromDate, $route.query.toDate]"
-                            @changeDateRange="updateDaterange"
-                        />
-                    </div>
-                    <div class="flex-1">
-                        <Select
-                            :options="optionHistory"
-                            :placeholder="'Hành động'"
-                            :selected="$route.query.actionSlug"
-                            @changeValue="updateSelect"
-                        />
-                    </div>
-                </div>
-                <div class="mt-5 flex">
-                    <el-input
-                        v-model="tableFilter.searchKey"
-                        placeholder="Search"
-                        class="input-with-select mr-5"
-                        clearable
-                        @clear="updateSearchKey"
+        <PageHeader :title="'Thành viên'" />
+        <div class="w-1/2">
+            <div class="flex">
+                <div class="mr-5">
+                    <DateRange
+                        :selected-range="[$route.query.fromDate, $route.query.toDate]"
+                        @changeDateRange="updateDaterange"
                     />
-                    <el-button type="primary" icon="el-icon-search" @click="updateSearchKey">
-                        Search
-                    </el-button>
+                </div>
+                <div class="flex-1">
+                    <Select
+                        :options="optionStatus"
+                        :placeholder="'Trạng thái'"
+                        :selected="$route.query.status"
+                        @changeValue="updateSelect"
+                    />
                 </div>
             </div>
-
-            <div>
-                <TableHistory :data-history="history" />
+            <div class="mt-5 flex">
+                <el-input
+                    v-model="tableFilter.searchKey"
+                    placeholder="Tìm kiếm theo tên nhân viên"
+                    class="input-with-select mr-5"
+                    clearable
+                    @clear="updateSearchKey"
+                />
+                <el-button type="primary" icon="el-icon-search" @click="updateSearchKey">
+                    Search
+                </el-button>
             </div>
+        </div>
+        <div>
+            <TableStaff :data="users" />
         </div>
         <div>
             <Pagination
@@ -49,55 +46,62 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
     import { format } from 'date-fns';
-    import { cleanObject } from '~/utils/object';
-    import { HISTORY_ACTION } from '~/constants/history';
+    import { mapState } from 'vuex';
+    import { OPTION_STATUS_STAFF } from '~/constants/statusStaff';
     import DateRange from '~/components/admin/shared/form/Datepicker.vue';
     import Select from '~/components/admin/shared/form/Select.vue';
-    import TableHistory from '~/components/admin/history/Table.vue';
-    import PageHeader from '~/components/admin/shared/PageHeader.vue';
+    import TableStaff from '~/components/admin/staff/Table.vue';
     import Pagination from '~/components/Pagination.vue';
+    import PageHeader from '~/components/admin/shared/PageHeader.vue';
+    import { cleanObject } from '~/utils/object';
 
     export default {
         layout: 'admin',
+
         components: {
-            TableHistory,
             PageHeader,
-            Pagination,
-            Select,
             DateRange,
+            Select,
+            TableStaff,
+            Pagination,
         },
+
+        watchQuery: true,
+
         async asyncData({ query, store }) {
             const initFilter = {
                 fromDate: null,
                 toDate: null,
-                actionSlug: null,
+                status: null,
                 searchKey: null,
                 page: query.page || 1,
             };
             const filter = { ...initFilter, ...query };
             const clean = cleanObject(filter);
-            await store.dispatch('admin/history/fetch', clean);
+            await store.dispatch('admin/user/fetchStaff', clean);
             return {
                 tableFilter: filter,
             };
         },
+
         data() {
             return {
-                optionHistory: HISTORY_ACTION,
+                optionStatus: OPTION_STATUS_STAFF,
+                dateValue: undefined,
             };
         },
         computed: {
-            ...mapState('admin/history', ['history', 'pagination']),
+            ...mapState('admin/user', ['users', 'pagination']),
         },
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                // await this.$store.dispatch('admin/history/fetch', filter);
+                // await this.$store.dispatch('admin/user/fetchStaff', filter);
                 this.$router.push({ query: filter });
+                console.log(this.users);
             },
-            async updatePage(page) {
+            updatePage(page) {
                 this.fetchData({ page });
             },
             updateDaterange(value) {
@@ -111,15 +115,21 @@
                 }
                 this.fetchData({ fromDate, toDate, page });
             },
-            updateSelect(actionSlug) {
+            updateSelect(status) {
                 const page = null;
-                this.fetchData({ actionSlug, page });
+                this.fetchData({ status, page });
             },
             updateSearchKey() {
                 const page = null;
                 this.fetchData({ page });
             },
-
         },
     };
 </script>
+
+<style lang="sass">
+    .el-range-separator
+        box-sizing: content-box
+    .el-button:focus
+        outline: none !important
+</style>

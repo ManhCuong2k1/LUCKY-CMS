@@ -12,9 +12,9 @@
                     <el-input v-model="userForm.username" placeholder="Username" disabled />
                 </el-col>
             </el-form-item>
-            <el-form-item label="Tên hiển thị" prop="username">
+            <el-form-item label="Tên hiển thị" prop="name">
                 <el-col :span="12">
-                    <el-input v-model="userForm.name" placeholder="Username" />
+                    <el-input v-model="userForm.name" placeholder="Name" />
                 </el-col>
             </el-form-item>
             <el-form-item label="Email" prop="email">
@@ -51,7 +51,16 @@
                 <el-col :span="6">
                     <el-select v-model="userForm.status" placeholder="Trạng thái">
                         <el-option label="Tạm khóa" value="blocked" />
+                        <el-option label="Chờ duyệt" value="pending" />
                         <el-option label="Đang hoạt động" value="working" />
+                    </el-select>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="Quyền" prop="permission">
+                <el-col :span="6">
+                    <el-select v-model="userForm.role" placeholder="Quyền">
+                        <el-option label="Admin" value="admin" />
+                        <el-option label="Nhân viên" value="employe" />
                     </el-select>
                 </el-col>
             </el-form-item>
@@ -70,14 +79,14 @@
 <script>
     export default {
         props: {
-            userData: {
+            staffData: {
                 type: Object,
                 required: true,
             },
         },
         data() {
             return {
-                userForm: this.userData,
+                userForm: this.staffData,
                 rules: {
                     // last_name: [
                     //     {
