@@ -50,6 +50,9 @@
                 <template slot-scope="scope">
                     <el-button icon="el-icon-edit" @click="$router.push(`/admin/user/${scope.row.id}/edit`)" />
                     <el-button icon="el-icon-key" @click="openChangePass(scope.row.id)" />
+                    <el-button @click="recharge(scope.row.id)">
+                        <i class="fas fa-hand-holding-usd" />
+                    </el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -60,6 +63,13 @@
         >
             <PasswordForm :re-open-form="dialogVisibleInstant" :user-id="userIdChangePass" @finishForm="updatePassword" />
         </el-dialog>
+        <el-dialog
+            title="Nạp tiền"
+            :visible.sync="dialogRecharge"
+            width="30%"
+        >
+            <RechargeForm :re-open-form="dialogRecharge" :user-id="userIdChangePass" @finishForm="updateTotalCoin" />
+        </el-dialog>
     </div>
 </template>
 
@@ -69,10 +79,12 @@
     import { mapState } from 'vuex';
     import { statusUser, checkGender } from '~/utils/configData';
     import PasswordForm from '~/components/admin/user/PasswordForm.vue';
+    import RechargeForm from '~/components/admin/user/RechargeForm.vue';
 
     export default {
         components: {
             PasswordForm,
+            RechargeForm,
         },
 
         props: {
@@ -87,6 +99,7 @@
             return {
                 dataTable,
                 dialogVisibleInstant: false,
+                dialogRecharge: false,
                 userIdChangePass: -1,
             };
         },
@@ -154,6 +167,28 @@
                 } catch ($e) {
                     this.$message({
                         message: 'Update error.',
+                        type: 'error',
+                    });
+                }
+            },
+
+            async recharge(id) {
+                this.dialogRecharge = true;
+                this.userIdChangePass = id;
+            },
+
+            async updateTotalCoin(form) {
+                try {
+                    await this.$axios.put(`/admin/users/recharge/${this.userIdChangePass}`, form);
+                    await this.$store.dispatch('admin/user/fetch');
+                    this.dialogRecharge = false;
+                    this.$message({
+                        message: 'Nạp tiền thành công',
+                        type: 'success',
+                    });
+                } catch ($e) {
+                    this.$message({
+                        message: 'Nạp tiền thất bại.',
                         type: 'error',
                     });
                 }

@@ -102,7 +102,6 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$emit('submitForm', this.userForm);
-                        console.log(this.userForm);
                     } else {
                         return false;
                     }
