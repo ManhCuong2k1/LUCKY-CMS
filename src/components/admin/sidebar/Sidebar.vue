@@ -28,10 +28,10 @@
             <SidebarItem icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
             </SidebarItem>
-            <SidebarItem icon="el-icon-user" link="/admin/user">
+            <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-user" link="/admin/user">
                 Khách hàng
             </SidebarItem>
-            <SidebarItem icon="el-icon-files" link="/admin/banner">
+            <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-files" link="/admin/banner">
                 Banner
             </SidebarItem>
             <el-submenu index="6" class="submenu">
@@ -39,7 +39,7 @@
                     <i class="el-icon-setting" />
                     <span :class="collapsed ? 'pl-4': ''">Cài đặt</span>
                 </template>
-                <SidebarItem icon="el-icon-user" link="/admin/staff">
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-user" link="/admin/staff">
                     Nhân viên
                 </SidebarItem>
             </el-submenu>
