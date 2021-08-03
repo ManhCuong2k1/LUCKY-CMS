@@ -33,7 +33,7 @@
             </el-table-column>
             <el-table-column label="Created At">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.createdAt | formatDate }}</span>
+                    <span>{{ formatDate(scope.row.createdAt) }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="Operations" fixed="right" width="220">
@@ -59,6 +59,7 @@
     import { mapState } from 'vuex';
     import { statusUser, checkGender } from '~/utils/configData';
     import PasswordForm from '~/components/admin/user/PasswordForm.vue';
+    import { formatDate } from '~/utils/formatDate';
 
     export default {
         components: {
@@ -92,6 +93,7 @@
         },
 
         methods: {
+            formatDate,
             formatPrice(value) {
                 const val = (value / 1).toFixed(0).replace('.', ',');
                 return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');

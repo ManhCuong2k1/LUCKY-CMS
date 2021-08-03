@@ -24,7 +24,7 @@
             </el-table-column>
             <el-table-column prop="total" label="Thời gian">
                 <template slot-scope="scope">
-                    {{ scope.row.createdAt | formatDate }}
+                    {{ formatDate(scope.row.createdAt) }}
                 </template>
             </el-table-column>
         </el-table>
@@ -33,9 +33,7 @@
 
 <script>
     import cloneDeep from 'lodash/cloneDeep';
-    // import { mapState } from 'vuex';
-    // import { image as toImage } from '~/utils/url';
-    // import { checkType, checkStatus, checkName } from '~/utils/configData';
+    import { formatDate } from '~/utils/formatDate';
 
     export default {
         props: {
@@ -55,6 +53,9 @@
             dataHistory() {
                 this.dataForm = cloneDeep(this.dataHistory);
             },
+        },
+        method: {
+            formatDate,
         },
     };
 </script>

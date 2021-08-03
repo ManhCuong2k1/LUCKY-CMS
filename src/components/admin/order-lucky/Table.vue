@@ -1,25 +1,24 @@
-/* eslint-disable no-unused-vars */
 <template>
     <div>
         <el-table :data="changeData" class="w-full">
-            <el-table-column prop="name" label="Mã vé" width="100">
+            <el-table-column prop="name" label="Mã vé" width="80">
                 <template slot-scope="scope">
                     <span>{{ scope.row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="city" label="Khách hàng">
+            <el-table-column prop="city" label="Khách hàng" width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.user.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="phone" label="Thời gian đặt">
+            <el-table-column prop="phone" label="Thời gian đặt" width="200">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.createdAt | formatDate }}</span>
+                    <span>{{ formatDate(scope.row.createdAt) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="transporter" label="Loại vé" width="200">
+            <el-table-column prop="transporter" label="Loại vé" width="180">
                 <template slot-scope="scope">
-                    <span>{{ type(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
+                    <span>{{ checkType(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
                 </template>
             </el-table-column>
             <el-table-column prop="total" label="Nội dung" width="300">
@@ -29,21 +28,21 @@
                     </p>
                 </template>
             </el-table-column>
-            <el-table-column prop="total" label="Số kỳ">
+            <el-table-column prop="total" label="Số kỳ" width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.preriod }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="orderStatus" label="Trạng thái">
+            <el-table-column prop="orderStatus" label="Trạng thái" width="240">
                 <template slot-scope="scope">
                     <div style="height: 40px; line-height:40px;">
-                        <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : ''">
-                            {{ status(scope.row.orderStatus) }}
+                        <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : scope.row.resultDetail == 'TRÚNG GIẢI' ? 'active-winned': ''">
+                            {{ checkStatus(scope.row.orderStatus, scope.row.resultDetail) }}
                         </span>
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column label="Công cụ" width="170">
+            <el-table-column label="Công cụ" width="200">
                 <template slot-scope="scope">
                     <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/order-lucky/${scope.row.id}/edit`">
                         <el-button
@@ -91,6 +90,7 @@
     import { mapState } from 'vuex';
     import { image as toImage } from '~/utils/url';
     import { checkType, checkStatus, checkName } from '~/utils/configData';
+    import { formatDate } from '~/utils/formatDate';
 
     const modelForm = [{
         id: '',
@@ -169,12 +169,9 @@
         },
         methods: {
             toImage,
-            type(type) {
-                return checkType(type);
-            },
-            status(status) {
-                return checkStatus(status);
-            },
+            formatDate,
+            checkType,
+            checkStatus,
             close() {
                 this.showImages = false;
             },
@@ -222,6 +219,13 @@
     background-color: #E1F3D8;
     border-radius: 27px;
     padding: 8px;
+}
+.active-winned {
+    color: #D40B02;
+    background: #fbd41f;
+    /* font-weight: 600; */
+    border-radius: 27px;
+    padding: 8px 15px;
 }
 .button-view {
     margin-right: 5px;

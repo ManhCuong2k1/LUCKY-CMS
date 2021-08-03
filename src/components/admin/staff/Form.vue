@@ -68,9 +68,6 @@
                 <el-button type="primary" @click="submitForm('userForm')">
                     Lưu
                 </el-button>
-                <!-- <el-button @click="resetForm('userForm')">
-                    Làm mới
-                </el-button> -->
             </el-form-item>
         </el-form>
     </div>
@@ -88,17 +85,6 @@
             return {
                 userForm: this.staffData,
                 rules: {
-                    // last_name: [
-                    //     {
-                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                    //     },
-                    // ],
-                    // first_name: [
-                    //     { required: true, message: 'Please input name', trigger: 'blur' },
-                    //     {
-                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                    //     },
-                    // ],
                     email: [
                         { required: true, message: 'Please input email', trigger: 'blur' },
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] },
@@ -117,9 +103,6 @@
                     }
                 });
             },
-            // resetForm(formName) {
-            //     this.$refs[formName].resetFields();
-            // },
         },
     };
 </script>
