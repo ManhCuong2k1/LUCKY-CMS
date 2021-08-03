@@ -26,7 +26,7 @@ export const checkType = (type) => {
     return message;
 };
 
-export const checkStatus = (status) => {
+export const checkStatus = (status, result) => {
     let message = '';
     switch (status) {
         case 'delay':
@@ -36,7 +36,11 @@ export const checkStatus = (status) => {
             message = 'Đã in vé bởi Admin';
             break;
         case 'drawned':
-            message = 'Đã xổ';
+            if (result === 'TRÚNG GIẢI') {
+                message = 'Trúng giải';
+            } else {
+                message = 'Đã xổ';
+            }
             break;
         default:
             message = '';

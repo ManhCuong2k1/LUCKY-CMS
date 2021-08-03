@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { parseDateString } from '~/utils/date';
+import { parseDateString, dateFormat } from '~/utils/date';
 
 /**
  * @param {Date|number|string} date
@@ -8,6 +8,7 @@ import { parseDateString } from '~/utils/date';
  */
 export default (date, toFormat = 'dd-LL-yyyy HH:mm:ss', fromFormat) => {
     const then = typeof date === 'string' ? parseDateString(date, fromFormat) : date;
-
+    console.log(format(new Date(), toFormat));
+    console.log(dateFormat(date, 'dd-LL-yyyy HH:mm:ss'));
     return format(then, toFormat);
 };

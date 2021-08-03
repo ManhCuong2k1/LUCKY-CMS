@@ -42,6 +42,9 @@
                 <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-user" link="/admin/staff">
                     Nhân viên
                 </SidebarItem>
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-money-check-alt" link="/admin/limit-exchange">
+                    Hạn mức đổi thưởng
+                </SidebarItem>
             </el-submenu>
         </el-scrollbar>
         <ElMenuItem class="toggle-sidebar" @click="toggleSidebar">

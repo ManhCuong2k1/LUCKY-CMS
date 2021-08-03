@@ -94,7 +94,6 @@
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                // await this.$store.dispatch('admin/history/fetch', filter);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {
