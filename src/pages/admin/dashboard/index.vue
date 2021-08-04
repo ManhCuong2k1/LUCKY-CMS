@@ -36,7 +36,7 @@
             <ItemNumber
                 :icon="['fas', 'dollar-sign']"
                 :color="'text-blue-400'"
-                title="Doanh số tuần này"
+                title="Doanh thu tuần này"
                 :value="totalRevenueWeek"
             />
             <ItemNumber

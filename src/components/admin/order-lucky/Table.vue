@@ -6,29 +6,29 @@
                     <span>{{ scope.row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="city" label="Khách hàng" width="160">
+            <el-table-column prop="city" label="Khách hàng" width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.user.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="phone" label="Thời gian đặt" width="200">
+            <el-table-column prop="phone" label="Thời gian đặt" width="220">
                 <template slot-scope="scope">
                     <span>{{ formatDate(scope.row.createdAt) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="transporter" label="Loại vé" width="180">
+            <el-table-column prop="transporter" label="Loại vé" width="220">
                 <template slot-scope="scope">
                     <span>{{ checkType(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
                 </template>
             </el-table-column>
-            <el-table-column prop="total" label="Nội dung" width="300">
+            <el-table-column prop="total" label="Nội dung" width="350">
                 <template slot-scope="scope">
                     <p v-for="orderDetail in scope.row.orders[0].orderDetail.data" :key="orderDetail">
                         {{ orderDetail }}
                     </p>
                 </template>
             </el-table-column>
-            <el-table-column prop="total" label="Số kỳ" width="180">
+            <el-table-column prop="total" label="Số kỳ" width="100">
                 <template slot-scope="scope">
                     <span>{{ scope.row.preriod }}</span>
                 </template>
