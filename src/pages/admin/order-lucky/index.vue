@@ -79,10 +79,6 @@
         },
         async asyncData({ query, store }) {
             const initFilter = {
-                fromDate: null,
-                toDate: null,
-                orderStatus: null,
-                type: null,
                 searchKey: null,
                 page: query.page || 1,
             };
