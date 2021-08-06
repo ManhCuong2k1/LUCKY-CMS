@@ -1,7 +1,7 @@
 <template>
     <div>
         <PageHeader />
-        <LuckyForm :lucky-data="configString" />
+        <LuckyForm :lucky-data="configString" :data-image="images" />
     </div>
 </template>
 
@@ -19,9 +19,12 @@
         },
         async asyncData({ store, params }) {
             await store.dispatch('admin/orderLucky/getDetail', params.id);
+            await store.dispatch('admin/images/fetch', params.id);
+            const images = store.state.admin.images.images;
             const lucky = cloneDeep(store.state.admin.orderLucky.orderDetail);
             return {
                 lucky,
+                images,
             };
         },
         computed: {

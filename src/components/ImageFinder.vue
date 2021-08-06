@@ -3,7 +3,6 @@
         <Dropzone
             ref="dropzone"
             class="mb-5"
-            :url="orderId ? `/api/admin/lottery-order/${orderId}/images` : '/api/admin/lottery-order/banner'"
             @success="onUploadSucceeded"
         />
         <div class="w-full">
@@ -16,7 +15,7 @@
                     >
                         <img
                             class="w-full transform transition duration-300 hover:scale-110 hover:shadow-md cursor-pointer"
-                            :src="toImage(i.imageslist, 'full')"
+                            :src="toImage(i.imageUrl, 'full')"
                             @click="confirmPick(i)"
                         >
                     </div>
@@ -40,12 +39,12 @@
         components: {
             Dropzone,
         },
-        props: {
-            orderId: {
-                type: Number,
-                required: true,
-            },
-        },
+        // props: {
+        //     orderId: {
+        //         type: Number,
+        //         required: true,
+        //     },
+        // },
         data() {
             this.fetchData();
             return {
@@ -68,6 +67,7 @@
                 this.fetchData();
                 this.formError = [];
                 this.$refs.dropzone.$_dropzone.removeFile(file);
+                console.log(file);
                 // this.$router.push('/admin/order-lucky/');
                 return file;
             },

@@ -40,50 +40,55 @@
             </el-form-item>
 
             <el-form-item label="Lấy ảnh vé" class="content-center">
-                <el-button :class="imagesList.listsimages1 ? '': 'dropzone'" class="el-col-3 p-0" @click="openLuckyGallery">
-                    <div v-if="imagesList.listsimages1">
-                        <img class="w-full h-40" :src="toImage(imagesList.listsimages1, 'full')">
+                <div class="flex">
+                    <div>
+                        <el-upload
+                            class="avatar-uploader mr-5"
+                            action="/api/upload/single-upload"
+                            :headers="headers"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccessBefore"
+                            :before-upload="beforeUploadImage"
+                        >
+                            <img v-if="image.beforeImage" :src="image.beforeImage" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon" />
+                        </el-upload>
+                        <span>Ảnh trước</span>
                     </div>
-                    <span v-else class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
-                </el-button>
-                <el-button :class="imagesList.listsimages2 ? '': 'dropzone'" class="el-col-3" @click="openLuckyGallery1">
-                    <div v-if="imagesList.listsimages2">
-                        <img class="w-full h-40" :src="toImage(imagesList.listsimages2, 'full')">
+                    <div>
+                        <el-upload
+                            class="avatar-uploader"
+                            action="/api/upload/single-upload"
+                            :headers="headers"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccessAfter"
+                            :before-upload="beforeUploadImage"
+                        >
+                            <img v-if="image.afterImage" :src="image.afterImage" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon" />
+                        </el-upload>
+                        <span>Ảnh sau</span>
                     </div>
-                    <span v-else class="pd-0"><i class="el-icon-camera-solid text-6xl text-gray-200" /></span>
-                </el-button>
+                </div>
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="saveImages(luckyData.listsimages)">
-                    Lưu ảnh
+                <el-button type="primary" @click="saveImages(dataForm)">
+                    Lưu
                 </el-button>
             </el-form-item>
         </el-form>
-
-        <el-dialog
-            title="Chọn ảnh"
-            :visible.sync="dialogGallery1"
-        >
-            <ImageFinder :order-id="luckyData.id" @confirmPick="confirmPick" />
-        </el-dialog>
-        <el-dialog
-            title="Chọn ảnh"
-            :visible.sync="dialogGallery2"
-        >
-            <ImageFinder :order-id="luckyData.id" @confirmPick="confirmPick1" />
-        </el-dialog>
     </div>
 </template>
 
 <script>
-    import ImageFinder from '~/components/ImageFinder.vue';
+    import { mapState } from 'vuex';
+    import cloneDeep from 'lodash/cloneDeep';
     import { image as toImage } from '~/utils/url';
     import { checkType, checkStatus } from '~/utils/configData';
 
     export default {
         components: {
-            ImageFinder,
         },
 
         props: {
@@ -91,47 +96,65 @@
                 type: Object,
                 required: false,
             },
+            dataImage: {
+                type: Object,
+                required: false,
+            },
         },
         data() {
+            const dataForm = cloneDeep(this.luckyData.image);
             return {
-                dialogGallery1: false,
-                dialogGallery2: false,
+                dataForm,
                 loading: false,
-                imagesList: {
-                    listsimages1: '',
-                    listsimages2: '',
+                image: {
+                    beforeImage: '',
+                    afterImage: '',
                 },
-                idImages1: '',
-                idImages2: '',
+                imagesBefore: null,
+                imagesAfter: null,
+                headers: {
+                    Authorization: this.$auth.strategy.token.get(),
+                },
             };
+        },
+        computed: {
+            ...mapState('admin/images', ['images']),
         },
         methods: {
             toImage,
-            openLuckyGallery() {
-                this.dialogGallery1 = true;
-            },
-            openLuckyGallery1() {
-                this.dialogGallery2 = true;
-            },
             type(type) {
                 return checkType(type);
             },
             status(status) {
                 return checkStatus(status);
             },
-            confirmPick(name) {
-                this.dialogGallery1 = false;
-                this.imagesList.listsimages1 = name.imageslist;
-                this.idImages1 = name.id;
+            handleAvatarSuccessBefore(res, file) {
+                this.image.beforeImage = URL.createObjectURL(file.raw);
+                this.imagesBefore = res.imageUrl;
             },
-            confirmPick1(name) {
-                this.dialogGallery2 = false;
-                this.imagesList.listsimages2 = name.imageslist;
-                this.idImages2 = name.id;
+            beforeUploadImage(file) {
+                const isJPG = file.type === 'image/jpeg' || 'image/gif' || 'image/png';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                    this.$message.error('Upload file can only be in picture format!');
+                }
+                if (!isLt2M) {
+                    this.$message.error('Avatar picture size can not exceed 2MB!');
+                }
+                return isJPG && isLt2M;
+            },
+            handleAvatarSuccessAfter(res, file) {
+                this.image.afterImage = URL.createObjectURL(file.raw);
+                this.imagesAfter = res.imageUrl;
             },
             saveImages() {
-                this.$store.dispatch('admin/orderLucky/updateImage', { data: { imageId1: this.idImages1, imageId2: this.idImages2 }, id: this.luckyData.id });
-                // this.$router.push('/admin/order-lucky');
+                console.log(this.dataImage.data);
+                if (this.dataImage.data === null) {
+                    this.$store.dispatch('admin/orderLucky/createImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter }, id: this.luckyData.id });
+                } else {
+                    this.$store.dispatch('admin/orderLucky/updateImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter }, id: this.luckyData.id });
+                }
                 this.$message({
                     message: 'Gửi ảnh thành công!',
                     type: 'success',
@@ -169,4 +192,27 @@
 .content-center button {
     padding: 0;
 }
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>
