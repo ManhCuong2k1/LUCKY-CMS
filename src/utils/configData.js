@@ -33,7 +33,7 @@ export const checkStatus = (status, result) => {
             message = 'Chờ in vé';
             break;
         case 'printed':
-            message = 'Đã in vé bởi Admin';
+            message = 'Đã in vé';
             break;
         case 'drawned':
             if (result === 'TRÚNG GIẢI') {

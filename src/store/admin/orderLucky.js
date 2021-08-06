@@ -31,6 +31,10 @@ export const actions = {
         const res = await this.$axios.get(`/admin/lottery-order/detail/${id}`);
         commit('setOrderDetail', res.data);
     },
+    async createImage({ commit }, payload) {
+        const res = await this.$axios.post(`/admin/lottery-order/${payload.id}/images`, payload.data);
+        commit('setImage', res);
+    },
     async updateImage({ commit }, payload) {
         const res = await this.$axios.put(`/admin/lottery-order/updateImage/${payload.id}`, payload.data);
         commit('setImage', res);

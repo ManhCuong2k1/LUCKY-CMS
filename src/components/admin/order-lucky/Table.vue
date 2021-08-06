@@ -77,8 +77,11 @@
                 </div>
             </div>
             <div class="flex flex-wrap">
-                <span v-for="i in images" :key="i.id" class="w-1/3 p-4">
-                    <img :src="toImage(i.imageslist, 'full')" alt="" class="h-56">
+                <span class="w-1/2 p-4 ">
+                    <img :src="toImage(image.data.beforeImage, 'full')" class="w-22 h-22">
+                </span>
+                <span class="w-1/2 p-4 ">
+                    <img :src="toImage(image.data.afterImage, 'full')" class="w-full">
                 </span>
             </div>
         </div>
@@ -111,6 +114,12 @@
             },
         ],
     }];
+    const dataImages = {
+        data: {
+            beforeImage: '',
+            afterImage: '',
+        },
+    };
 
     export default {
         props: {
@@ -121,13 +130,15 @@
         },
         data() {
             const dataForm = this.dataOrder ? cloneDeep(this.dataOrder) : cloneDeep(modelForm);
+            const image = this.images ? cloneDeep(this.images) : dataImages;
             return {
+                image,
                 dataForm,
                 showImages: false,
             };
         },
         computed: {
-            ...mapState('user/image', ['images']),
+            ...mapState('admin/images', ['images']),
             changeData() {
                 const arr = [];
                 const arrOrder = [];
@@ -177,7 +188,10 @@
             },
             async viewImage(id) {
                 this.showImages = true;
-                await this.$store.dispatch('user/image/getImagesDetail', id);
+                await this.$store.dispatch('admin/images/fetch', id);
+                if (this.images.data !== null) {
+                    this.image = this.images;
+                }
             },
             checkLevel(dataDetail) {
                 let numberLevel = '';

@@ -4,7 +4,7 @@ export const OPTION_STATUS = {
         slug: 'delay',
     },
     PRINTED: {
-        label: 'Đã in vé bởi Admin',
+        label: 'Đã in vé',
         slug: 'printed',
     },
     DRAWNED: {
