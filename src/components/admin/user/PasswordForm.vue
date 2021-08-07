@@ -54,11 +54,11 @@
                     callback(new Error('Xin hãy nhập mật khẩu'));
                 } else {
                     // eslint-disable-next-line no-useless-escape
-                    const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+                    const mediumRegex = /^[a-zA-Z0-9@$!%*#?&]{8,}$/;
                     if (mediumRegex.test(value)) {
                         this.$refs.ruleForm.validateField('checkPass');
                     } else {
-                        callback(new Error('Mật khẩu ít nhất 6 ký tự bao gồm chữ thường, chữ hoa và chữ số'));
+                        callback(new Error('Mật khẩu ít nhất là 8 kí tự bất kì'));
                     }
                     callback();
                 }

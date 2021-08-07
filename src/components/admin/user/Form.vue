@@ -24,18 +24,12 @@
             </el-form-item>
             <el-form-item label="Phone" prop="phone">
                 <el-col :span="12">
-                    <el-input v-model="userForm.phone" placeholder="Phone" />
+                    <el-input v-model="userForm.phone" placeholder="Phone" disabled />
                 </el-col>
             </el-form-item>
-            <el-form-item label="Ngày sinh" prop="birthday">
-                <el-col :span="6">
-                    <el-date-picker
-                        v-model="userForm.dateOfBirth"
-                        type="date"
-                        value-format="yyyy-MM-dd"
-                        placeholder="Pick a date"
-                        style="width: 100%;"
-                    />
+            <el-form-item label="Số CMND" prop="identify">
+                <el-col :span="12">
+                    <el-input v-model="userForm.identify" placeholder="Số CMND" />
                 </el-col>
             </el-form-item>
             <el-form-item label="Giới tính" prop="gender">
@@ -79,17 +73,21 @@
             return {
                 userForm: this.userData,
                 rules: {
-                    // last_name: [
-                    //     {
-                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                    //     },
-                    // ],
-                    // first_name: [
-                    //     { required: true, message: 'Please input name', trigger: 'blur' },
-                    //     {
-                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                    //     },
-                    // ],
+                    identify: [
+                        {
+                            required: true, message: 'Vui lòng nhập thông tin', trigger: 'blur',
+                        },
+                        {
+                            trigger: 'blur',
+                            validator(rule, value, callback) {
+                                if (/^[0-9]{12}$/.test(value)) {
+                                    callback();
+                                } else {
+                                    callback(new Error('Chỉ nhập số và đủ 12 số'));
+                                }
+                            },
+                        },
+                    ],
                     email: [
                         { required: true, message: 'Please input email', trigger: 'blur' },
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] },

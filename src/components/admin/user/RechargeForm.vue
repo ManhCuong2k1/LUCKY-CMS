@@ -50,7 +50,7 @@
                     recharge: [
                         { required: true, message: 'Hãy nhập số tiền cần nạp', trigger: 'blur' },
                         {
-                            min: 5, max: 30, message: 'Số tiền không được dưới 10000', trigger: ['blur', 'change'],
+                            min: 5, max: 30, message: 'Số tiền không được dưới 10.000VNĐ', trigger: ['blur', 'change'],
                         },
                     ],
                 },
