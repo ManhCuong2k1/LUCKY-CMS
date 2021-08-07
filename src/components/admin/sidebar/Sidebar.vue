@@ -28,7 +28,7 @@
             <SidebarItem icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
             </SidebarItem>
-            <SidebarItem icon="el-icon-printer" link="/admin/exchange">
+            <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-printer" link="/admin/exchange">
                 Đổi thưởng <span v-if="newNoti" class="ml-2 bg-red-500 px-2 text-center border border-white rounded-full">{{ newNoti }}</span>
             </SidebarItem>
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-user" link="/admin/user">
