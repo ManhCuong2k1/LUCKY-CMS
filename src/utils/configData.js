@@ -117,3 +117,24 @@ export const checkGender = (gender) => {
     }
     return message;
 };
+
+export const statusExchange = (status) => {
+    let message = '';
+    switch (status) {
+        case 'success':
+            message = 'Đã đổi thưởng';
+            break;
+        case 'delay':
+            message = 'Chờ đổi thưởng';
+            break;
+        default:
+            message = 'Khác';
+            break;
+    }
+    return message;
+};
+
+export const formatPrice = (value) => {
+    const val = (value / 1).toFixed(0).replace('.', ',');
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};

@@ -77,7 +77,7 @@
     import { findIndex } from 'lodash';
     import cloneDeep from 'lodash/cloneDeep';
     import { mapState } from 'vuex';
-    import { statusUser, checkGender } from '~/utils/configData';
+    import { statusUser, checkGender, formatPrice } from '~/utils/configData';
     import PasswordForm from '~/components/admin/user/PasswordForm.vue';
     import RechargeForm from '~/components/admin/user/RechargeForm.vue';
     import { formatDate } from '~/utils/formatDate';
@@ -117,10 +117,7 @@
 
         methods: {
             formatDate,
-            formatPrice(value) {
-                const val = (value / 1).toFixed(0).replace('.', ',');
-                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            },
+            formatPrice,
             switchLockUser(id, deleteAt) {
                 if (deleteAt === null) {
                     this.$confirm('Bạn sẽ xóa bản ghi này ?', 'Warning', {
