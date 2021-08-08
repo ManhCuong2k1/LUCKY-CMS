@@ -7,11 +7,6 @@
             class="w-2/3"
             :rules="rules"
         >
-            <el-form-item label="Username" prop="username">
-                <el-col :span="12">
-                    <el-input v-model="userForm.username" placeholder="Username" disabled />
-                </el-col>
-            </el-form-item>
             <el-form-item label="Tên hiển thị" prop="username">
                 <el-col :span="12">
                     <el-input v-model="userForm.name" placeholder="Username" />
