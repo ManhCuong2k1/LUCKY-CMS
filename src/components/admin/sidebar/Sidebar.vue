@@ -10,7 +10,7 @@
         active-text-color="#ffd04b"
         :collapse-transition="false"
     >
-        <nuxt-link to="/admin/dashboard">
+        <nuxt-link :to="userLoged.role === 'admin' ? '/admin/dashboard' : '/admin/order-lucky'">
             <div class="py-4" :class="collapsed ? 'text-center' : 'flex justify-center'">
                 <img v-if="!collapsed" src="/images/logo.png" class="w-16">
                 <img v-else src="/images/logo.png" class="w-10 mx-auto">
@@ -18,14 +18,14 @@
         </nuxt-link>
 
         <el-scrollbar wrap-class="overflow-hidden">
-            <SidebarItem icon="el-icon-s-home" link="/admin/dashboard">
+            <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-s-home" link="/admin/dashboard">
                 Tổng quan
             </SidebarItem>
 
             <SidebarItem icon="el-icon-collection" link="/admin/order-lucky">
                 Đặt vé
             </SidebarItem>
-            <SidebarItem icon="el-icon-time" link="/admin/history-user">
+            <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
             </SidebarItem>
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-printer" link="/admin/exchange">
@@ -37,7 +37,7 @@
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-files" link="/admin/banner">
                 Banner
             </SidebarItem>
-            <el-submenu index="6" class="submenu">
+            <el-submenu v-if="userLoged.role === 'admin'" index="6" class="submenu">
                 <template slot="title">
                     <i class="el-icon-setting" />
                     <span :class="collapsed ? 'pl-4': ''">Cài đặt</span>
