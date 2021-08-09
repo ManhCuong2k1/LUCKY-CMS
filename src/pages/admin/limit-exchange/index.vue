@@ -1,6 +1,6 @@
 <template>
     <div>
-        <PageHeader title="Hạn mức đổi thưởng" />
+        <PageHeader title="Hạn mức" />
         <ExchangeForm :data-form="limit" @submitForm="updateLimitChange" />
     </div>
 </template>
