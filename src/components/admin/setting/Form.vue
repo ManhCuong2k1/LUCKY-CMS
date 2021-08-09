@@ -69,6 +69,11 @@
                     </el-form-item>
                 </div>
             </div>
+            <el-form-item label="Phí lưu vé" prop="value">
+                <el-col :span="6">
+                    <el-input v-model="limitForm.ticket_storage_fee" placeholder="Phí lưu vé" />
+                </el-col>
+            </el-form-item>
 
             <el-form-item>
                 <el-button type="primary" @click="submitForm('limitForm')">
@@ -93,6 +98,7 @@
         exchange_local_max: '',
         exchange_wallet_max: '',
         exchange_bank_max: '',
+        ticket_storage_fee: '',
     };
     export default {
         props: {
