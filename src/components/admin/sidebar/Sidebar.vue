@@ -46,7 +46,7 @@
                     Nhân viên
                 </SidebarItem>
                 <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-money-check-alt" link="/admin/limit-exchange">
-                    Hạn mức đổi thưởng
+                    Hạn mức
                 </SidebarItem>
             </el-submenu>
         </el-scrollbar>
