@@ -77,6 +77,11 @@
                                 message: 'Bạn không có quyền đăng nhập vào đây',
                                 type: 'error',
                             });
+                        } else if (user.status === 'blocked') {
+                            this.$message({
+                                message: 'Tài khoản này hiện đang bị khóa',
+                                type: 'error',
+                            });
                         } else {
                             await this.$auth.loginWith('local', {
                                 data: {
