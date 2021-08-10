@@ -11,6 +11,9 @@
                         Lưu
                     </el-button>
                 </div>
+                <div class="italic text-gray-600 text-sm">
+                    <span class="font-semibold text-red-600">Note: </span> Kích thước ảnh phù hợp là 375*176.
+                </div>
                 <table class="w-full">
                     <thead>
                         <tr class="border-b border-gray-200 text-gray-600">

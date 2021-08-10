@@ -22,7 +22,7 @@
                 <div class="mt-5 flex">
                     <el-input
                         v-model="tableFilter.searchKey"
-                        placeholder="Search"
+                        placeholder="Tìm kiếm theo số điện thoại"
                         class="input-with-select mr-5"
                         clearable
                         @clear="updateSearchKey"
