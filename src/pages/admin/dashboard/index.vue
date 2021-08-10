@@ -84,7 +84,7 @@
                 exchangesWeek: parseInt(data.exchangesWeek[0].total_exchanges_week, 10) || 0,
                 labels: data.amountTicketByDay.map((i) => moment(i.formatCreatedAt, 'YYYYMMDD').format('DD-MM')),
                 amountTicketByDay: data.amountTicketByDay.map((i) => i.count),
-                sumOrderByDay: data.sumOrderByDay.map((i) => i.total),
+                sumOrderByDay: data.sumOrderByDay.map((i) => i.total_price),
             };
         },
 
