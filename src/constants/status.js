@@ -15,4 +15,8 @@ export const OPTION_STATUS = {
         label: 'Trúng giải',
         slug: 'winned',
     },
+    CANCELED: {
+        label: 'Đã hủy',
+        slug: 'canceled',
+    },
 };

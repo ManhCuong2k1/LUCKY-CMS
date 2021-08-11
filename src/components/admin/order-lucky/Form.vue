@@ -76,6 +76,9 @@
                 <el-button type="primary" @click="saveImages(dataForm)">
                     Lưu
                 </el-button>
+                <el-button type="primary" @click="deleteTicket(luckyData.id)">
+                    Hủy vé
+                </el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -149,7 +152,6 @@
                 this.imagesAfter = res.imageUrl;
             },
             saveImages() {
-                console.log(this.dataImage.data);
                 if (this.dataImage.data === null) {
                     this.$store.dispatch('admin/orderLucky/createImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter }, id: this.luckyData.id });
                 } else {
@@ -178,6 +180,25 @@
                 }
 
                 return numberLevel;
+            },
+            async deleteTicket(id) {
+                this.$confirm('Bạn sẽ hủy vé này', 'Cảnh báo', {
+                    confirmButtonText: 'Xác nhận',
+                    cancelButtonText: 'Bỏ qua',
+                    type: 'warning',
+                }).then(async () => {
+                    await this.$store.dispatch('admin/orderLucky/cancelTicket', id);
+                    this.$router.push('/admin/order-lucky');
+                    this.$message({
+                        type: 'success',
+                        message: 'Hủy thành công',
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Đã bỏ hủy vé',
+                    });
+                });
             },
         },
     };

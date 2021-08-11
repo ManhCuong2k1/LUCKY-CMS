@@ -39,4 +39,8 @@ export const actions = {
         const res = await this.$axios.put(`/admin/lottery-order/updateImage/${payload.id}`, payload.data);
         commit('setImage', res);
     },
+    async cancelTicket({ commit }, id) {
+        const res = await this.$axios.post(`/admin/lottery-order/${id}`);
+        commit('setOrderDetail', res);
+    },
 };
