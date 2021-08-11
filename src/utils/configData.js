@@ -42,6 +42,9 @@ export const checkStatus = (status, result) => {
                 message = 'Đã xổ';
             }
             break;
+        case 'canceled':
+            message = 'Đã hủy';
+            break;
         default:
             message = '';
             break;
