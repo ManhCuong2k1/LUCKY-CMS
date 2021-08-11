@@ -45,8 +45,11 @@
                 <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-user" link="/admin/staff">
                     Nhân viên
                 </SidebarItem>
-                <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-money-check-alt" link="/admin/limit-exchange">
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-money-check-alt pr-3" link="/admin/limit-exchange">
                     Hạn mức
+                </SidebarItem>
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-phone-alt pr-3 pl-1" link="/admin/hotline">
+                    Hotline
                 </SidebarItem>
             </el-submenu>
         </el-scrollbar>

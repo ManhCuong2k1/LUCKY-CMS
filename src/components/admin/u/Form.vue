@@ -24,7 +24,7 @@
             </el-form-item>
             <el-form-item label="Phone" prop="phone">
                 <el-col :span="12">
-                    <el-input v-model="userForm.phone" placeholder="Phone" />
+                    <el-input v-model="userForm.phone" placeholder="Phone" disabled />
                 </el-col>
             </el-form-item>
             <el-form-item label="Ngày sinh" prop="birthday">
@@ -72,17 +72,6 @@
             return {
                 userForm,
                 rules: {
-                    // last_name: [
-                    //     {
-                    //         min: 3, max: 30, message: 'Length should be 3 to 30', trigger: 'blur',
-                    //     },
-                    // ],
-                    phone: [
-                        { required: true, message: 'Please input name', trigger: 'blur' },
-                        {
-                            min: 10, max: 10, message: 'Length should be 10', trigger: 'blur',
-                        },
-                    ],
                     email: [
                         { required: true, message: 'Please input email', trigger: 'blur' },
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] },
@@ -100,9 +89,6 @@
                     }
                 });
             },
-            // resetForm(formName) {
-            //     this.$refs[formName].resetFields();
-            // },
         },
     };
 </script>
