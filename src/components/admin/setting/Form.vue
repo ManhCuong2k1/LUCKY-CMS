@@ -67,7 +67,7 @@
                             <el-input v-model="limitForm.exchange_momo_max" placeholder="Số tiền tối đa" />
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="Rút ví MOMO" prop="value">
+                    <el-form-item label="Rút ví VNPAY" prop="value">
                         <el-col :span="18">
                             <el-input v-model="limitForm.exchange_vnpay_max" placeholder="Số tiền tối đa" />
                         </el-col>
