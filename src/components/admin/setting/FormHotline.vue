@@ -7,7 +7,7 @@
             class="w-full"
             :rules="rules"
         >
-            <el-form-item label="Số điện thoại" prop="value">
+            <el-form-item label="Số điện thoại" prop="hot_line">
                 <el-col :span="6">
                     <el-input v-model="limitForm.hot_line" placeholder="số điện thoại" />
                 </el-col>
@@ -51,7 +51,7 @@
                                 if (/^[0-9]{10}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số điện thoại đủ 12 số'));
+                                    callback(new Error('Số điện thoại đủ 10 số'));
                                 }
                             },
                         },
