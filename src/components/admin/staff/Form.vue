@@ -24,7 +24,7 @@
             </el-form-item>
             <el-form-item label="Phone" prop="phone">
                 <el-col :span="12">
-                    <el-input v-model="userForm.phone" placeholder="Phone" />
+                    <el-input v-model="userForm.phone" placeholder="Phone" disabled />
                 </el-col>
             </el-form-item>
             <el-form-item label="Ngày sinh" prop="birthday">
@@ -97,7 +97,6 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$emit('submitForm', this.userForm);
-                        console.log(this.userForm);
                     } else {
                         return false;
                     }

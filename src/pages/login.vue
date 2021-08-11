@@ -89,7 +89,11 @@
                                     password: this.password,
                                 },
                             });
-                            this.$router.push('/admin/dashboard');
+                            if (user.role === 'employe') {
+                                this.$router.push('/admin/order-lucky');
+                            } else {
+                                this.$router.push('/admin/dashboard');
+                            }
                             this.$message({
                                 message: 'Đăng nhập thành công!',
                                 type: 'success',

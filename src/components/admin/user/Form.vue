@@ -27,6 +27,17 @@
                     <el-input v-model="userForm.identify" placeholder="Số CMND" />
                 </el-col>
             </el-form-item>
+            <el-form-item label="Ngày sinh" prop="birthday">
+                <el-col :span="6">
+                    <el-date-picker
+                        v-model="userForm.dateOfBirth"
+                        type="date"
+                        value-format="yyyy-MM-dd"
+                        placeholder="Pick a date"
+                        style="width: 100%;"
+                    />
+                </el-col>
+            </el-form-item>
             <el-form-item label="Giới tính" prop="gender">
                 <el-col :span="6">
                     <el-select v-model="userForm.gender" placeholder="Gender">

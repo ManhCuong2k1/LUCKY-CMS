@@ -27,9 +27,14 @@
                             <el-input v-model="limitForm.exchange_local_min" placeholder="Số tiền tối thiểu" />
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="Rút ví điện tử" prop="value">
+                    <el-form-item label="Rút ví MOMO" prop="value">
                         <el-col :span="18">
-                            <el-input v-model="limitForm.exchange_wallet_min" placeholder="Số tiền tối thiểu" />
+                            <el-input v-model="limitForm.exchange_momo_min" placeholder="Số tiền tối thiểu" />
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="Rút ví VNPAY" prop="value">
+                        <el-col :span="18">
+                            <el-input v-model="limitForm.exchange_vnpay_min" placeholder="Số tiền tối thiểu" />
                         </el-col>
                     </el-form-item>
                     <el-form-item label="Rút TK Bank" prop="value">
@@ -57,9 +62,14 @@
                             <el-input v-model="limitForm.exchange_local_max" placeholder="Số tiền tối đa" />
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="Rút ví điện tử" prop="value">
+                    <el-form-item label="Rút ví MOMO" prop="value">
                         <el-col :span="18">
-                            <el-input v-model="limitForm.exchange_wallet_max" placeholder="Số tiền tối đa" />
+                            <el-input v-model="limitForm.exchange_momo_max" placeholder="Số tiền tối đa" />
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="Rút ví MOMO" prop="value">
+                        <el-col :span="18">
+                            <el-input v-model="limitForm.exchange_vnpay_max" placeholder="Số tiền tối đa" />
                         </el-col>
                     </el-form-item>
                     <el-form-item label="Rút TK Bank" prop="value">
