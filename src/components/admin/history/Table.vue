@@ -54,7 +54,7 @@
                 this.dataForm = cloneDeep(this.dataHistory);
             },
         },
-        method: {
+        methods: {
             formatDate,
         },
     };
