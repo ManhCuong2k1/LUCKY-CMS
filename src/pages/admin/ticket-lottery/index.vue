@@ -60,11 +60,11 @@
     import { mapState } from 'vuex';
     import { format } from 'date-fns';
     import { cleanObject } from '~/utils/object';
-    import { OPTION_GAME } from '~/constants/game';
+    import { OPTION_GAME } from '~/constants/gameLottery';
     import { OPTION_STATUS } from '~/constants/status';
     import DateRange from '~/components/admin/shared/form/Datepicker.vue';
     import Select from '~/components/admin/shared/form/Select.vue';
-    import TableOrder from '~/components/admin/order-lucky/Table.vue';
+    import TableOrder from '~/components/admin/ticket-lottery/Table.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
     import Pagination from '~/components/Pagination.vue';
 
@@ -84,7 +84,7 @@
             };
             const filter = { ...initFilter, ...query };
             const clean = cleanObject(filter);
-            await store.dispatch('admin/orderLucky/fetch', clean);
+            await store.dispatch('admin/orderLucky/fetchComputer', clean);
             return {
                 tableFilter: filter,
             };
@@ -101,7 +101,7 @@
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                await this.$store.dispatch('admin/orderLucky/fetch', filter);
+                await this.$store.dispatch('admin/orderLucky/fetchComputer', filter);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {

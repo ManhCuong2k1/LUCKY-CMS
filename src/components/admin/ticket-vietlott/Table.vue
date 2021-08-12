@@ -44,7 +44,7 @@
             </el-table-column>
             <el-table-column label="Công cụ" width="200">
                 <template slot-scope="scope">
-                    <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/order-lucky/${scope.row.id}/edit`">
+                    <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/ticket-vietlott/${scope.row.id}/edit`">
                         <el-button
                             icon="el-icon-camera-solid"
                             class="button-upload"
@@ -58,7 +58,7 @@
                             class="button-view"
                             @click="viewImage(scope.row.id)"
                         />
-                        <router-link :to="`/admin/order-lucky/${scope.row.id}/edit`">
+                        <router-link :to="`/admin/ticket-vietlott/${scope.row.id}/edit`">
                             <el-button
                                 icon="el-icon-camera-solid"
                             />

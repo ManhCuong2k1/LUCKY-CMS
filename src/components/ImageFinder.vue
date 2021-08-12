@@ -67,8 +67,6 @@
                 this.fetchData();
                 this.formError = [];
                 this.$refs.dropzone.$_dropzone.removeFile(file);
-                console.log(file);
-                // this.$router.push('/admin/order-lucky/');
                 return file;
             },
             updateUploadFiles() {
