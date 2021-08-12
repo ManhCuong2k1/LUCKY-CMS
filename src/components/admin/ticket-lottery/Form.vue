@@ -188,7 +188,7 @@
                     type: 'warning',
                 }).then(async () => {
                     await this.$store.dispatch('admin/orderLucky/cancelTicket', id);
-                    this.$router.push('/admin/order-lucky');
+                    this.$router.push('/admin/ticket-lottery');
                     this.$message({
                         type: 'success',
                         message: 'Hủy thành công',

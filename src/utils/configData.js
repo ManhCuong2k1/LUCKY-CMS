@@ -19,6 +19,12 @@ export const checkType = (type) => {
         case 'max4d':
             message = 'MAX4D';
             break;
+        case 'compute123':
+            message = 'Điện toán 1-2-3';
+            break;
+        case 'compute636':
+            message = 'Điện toán 6-3-6';
+            break;
         default:
             message = '';
             break;

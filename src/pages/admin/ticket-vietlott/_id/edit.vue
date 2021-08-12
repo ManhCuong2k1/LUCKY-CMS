@@ -7,7 +7,7 @@
 
 <script>
     import cloneDeep from 'lodash/cloneDeep';
-    import LuckyForm from '~/components/admin/order-lucky/Form.vue';
+    import LuckyForm from '~/components/admin/ticket-vietlott/Form.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
     import { checkName } from '~/utils/configData';
 

@@ -90,7 +90,7 @@
                                 },
                             });
                             if (user.role === 'employe') {
-                                this.$router.push('/admin/order-lucky');
+                                this.$router.push('/admin/ticket-vietlott');
                             } else {
                                 this.$router.push('/admin/dashboard');
                             }

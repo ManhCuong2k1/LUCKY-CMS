@@ -24,7 +24,11 @@ export const mutations = {
 
 export const actions = {
     async fetch({ commit }, params) {
-        const res = await this.$axios.get('/admin/lottery-order', { params });
+        const res = await this.$axios.get('/admin/lottery-order/vietlott', { params });
+        commit('setOrder', res.data);
+    },
+    async fetchComputer({ commit }, params) {
+        const res = await this.$axios.get('/admin/lottery-order/computer', { params });
         commit('setOrder', res.data);
     },
     async getDetail({ commit }, id) {

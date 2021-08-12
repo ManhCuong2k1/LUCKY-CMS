@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <PageHeader :title="'Lịch sử giao dịch'" />
+            <PageHeader :title="'Đặt vé'" />
             <div class="w-1/2">
                 <div class="flex">
                     <div class="mr-5">
@@ -10,31 +10,39 @@
                             @changeDateRange="updateDaterange"
                         />
                     </div>
+                    <div class="flex-1 mr-5">
+                        <Select
+                            :options="optionGame"
+                            :placeholder="'Loại vé'"
+                            :selected="$route.query.type"
+                            @changeValue="updateSelectType"
+                        />
+                    </div>
                     <div class="flex-1">
                         <Select
-                            :options="optionHistory"
-                            :placeholder="'Hành động'"
-                            :selected="$route.query.actionSlug"
-                            @changeValue="updateSelect"
+                            :options="optionStatus"
+                            :placeholder="'Trạng thái'"
+                            :selected="$route.query.orderStatus"
+                            @changeValue="updateSelectStatus"
                         />
                     </div>
                 </div>
                 <div class="mt-5 flex">
                     <el-input
                         v-model="tableFilter.searchKey"
-                        placeholder="Tìm kiếm theo số điện thoại"
+                        placeholder="Tìm theo khách hàng"
                         class="input-with-select mr-5"
                         clearable
-                        @clear="updateSearchKey"
+                        @clear="updatePage"
                     />
-                    <el-button type="primary" icon="el-icon-search" @click="updateSearchKey">
-                        Search
+                    <el-button type="primary" icon="el-icon-search" @click="updateSearchKeyTicket">
+                        Tìm kiếm
                     </el-button>
                 </div>
             </div>
 
             <div>
-                <TableHistory :data-history="history" />
+                <TableOrder :data-order="order" />
             </div>
         </div>
         <div>
@@ -52,21 +60,22 @@
     import { mapState } from 'vuex';
     import { format } from 'date-fns';
     import { cleanObject } from '~/utils/object';
-    import { HISTORY_ACTION } from '~/constants/history';
+    import { OPTION_GAME } from '~/constants/game';
+    import { OPTION_STATUS } from '~/constants/status';
     import DateRange from '~/components/admin/shared/form/Datepicker.vue';
     import Select from '~/components/admin/shared/form/Select.vue';
-    import TableHistory from '~/components/admin/history/Table.vue';
+    import TableOrder from '~/components/admin/ticket-vietlott/Table.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
     import Pagination from '~/components/Pagination.vue';
 
     export default {
         layout: 'admin',
         components: {
-            TableHistory,
+            TableOrder,
             PageHeader,
             Pagination,
-            Select,
             DateRange,
+            Select,
         },
         async asyncData({ query, store }) {
             const initFilter = {
@@ -75,23 +84,24 @@
             };
             const filter = { ...initFilter, ...query };
             const clean = cleanObject(filter);
-            await store.dispatch('admin/history/fetch', clean);
+            await store.dispatch('admin/orderLucky/fetch', clean);
             return {
                 tableFilter: filter,
             };
         },
         data() {
             return {
-                optionHistory: HISTORY_ACTION,
+                optionGame: OPTION_GAME,
+                optionStatus: OPTION_STATUS,
             };
         },
         computed: {
-            ...mapState('admin/history', ['history', 'pagination']),
+            ...mapState('admin/orderLucky', ['order', 'pagination']),
         },
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                await this.$store.dispatch('admin/history/fetch', filter);
+                await this.$store.dispatch('admin/orderLucky/fetch', filter);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {
@@ -108,15 +118,28 @@
                 }
                 this.fetchData({ fromDate, toDate, page });
             },
-            updateSelect(actionSlug) {
+            updateSelectType(type) {
                 const page = null;
-                this.fetchData({ actionSlug, page });
+                this.fetchData({ type, page });
             },
-            updateSearchKey() {
+            updateSelectStatus(orderStatus) {
                 const page = null;
-                this.fetchData({ page });
+                this.fetchData({ orderStatus, page });
+            },
+            updateSearchKeyTicket() {
+                if (this.tableFilter.searchKey) {
+                    const page = null;
+                    this.fetchData({ page });
+                }
             },
 
         },
     };
 </script>
+
+<style lang="sass">
+    .el-range-separator
+        box-sizing: content-box
+    .el-button:focus
+        outline: none !important
+</style>

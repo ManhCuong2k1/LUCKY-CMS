@@ -10,7 +10,7 @@
         active-text-color="#ffd04b"
         :collapse-transition="false"
     >
-        <nuxt-link :to="userLoged.role === 'admin' ? '/admin/dashboard' : '/admin/order-lucky'">
+        <nuxt-link :to="userLoged.role === 'admin' ? '/admin/dashboard' : '/admin/ticket-vietlott'">
             <div class="py-4" :class="collapsed ? 'text-center' : 'flex justify-center'">
                 <img v-if="!collapsed" src="/images/logo.png" class="w-16">
                 <img v-else src="/images/logo.png" class="w-10 mx-auto">
@@ -22,8 +22,11 @@
                 Tổng quan
             </SidebarItem>
 
-            <SidebarItem icon="el-icon-collection" link="/admin/order-lucky">
-                Đặt vé
+            <SidebarItem icon="el-icon-collection" link="/admin/ticket-vietlott">
+                Vé Vietlott
+            </SidebarItem>
+            <SidebarItem icon="el-icon-collection" link="/admin/ticket-lottery">
+                Vé xổ số
             </SidebarItem>
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
