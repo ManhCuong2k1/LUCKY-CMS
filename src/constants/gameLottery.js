@@ -7,4 +7,8 @@ export const OPTION_GAME = {
         label: 'Điện toán 6-3-6',
         slug: 'compute636',
     },
+    THANTAI4: {
+        label: 'Thần tài 4',
+        slug: 'godofwealth',
+    },
 };

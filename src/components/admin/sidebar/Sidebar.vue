@@ -28,6 +28,9 @@
             <SidebarItem icon="el-icon-collection" link="/admin/ticket-lottery">
                 Vé xổ số
             </SidebarItem>
+            <SidebarItem icon="el-icon-collection" link="/admin/ticket-loto">
+                Vé Loto
+            </SidebarItem>
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
             </SidebarItem>

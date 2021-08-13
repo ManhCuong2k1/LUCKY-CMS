@@ -31,6 +31,10 @@ export const actions = {
         const res = await this.$axios.get('/admin/lottery-order/computer', { params });
         commit('setOrder', res.data);
     },
+    async fetchLoto({ commit }, params) {
+        const res = await this.$axios.get('/admin/lottery-order/loto', { params });
+        commit('setOrder', res.data);
+    },
     async getDetail({ commit }, id) {
         const res = await this.$axios.get(`/admin/lottery-order/detail/${id}`);
         commit('setOrderDetail', res.data);

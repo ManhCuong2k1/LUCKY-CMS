@@ -25,6 +25,21 @@ export const checkType = (type) => {
         case 'compute636':
             message = 'Điện toán 6-3-6';
             break;
+        case 'godofwealth':
+            message = 'Thần tài 4';
+            break;
+        case 'loto234':
+            message = 'Loto 2-3-4';
+            break;
+        case 'loto2':
+            message = 'Loto 2 số';
+            break;
+        case 'loto3':
+            message = 'Loto 3 số';
+            break;
+        case 'loto5':
+            message = 'Loto 5 số';
+            break;
         default:
             message = '';
             break;
