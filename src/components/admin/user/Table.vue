@@ -33,12 +33,12 @@
             </el-table-column>
             <el-table-column prop="totalCoin" label="Tổng tiền">
                 <template slot-scope="scope">
-                    <span>{{ formatPrice(scope.row.totalCoin) }}</span>
+                    <span>{{ scope.row.totalCoin | formatPrice }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="totalReward" label="Tổng phần thưởng">
                 <template slot-scope="scope">
-                    <span>{{ formatPrice(scope.row.totalReward) }}</span>
+                    <span>{{ scope.row.totalReward | formatPrice }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="Created At">
@@ -77,7 +77,7 @@
     import { findIndex } from 'lodash';
     import cloneDeep from 'lodash/cloneDeep';
     import { mapState } from 'vuex';
-    import { statusUser, checkGender, formatPrice } from '~/utils/configData';
+    import { statusUser, checkGender } from '~/utils/configData';
     import PasswordForm from '~/components/admin/user/PasswordForm.vue';
     import RechargeForm from '~/components/admin/user/RechargeForm.vue';
     import { formatDate } from '~/utils/formatDate';
@@ -117,7 +117,6 @@
 
         methods: {
             formatDate,
-            formatPrice,
             switchLockUser(id, deleteAt) {
                 if (deleteAt === null) {
                     this.$confirm('Bạn sẽ xóa bản ghi này ?', 'Warning', {

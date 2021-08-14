@@ -31,6 +31,18 @@
             <SidebarItem icon="el-icon-collection" link="/admin/ticket-loto">
                 Vé Loto
             </SidebarItem>
+            <el-submenu index="6" class="submenu">
+                <template slot="title">
+                    <i class="el-icon-tickets" />
+                    <span :class="collapsed ? 'pl-4': ''">Kiến thiết</span>
+                </template>
+                <SidebarItem icon="el-icon-folder-opened" link="/admin/number-construction">
+                    File
+                </SidebarItem>
+                <SidebarItem icon="el-icon-collection" link="/">
+                    Vé kiến thiết
+                </SidebarItem>
+            </el-submenu>
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-time" link="/admin/history-user">
                 Lịch sử giao dịch
             </SidebarItem>
