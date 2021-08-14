@@ -50,7 +50,14 @@
                     recharge: [
                         { required: true, message: 'Hãy nhập số tiền cần nạp', trigger: 'blur' },
                         {
-                            min: 5, max: 30, message: 'Số tiền không được dưới 10.000VNĐ', trigger: ['blur', 'change'],
+                            trigger: 'blur',
+                            validator(rule, value, callback) {
+                                if (/^[0-9]{5,}$/.test(value)) {
+                                    callback();
+                                } else {
+                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                }
+                            },
                         },
                     ],
                 },
