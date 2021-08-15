@@ -21,7 +21,7 @@
                 </el-button>
             </el-upload>
         </el-form-item>
-        <el-form-item label="Ngày hết hạn" prop="">
+        <el-form-item label="Ngày hiệu lực" prop="date">
             <el-col :span="18">
                 <el-date-picker
                     v-model="limitForm.date"
@@ -56,17 +56,23 @@
                 },
                 file: '',
                 createAt: '',
+                rules: {
+                    date: [
+                        { required: true, message: 'Hãy chọn ngày', trigger: 'blur' },
+                    ],
+                },
             };
         },
 
         methods: {
-            getdata(res) {
-                this.createAt = res[0].createdAt;
+            async getdata(res) {
+                this.createAt = res.response[0].createdAt;
+                await this.$store.dispatch('admin/orderLucky/upDate', { createAt: this.createAt, date: this.limitForm.date, file: res.file });
+                await this.$store.dispatch('admin/excel/fetch');
             },
-            async submitUpload() {
+            submitUpload() {
                 this.$refs.upload.submit();
-                console.log(this.createAt);
-                await this.$store.dispatch('admin/orderLucky/upDate', this.dataId);
+                this.$emit('closeForm');
             },
         },
     };

@@ -28,10 +28,7 @@
             <SidebarItem icon="el-icon-collection" link="/admin/ticket-lottery">
                 Vé xổ số
             </SidebarItem>
-            <SidebarItem icon="el-icon-collection" link="/admin/ticket-loto">
-                Vé Loto
-            </SidebarItem>
-            <el-submenu index="6" class="submenu">
+            <el-submenu index="4" class="submenu">
                 <template slot="title">
                     <i class="el-icon-tickets" />
                     <span :class="collapsed ? 'pl-4': ''">Kiến thiết</span>
@@ -39,7 +36,7 @@
                 <SidebarItem icon="el-icon-folder-opened" link="/admin/number-construction">
                     File
                 </SidebarItem>
-                <SidebarItem icon="el-icon-collection" link="/">
+                <SidebarItem icon="el-icon-collection" link="/admin/ticket-construction">
                     Vé kiến thiết
                 </SidebarItem>
             </el-submenu>

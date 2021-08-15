@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
-                    <p>{{ type(luckyData.type) }} {{ checkLevel(luckyData.orders[0].orderDetail) }}</p>
+                    <p>{{ luckyData.type === 'kienthiet' ? 'Kiến thiết' : '' }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
@@ -162,25 +162,6 @@
                     type: 'success',
                 });
             },
-            checkLevel(dataDetail) {
-                let numberLevel = '';
-                switch (dataDetail.childgame) {
-                    case 'chanle_lonnho':
-                        numberLevel = '( Chẵn lẻ )';
-                        break;
-                    case 'basic':
-                        if (dataDetail.level !== undefined) {
-                            numberLevel = `( bậc ${dataDetail.level})`;
-                        } else {
-                            numberLevel = '';
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                return numberLevel;
-            },
             async deleteTicket(id) {
                 this.$confirm('Bạn sẽ hủy vé này', 'Cảnh báo', {
                     confirmButtonText: 'Xác nhận',
@@ -188,7 +169,7 @@
                     type: 'warning',
                 }).then(async () => {
                     await this.$store.dispatch('admin/orderLucky/cancelTicket', id);
-                    this.$router.push('/admin/ticket-loto');
+                    this.$router.push('/admin/ticket-construction');
                     this.$message({
                         type: 'success',
                         message: 'Hủy thành công',

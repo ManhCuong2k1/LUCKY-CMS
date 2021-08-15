@@ -18,7 +18,7 @@
             </el-table-column>
             <el-table-column prop="transporter" label="Loại vé" width="220">
                 <template slot-scope="scope">
-                    <span>{{ checkType(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
+                    <span>{{ scope.row.type === 'kienthiet' ? 'Kiến thiết' : '' }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="total" label="Nội dung" width="350">
@@ -44,7 +44,7 @@
             </el-table-column>
             <el-table-column label="Công cụ" width="200">
                 <template slot-scope="scope">
-                    <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/ticket-loto/${scope.row.id}/edit`">
+                    <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/ticket-construction/${scope.row.id}/edit`">
                         <el-button
                             icon="el-icon-camera-solid"
                             class="button-upload"
@@ -58,7 +58,7 @@
                             class="button-view"
                             @click="viewImage(scope.row.id)"
                         />
-                        <router-link :to="`/admin/ticket-loto/${scope.row.id}/edit`">
+                        <router-link :to="`/admin/ticket-construction/${scope.row.id}/edit`">
                             <el-button
                                 icon="el-icon-camera-solid"
                             />
@@ -92,7 +92,7 @@
     import cloneDeep from 'lodash/cloneDeep';
     import { mapState } from 'vuex';
     import { image as toImage } from '~/utils/url';
-    import { checkType, checkStatus, checkName } from '~/utils/configData';
+    import { checkType, checkStatus } from '~/utils/configData';
     import { formatDate } from '~/utils/formatDate';
 
     const modelForm = [{
@@ -151,20 +151,10 @@
                     });
                     arrOrder.forEach((element, index) => {
                         const str = [];
-                        if (arr[index].childgame === 'chanle_lonnho') {
-                            element.forEach((s) => {
-                                const string = checkName(s.select);
-                                str.push(`${s.price / 1000}K - ${string}`);
-                            });
-                        } else {
-                            element.forEach((s) => {
-                                let string = '';
-                                s.number.forEach((e) => {
-                                    string += `${e} `;
-                                });
-                                str.push(`${s.price / 1000}K - ${string}`);
-                            });
-                        }
+                        element.forEach((s) => {
+                            const string = `Mã số: ${s.number} - ${s.total} vé`;
+                            str.push(`${s.price / 1000}K - ${string}`);
+                        });
                         this.dataForm[index].orders[0].orderDetail = JSON.parse(this.dataForm[index].orders[0].orderDetail);
                         this.dataForm[index].orders[0].orderDetail.data = str;
                     });
@@ -192,25 +182,6 @@
                 if (this.images.data !== null) {
                     this.image = this.images;
                 }
-            },
-            checkLevel(dataDetail) {
-                let numberLevel = '';
-                switch (dataDetail.childgame) {
-                    case 'chanle_lonnho':
-                        numberLevel = '( Chẵn lẻ )';
-                        break;
-                    case 'basic':
-                        if (dataDetail.level !== undefined) {
-                            numberLevel = `( bậc ${dataDetail.level})`;
-                        } else {
-                            numberLevel = '';
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                return numberLevel;
             },
         },
     };
