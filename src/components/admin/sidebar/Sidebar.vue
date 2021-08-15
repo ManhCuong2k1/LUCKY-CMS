@@ -33,7 +33,7 @@
                     <i class="el-icon-tickets" />
                     <span :class="collapsed ? 'pl-4': ''">Kiến thiết</span>
                 </template>
-                <SidebarItem icon="el-icon-folder-opened" link="/admin/number-construction">
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-folder-opened" link="/admin/number-construction">
                     File
                 </SidebarItem>
                 <SidebarItem icon="el-icon-collection" link="/admin/ticket-construction">
