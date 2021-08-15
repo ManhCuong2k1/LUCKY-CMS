@@ -55,7 +55,7 @@
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
+                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
                                 }
                             },
                         },

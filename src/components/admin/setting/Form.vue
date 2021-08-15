@@ -79,9 +79,9 @@
                     </el-form-item>
                 </div>
             </div>
-            <el-form-item label="Phí lưu vé" prop="ticket_storage_fee">
+            <el-form-item label="% Phí lưu vé" prop="ticket_storage_fee">
                 <el-col :span="6">
-                    <el-input v-model="limitForm.ticket_storage_fee" placeholder="Phí lưu vé" />
+                    <el-input v-model="limitForm.ticket_storage_fee" placeholder="Phí lưu vé %" />
                 </el-col>
             </el-form-item>
 
@@ -276,7 +276,20 @@
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
+                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                }
+                            },
+                        },
+                    ],
+                    ticket_storage_fee: [
+                        { required: true, message: 'Hãy nhập % phí lưu vé ', trigger: 'blur' },
+                        {
+                            trigger: 'blur',
+                            validator(rule, value, callback) {
+                                if (/^[0-9]{1,3}$/.test(value)) {
+                                    callback();
+                                } else {
+                                    callback(new Error('Nhập % phí lưu vé'));
                                 }
                             },
                         },
