@@ -126,150 +126,150 @@
                     : cloneDeep(modelForm),
                 rules: {
                     recharge_momo_min: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     recharge_vnpay_min: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_local_min: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_momo_min: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_vnpay_min: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_bank_min: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     recharge_momo_max: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     recharge_vnpay_max: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_local_max: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_momo_max: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_vnpay_max: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {
                                 if (/^[0-9]{5,}$/.test(value)) {
                                     callback();
                                 } else {
-                                    callback(new Error('Số tiền tối thiểu là 10000VND và phải nhập số'));
+                                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
                                 }
                             },
                         },
                     ],
                     exchange_bank_max: [
-                        { required: true, message: 'Hãy nhập số tiền ', trigger: 'blur' },
+                        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
                         {
                             trigger: 'blur',
                             validator(rule, value, callback) {

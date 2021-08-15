@@ -10,14 +10,6 @@
                             @changeDateRange="updateDaterange"
                         />
                     </div>
-                    <div class="flex-1 mr-5">
-                        <Select
-                            :options="optionGame"
-                            :placeholder="'Loại vé'"
-                            :selected="$route.query.type"
-                            @changeValue="updateSelectType"
-                        />
-                    </div>
                     <div class="flex-1">
                         <Select
                             :options="optionStatus"
@@ -64,7 +56,7 @@
     import { OPTION_STATUS } from '~/constants/status';
     import DateRange from '~/components/admin/shared/form/Datepicker.vue';
     import Select from '~/components/admin/shared/form/Select.vue';
-    import TableOrder from '~/components/admin/ticket-loto/Table.vue';
+    import TableOrder from '~/components/admin/ticket-construction/Table.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
     import Pagination from '~/components/Pagination.vue';
 
@@ -84,7 +76,7 @@
             };
             const filter = { ...initFilter, ...query };
             const clean = cleanObject(filter);
-            await store.dispatch('admin/orderLucky/fetchLoto', clean);
+            await store.dispatch('admin/orderLucky/fetchConstruction', clean);
             return {
                 tableFilter: filter,
             };
@@ -101,7 +93,7 @@
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                await this.$store.dispatch('admin/orderLucky/fetchLoto', filter);
+                await this.$store.dispatch('admin/orderLucky/fetchConstruction', filter);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {

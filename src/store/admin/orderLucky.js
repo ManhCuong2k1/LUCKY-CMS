@@ -3,6 +3,8 @@ export const state = () => ({
     orderDetail: null,
     image: [],
     pagination: null,
+    file: null,
+    date: null,
 });
 
 export const mutations = {
@@ -20,6 +22,12 @@ export const mutations = {
     setImage(state, payload) {
         state.image = payload;
     },
+    setFile(state, payload) {
+        state.file = payload;
+    },
+    setDate(state, payload) {
+        state.date = payload;
+    },
 };
 
 export const actions = {
@@ -31,8 +39,8 @@ export const actions = {
         const res = await this.$axios.get('/admin/lottery-order/computer', { params });
         commit('setOrder', res.data);
     },
-    async fetchLoto({ commit }, params) {
-        const res = await this.$axios.get('/admin/lottery-order/loto', { params });
+    async fetchConstruction({ commit }, params) {
+        const res = await this.$axios.get('/admin/lottery-order/construction', { params });
         commit('setOrder', res.data);
     },
     async getDetail({ commit }, id) {
@@ -50,5 +58,14 @@ export const actions = {
     async cancelTicket({ commit }, id) {
         const res = await this.$axios.post(`/admin/lottery-order/${id}`);
         commit('setOrderDetail', res);
+    },
+    async upFile({ commit }, params) {
+        const res = await this.$axios.post('/admin/lottery-order/excel/upload', params);
+        commit('setFile', res.data);
+    },
+    async upDate({ commit }, params) {
+        console.log(params);
+        const res = await this.$axios.post('/admin/lottery-order/date/upload', params);
+        commit('setDate', res.data);
     },
 };

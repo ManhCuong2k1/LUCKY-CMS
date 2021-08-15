@@ -34,7 +34,7 @@
             </el-table-column>
             <el-table-column prop="amount" label="Số tiền đổi thưởng" width="180">
                 <template slot-scope="scope">
-                    <span>{{ formatPrice(scope.row.amount) }} </span>
+                    <span>{{ scope.row.amount | formatPrice }} </span>
                 </template>
             </el-table-column>
             <el-table-column prop="status" label="Trạng thái" width="150">
@@ -62,7 +62,7 @@
 <script>
     import cloneDeep from 'lodash/cloneDeep';
     import { formatDate } from '~/utils/formatDate';
-    import { formatPrice, statusExchange } from '~/utils/configData';
+    import { statusExchange } from '~/utils/configData';
 
     export default {
         props: {
@@ -85,7 +85,6 @@
         },
         methods: {
             formatDate,
-            formatPrice,
             statusExchange,
             async confirm(id, status) {
                 if (status === 'delay') {

@@ -7,9 +7,8 @@
 
 <script>
     import cloneDeep from 'lodash/cloneDeep';
-    import LuckyForm from '~/components/admin/ticket-loto/Form.vue';
+    import LuckyForm from '~/components/admin/ticket-construction/Form.vue';
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
-    import { checkName } from '~/utils/configData';
 
     export default {
         layout: 'admin',
@@ -33,20 +32,11 @@
                 const data = luckyDetail.data;
                 // eslint-disable-next-line no-unused-vars
                 const str = [];
-                if (luckyDetail.childgame === 'chanle_lonnho') {
-                    data.forEach((element) => {
-                        const string = checkName(element.select);
-                        str.push(`${element.price / 1000}K - ${string}`);
-                    });
-                } else {
-                    data.forEach((element) => {
-                        let string = '';
-                        element.number.forEach((e) => {
-                            string += `${e} `;
-                        });
-                        str.push(`${element.price / 1000}K - ${string}`);
-                    });
-                }
+                data.forEach((s) => {
+                    const string = `Mã số: ${s.number} - ${s.total} vé`;
+                    str.push(`${s.price / 1000}K - ${string}`);
+                });
+
                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties
                 this.lucky.orders[0].orderDetail = JSON.parse(this.lucky.orders[0].orderDetail);
                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties
