@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <PageHeader :title="'Lịch sử giao dịch'" />
+            <PageHeader :title="'File mã số kiến thiết'" />
             <div class="w-1/2">
                 <div class="flex">
                     <div class="mr-5">
