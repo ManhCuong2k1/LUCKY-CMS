@@ -67,6 +67,8 @@ export default {
         '@/plugins/mixins/validation',
         '@/plugins/mixins/user',
         '@/plugins/axios',
+        '@/plugins/mask',
+        '@/plugins/money',
         { src: '@/plugins/rating.js', mode: 'client' },
         { src: '@/plugins/persistedState.js' },
     ],
