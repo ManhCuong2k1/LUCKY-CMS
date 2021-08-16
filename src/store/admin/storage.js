@@ -16,7 +16,7 @@ export const mutations = {
 
 export const actions = {
     async fetch({ commit }, params) {
-        const res = await this.$axios.get('/admin/excel', { params });
+        const res = await this.$axios.get('/admin/storage', { params });
         commit('setFile', res.data);
     },
 };

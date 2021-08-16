@@ -84,7 +84,7 @@
             };
             const filter = { ...initFilter, ...query };
             const clean = cleanObject(filter);
-            await store.dispatch('admin/excel/fetch', clean);
+            await store.dispatch('admin/storage/fetch', clean);
             return {
                 tableFilter: filter,
             };
@@ -95,12 +95,12 @@
             };
         },
         computed: {
-            ...mapState('admin/excel', ['files', 'pagination']),
+            ...mapState('admin/storage', ['files', 'pagination']),
         },
         methods: {
             async fetchData(newFilter) {
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
-                await this.$store.dispatch('admin/excel/fetch', filter);
+                await this.$store.dispatch('admin/storage/fetch', filter);
                 this.$router.push({ query: filter });
             },
             async updatePage(page) {

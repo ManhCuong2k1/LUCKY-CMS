@@ -68,7 +68,7 @@
             async getdata(res) {
                 this.createAt = res.response[0].createdAt;
                 await this.$store.dispatch('admin/orderLucky/upDate', { createAt: this.createAt, date: this.limitForm.date, file: res.file });
-                await this.$store.dispatch('admin/excel/fetch');
+                await this.$store.dispatch('admin/storage/fetch');
             },
             submitUpload() {
                 this.$refs.upload.submit();

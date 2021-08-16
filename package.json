@@ -44,6 +44,8 @@
     "tailwindcss": "^2.1.2",
     "tinymce": "^4",
     "tls": "^0.0.1",
+    "v-mask": "^2.2.4",
+    "v-money": "^0.8.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-chartjs": "^3.5.1",
     "vue-star-rating": "^1.7.0",
