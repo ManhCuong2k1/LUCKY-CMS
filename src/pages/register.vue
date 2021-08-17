@@ -84,6 +84,7 @@
                 try {
                     const checkEmail = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
                     const checkPhone = /^[0-9]{10}$/;
+                    const checkPassword = /^[a-zA-Z0-9@$!%*#?&]{8,}$/;
                     // eslint-disable-next-line eqeqeq
                     if (this.username == '' || this.name == '' || this.password == '' || this.phone == '' || this.repassword == '' || this.email == '') {
                         this.sendError('Điền đầy đủ các trường');
@@ -91,6 +92,8 @@
                         this.sendError('Số điện thoại không đủ ký tự');
                     } else if (!checkEmail.test(this.email)) {
                         this.sendError('Nhập đúng định dạng email Example@gmail.com!');
+                    } else if (!checkPassword.test(this.password)) {
+                        this.sendError('Mật khẩu ít nhất là 8 kí tự bất kì');
                     } else {
                         const token = await this.$recaptcha.execute('register');
                         await this.$axios.post('/auth/register', {
