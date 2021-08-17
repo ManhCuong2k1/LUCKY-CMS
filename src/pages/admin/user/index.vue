@@ -1,23 +1,7 @@
 <template>
     <div>
         <PageHeader :title="'Thành viên'" />
-        <div class="w-1/2">
-            <!-- <div class="flex">
-                <div class="mr-5">
-                    <DateRange
-                        :selected-range="[$route.query.fromDate, $route.query.toDate]"
-                        @changeDateRange="updateDaterange"
-                    />
-                </div>
-                <div class="flex-1">
-                    <Select
-                        :options="optionPosition"
-                        :placeholder="'Position'"
-                        :selected="$route.query.position"
-                        @changeValue="updateSelect"
-                    />
-                </div>
-            </div> -->
+        <div class="2xl:w-1/2 xl:w-4/6 lg:w-5/6 w-full">
             <div class="mt-5 flex">
                 <el-input
                     v-model="tableFilter.searchKey"

@@ -1,7 +1,7 @@
 <template>
     <div>
         <PageHeader :title="'Thành viên'" />
-        <div class="w-1/2">
+        <div class="2xl:w-1/2 xl:w-4/6 lg:w-5/6 w-full">
             <div class="flex">
                 <div class="mr-5">
                     <DateRange
