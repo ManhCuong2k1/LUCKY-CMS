@@ -11,37 +11,37 @@
                 label="Name"
                 width="150"
             />
-            <el-table-column prop="phone" label="Số điện thoại">
+            <el-table-column prop="phone" label="Số điện thoại" width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="email" label="Email">
+            <el-table-column prop="email" label="Email" width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.email }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="gender" label="Giới tính">
+            <el-table-column prop="gender" label="Giới tính" width="140">
                 <template slot-scope="scope">
                     <span>{{ gender(scope.row.gender) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="status" label="Trạng thái">
+            <el-table-column prop="status" label="Trạng thái" width="160">
                 <template slot-scope="scope">
                     <span>{{ status(scope.row.status) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="totalCoin" label="Tổng tiền">
+            <el-table-column prop="totalCoin" label="Tổng tiền" width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.totalCoin | formatPrice }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="totalReward" label="Tổng phần thưởng">
+            <el-table-column prop="totalReward" label="Tổng phần thưởng" width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.totalReward | formatPrice }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="Created At">
+            <el-table-column label="Created At" width="200">
                 <template slot-scope="scope">
                     <span>{{ formatDate(scope.row.createdAt) }}</span>
                 </template>
@@ -60,6 +60,7 @@
             title="Đổi mật khẩu"
             :visible.sync="dialogVisibleInstant"
             width="30%"
+            class="dialog-password"
         >
             <PasswordForm :re-open-form="dialogVisibleInstant" :user-id="userIdChangePass" @finishForm="updatePassword" />
         </el-dialog>
@@ -67,6 +68,7 @@
             title="Nạp tiền"
             :visible.sync="dialogRecharge"
             width="30%"
+            class="dialog-recharge"
         >
             <RechargeForm :re-open-form="dialogRecharge" :user-id="userIdChangePass" @finishForm="updateTotalCoin" />
         </el-dialog>
