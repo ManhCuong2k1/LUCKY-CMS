@@ -5,7 +5,7 @@
             :model="ruleForm"
             status-icon
             :rules="rules"
-            label-width="120px"
+            label-width="80px"
             class="demo-ruleForm"
         >
             <el-form-item label="Số tiền" prop="recharge">
