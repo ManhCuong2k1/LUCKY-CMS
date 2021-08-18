@@ -44,7 +44,7 @@
                 </el-col>
             </el-form-item>
 
-            <el-form-item label="Lấy ảnh vé" class="content-center">
+            <el-form-item v-if="luckyData.orderStatus !== 'drawned'" label="Lấy ảnh vé" class="content-center">
                 <div class="flex">
                     <div>
                         <el-upload
@@ -78,13 +78,13 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="saveImages(dataForm)">
+                <el-button v-if="luckyData.orderStatus !== 'drawned'" type="primary" @click="saveImages(dataForm)">
                     Lưu
                 </el-button>
-                <el-button type="primary" @click="deleteTicket(luckyData.id)">
+                <el-button v-if="luckyData.orderStatus !== 'drawned'" type="primary" @click="deleteTicket(luckyData.id)">
                     Hủy vé
                 </el-button>
-                <el-button v-if="userLoged.role === 'admin'" type="success" @click="updateCustory(luckyData.id)">
+                <el-button v-if="userLoged.role === 'admin' && luckyData.resultDetail == 'TRÚNG GIẢI'" type="success" @click="updateCustory(luckyData.id)">
                     Xác nhận đổi thưởng
                 </el-button>
             </el-form-item>
