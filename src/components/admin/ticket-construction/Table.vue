@@ -60,7 +60,7 @@
                         />
                         <router-link :to="`/admin/ticket-construction/${scope.row.id}/edit`">
                             <el-button
-                                icon="el-icon-camera-solid"
+                                icon="el-icon-edit"
                             />
                         </router-link>
                     </div>
