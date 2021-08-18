@@ -2,7 +2,7 @@
     <div>
         <div>
             <PageHeader :title="'Đặt vé'" />
-            <div class="2xl:w-1/2 xl:w-4/6 lg:w-5/6 w-full">
+            <div class="2xl:w-4/6 xl:w-4/6 lg:w-5/6 w-full">
                 <div class="flex">
                     <div class="mr-5">
                         <DateRange
@@ -18,12 +18,20 @@
                             @changeValue="updateSelectType"
                         />
                     </div>
-                    <div class="flex-1">
+                    <div class="flex-1 mr-5">
                         <Select
                             :options="optionStatus"
                             :placeholder="'Trạng thái'"
                             :selected="$route.query.orderStatus"
                             @changeValue="updateSelectStatus"
+                        />
+                    </div>
+                    <div class="flex-1">
+                        <Select
+                            :options="optionCustody"
+                            :placeholder="'Các vé được giữ tiền'"
+                            :selected="$route.query.custody"
+                            @changeValue="updateSelectCustody"
                         />
                     </div>
                 </div>
@@ -62,6 +70,7 @@
     import { cleanObject } from '~/utils/object';
     import { OPTION_GAME } from '~/constants/game';
     import { OPTION_STATUS } from '~/constants/status';
+    import { OPTION_CUSTODY } from '~/constants/custody';
     import DateRange from '~/components/admin/shared/form/Datepicker.vue';
     import Select from '~/components/admin/shared/form/Select.vue';
     import TableOrder from '~/components/admin/ticket-vietlott/Table.vue';
@@ -93,6 +102,7 @@
             return {
                 optionGame: OPTION_GAME,
                 optionStatus: OPTION_STATUS,
+                optionCustody: OPTION_CUSTODY,
             };
         },
         computed: {
@@ -125,6 +135,10 @@
             updateSelectStatus(orderStatus) {
                 const page = null;
                 this.fetchData({ orderStatus, page });
+            },
+            updateSelectCustody(custody) {
+                const page = null;
+                this.fetchData({ custody, page });
             },
             updateSearchKeyTicket() {
                 if (this.tableFilter.searchKey) {
