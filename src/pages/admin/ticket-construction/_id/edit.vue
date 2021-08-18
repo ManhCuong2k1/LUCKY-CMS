@@ -1,7 +1,7 @@
 <template>
     <div>
         <PageHeader />
-        <LuckyForm :lucky-data="configString" :data-image="images" />
+        <LuckyForm :lucky-data="configString" :data-image="images" @updateForm="updateData" />
     </div>
 </template>
 
@@ -28,6 +28,15 @@
         },
         computed: {
             configString() {
+                // eslint-disable-next-line no-unused-vars
+                let sum = 0;
+                this.lucky.orders.forEach((e) => {
+                    sum += e.custody;
+                });
+                Object.defineProperty(this.lucky, 'custody', {
+                    configurable: false,
+                    value: sum,
+                });
                 const luckyDetail = JSON.parse(this.lucky.orders[0].orderDetail);
                 const data = luckyDetail.data;
                 // eslint-disable-next-line no-unused-vars
@@ -42,6 +51,12 @@
                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties
                 this.lucky.orders[0].orderDetail.data = str;
                 return this.lucky;
+            },
+        },
+        methods: {
+            async updateData(id) {
+                await this.$store.dispatch('admin/orderLucky/getDetail', id);
+                this.lucky = cloneDeep(this.$store.state.admin.orderLucky.orderDetail);
             },
         },
     };

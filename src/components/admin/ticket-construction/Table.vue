@@ -52,7 +52,7 @@
                             Up ảnh vé
                         </el-button>
                     </router-link>
-                    <div v-if="scope.row.orderStatus == 'printed'" class="flex">
+                    <div v-if="scope.row.orderStatus == 'printed' || scope.row.resultDetail == 'TRÚNG GIẢI'" class="flex">
                         <el-button
                             icon="el-icon-view"
                             class="button-view"

@@ -64,8 +64,11 @@ export const actions = {
         commit('setFile', res.data);
     },
     async upDate({ commit }, params) {
-        console.log(params);
         const res = await this.$axios.post('/admin/lottery-order/date/upload', params);
         commit('setDate', res.data);
+    },
+    async succesDetail({ commit }, id) {
+        const res = await this.$axios.put(`/admin/lottery-order/${id}`);
+        commit('setOrderDetail', res.data);
     },
 };

@@ -38,6 +38,11 @@
                     <p>{{ status( luckyData.orderStatus) }}</p>
                 </el-col>
             </el-form-item>
+            <el-form-item label="Số tiền tạm giữ" prop="custody">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyData.custody | formatPrice }}</p>
+                </el-col>
+            </el-form-item>
 
             <el-form-item label="Lấy ảnh vé" class="content-center">
                 <div class="flex">
@@ -78,6 +83,9 @@
                 </el-button>
                 <el-button type="primary" @click="deleteTicket(luckyData.id)">
                     Hủy vé
+                </el-button>
+                <el-button v-if="userLoged.role === 'admin'" type="success" @click="updateCustory(luckyData.id)">
+                    Xác nhận đổi thưởng
                 </el-button>
             </el-form-item>
         </el-form>
@@ -122,6 +130,9 @@
         },
         computed: {
             ...mapState('admin/images', ['images']),
+            userLoged() {
+                return this.$store.state.auth.user;
+            },
         },
         methods: {
             toImage,
@@ -199,6 +210,21 @@
                         message: 'Đã bỏ hủy vé',
                     });
                 });
+            },
+            async updateCustory(id) {
+                try {
+                    await this.$store.dispatch('admin/orderLucky/succesDetail', id);
+                    this.$emit('updateForm', id);
+                    this.$message({
+                        type: 'success',
+                        message: 'Xác nhận thành công',
+                    });
+                } catch (error) {
+                    this.$message({
+                        type: 'error',
+                        message: error,
+                    });
+                }
             },
         },
     };
