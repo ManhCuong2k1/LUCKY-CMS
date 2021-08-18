@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
-                    <p>{{ type(luckyData.type) }} {{ checkLevel(luckyData.orders[0].orderDetail) }}</p>
+                    <p>{{ checkType(luckyData.type) }} {{ checkLevel(luckyData.orders[0].orderDetail) }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
@@ -35,7 +35,7 @@
             </el-form-item>
             <el-form-item label="Trạng thái" prop="status">
                 <el-col :span="12" class="order-detail">
-                    <p>{{ status( luckyData.orderStatus) }}</p>
+                    <p>{{ checkStatus( luckyData.orderStatus, luckyData.resultDetail) }}</p>
                 </el-col>
             </el-form-item>
             <el-form-item label="Số tiền tạm giữ" prop="custody">
@@ -44,7 +44,7 @@
                 </el-col>
             </el-form-item>
 
-            <el-form-item label="Lấy ảnh vé" class="content-center">
+            <el-form-item v-if="luckyData.orderStatus !== 'drawned'" label="Lấy ảnh vé" class="content-center">
                 <div class="flex">
                     <div>
                         <el-upload
@@ -78,13 +78,17 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="saveImages(dataForm)">
+                <el-button v-if="luckyData.orderStatus !== 'drawned'" type="primary" @click="saveImages(dataForm)">
                     Lưu
                 </el-button>
-                <el-button type="primary" @click="deleteTicket(luckyData.id)">
+                <el-button v-if="luckyData.orderStatus !== 'drawned'" type="primary" @click="deleteTicket(luckyData.id)">
                     Hủy vé
                 </el-button>
-                <el-button v-if="userLoged.role === 'admin'" type="success" @click="updateCustory(luckyData.id)">
+                <el-button
+                    v-if="userLoged.role === 'admin' && luckyData.resultDetail == 'TRÚNG GIẢI'"
+                    type="success"
+                    @click="updateCustory(luckyData.id)"
+                >
                     Xác nhận đổi thưởng
                 </el-button>
             </el-form-item>
@@ -136,12 +140,8 @@
         },
         methods: {
             toImage,
-            type(type) {
-                return checkType(type);
-            },
-            status(status) {
-                return checkStatus(status);
-            },
+            checkType,
+            checkStatus,
             handleAvatarSuccessBefore(res, file) {
                 this.image.beforeImage = URL.createObjectURL(file.raw);
                 this.imagesBefore = res.imageUrl;
