@@ -26,7 +26,7 @@
                 <el-date-picker
                     v-model="limitForm.date"
                     type="date"
-                    value-format="yyyy-MM-dd"
+                    value-format="dd-MM-yyyy"
                     placeholder="Chọn ngày"
                     style="width: 50%;"
                 />
