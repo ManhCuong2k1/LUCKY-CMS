@@ -4,7 +4,7 @@
             <el-table-column type="index" width="50" />
             <el-table-column prop="name" label="Khách hàng">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.user.username }}</span>
+                    <span>{{ scope.row.user.name }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="phone" label="Số điện thoại">
@@ -44,6 +44,7 @@
         },
         data() {
             const dataForm = cloneDeep(this.dataHistory);
+            console.log(dataForm);
             return {
                 dataForm,
                 showImages: false,
