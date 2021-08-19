@@ -38,9 +38,14 @@
                     <p>{{ checkStatus( luckyData.orderStatus, luckyData.resultDetail) }}</p>
                 </el-col>
             </el-form-item>
-            <el-form-item label="Số tiền tạm giữ" prop="custody">
+            <el-form-item v-if="luckyData.resultDetail === 'TRÚNG GIẢI'" label="Số tiền tạm giữ" prop="custody">
                 <el-col :span="12" class="order-detail">
                     <p>{{ luckyData.custody | formatPrice }}</p>
+                </el-col>
+            </el-form-item>
+            <el-form-item v-if="luckyData.resultDetail === 'TRÚNG GIẢI'" label="Số tiền trúng" prop="custody">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyData.totalreward | formatPrice }}</p>
                 </el-col>
             </el-form-item>
 
