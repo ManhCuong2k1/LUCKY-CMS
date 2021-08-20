@@ -21,11 +21,17 @@
                     <span>{{ checkType(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
                 </template>
             </el-table-column>
-            <el-table-column prop="total" label="Nội dung" width="350">
-                <template slot-scope="scope">
-                    <p v-for="orderDetail in scope.row.orders[0].orderDetail.data" :key="orderDetail">
-                        {{ orderDetail }}
-                    </p>
+            <el-table-column
+                prop="total"
+                label="Nội dung"
+                width="350"
+            >
+                <template slot-scope="scope" class="abc">
+                    <div class="scroll-loto">
+                        <p v-for="orderDetail in scope.row.orders[0].orderDetail.data" :key="orderDetail">
+                            {{ orderDetail }}
+                        </p>
+                    </div>
                 </template>
             </el-table-column>
             <el-table-column prop="total" label="Số kỳ" width="100">

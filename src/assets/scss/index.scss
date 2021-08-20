@@ -630,3 +630,21 @@ input:checked + img {
         width: 50% !important;
     }
 }
+
+.scroll-loto {
+    overflow-y: auto;
+    height: 142px;
+}
+
+.scroll-loto::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+    margin-right: 30px;
+}
+
+.scroll-loto::-webkit-scrollbar-thumb
+{
+	background-color: #776b6b;
+    margin-right: 30px;
+}
