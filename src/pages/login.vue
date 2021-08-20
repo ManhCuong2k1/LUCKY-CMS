@@ -23,9 +23,6 @@
                 />
             </div>
             <div class="mb-5 flex justify-between">
-                <nuxt-link to="/forget-password" class="text-blue-600 font-semibold text-sm hover:underline">
-                    Quên mật khẩu
-                </nuxt-link>
                 <nuxt-link to="/register" class="text-blue-600 font-semibold text-sm hover:underline">
                     Tạo tài khoản
                 </nuxt-link>
@@ -35,19 +32,6 @@
                     Đăng nhập
                 </el-button>
             </div>
-            <!-- <div class="flex align-items-center justify-content-between my-4">
-                <hr class="flex-1 m-auto">
-                <span class="mx-3">
-                    Hoặc sử dụng
-                </span>
-                <hr class="flex-1 m-auto">
-            </div>
-            <div class="flex justify-center">
-                <el-button><i class="text-blue-600 mr-2 fab fa-facebook-f" />Facebook</el-button>
-                <el-button @click="regGoogle">
-                    <i class="text-red-600 mr-2 fab fa-google" />Google
-                </el-button>
-            </div> -->
         </el-card>
     </div>
 </template>
