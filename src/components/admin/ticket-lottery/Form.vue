@@ -22,7 +22,7 @@
                 </el-col>
             </el-form-item>
             <el-form-item label="Nội dung" prop="LuckyCategoryId">
-                <el-col :span="12" class="order-detail pb-4">
+                <el-col :span="12" class="order-detail pb-4" :class="luckyData.orders[0].orderDetail.data.length > 10 ? 'format-data': ''">
                     <span v-for="orderDetail in luckyData.orders[0].orderDetail.data" :key="orderDetail" class="block h-6">
                         {{ orderDetail }}
                     </span>
@@ -266,5 +266,12 @@
     width: 178px;
     height: 178px;
     display: block;
+  }
+  .format-data {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .format-data span {
+      width: 25%;
   }
 </style>
