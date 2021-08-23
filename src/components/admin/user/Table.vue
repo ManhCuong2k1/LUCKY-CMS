@@ -8,7 +8,7 @@
             <el-table-column
                 fixed
                 prop="name"
-                label="Name"
+                label="Khách hàng"
                 width="150"
             />
             <el-table-column prop="phone" label="Số điện thoại" width="160">
@@ -16,12 +16,12 @@
                     <span>{{ scope.row.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="email" label="Email" width="180">
+            <el-table-column prop="email" label="Email" width="200">
                 <template slot-scope="scope">
                     <span>{{ scope.row.email }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="Số CMT/CMND" width="200">
+            <el-table-column label="Số CMT/CMND" width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.identify }}</span>
                 </template>

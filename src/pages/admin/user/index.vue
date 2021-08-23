@@ -5,7 +5,7 @@
             <div class="mt-5 flex">
                 <el-input
                     v-model="tableFilter.searchKey"
-                    placeholder="Tìm kiếm theo tên khách hàng"
+                    placeholder="Tìm theo tên khách hàng"
                     class="input-with-select mr-5"
                     clearable
                     @clear="updateSearchKey"
