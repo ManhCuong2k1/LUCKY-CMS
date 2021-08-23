@@ -21,6 +21,11 @@
                     <span>{{ scope.row.email }}</span>
                 </template>
             </el-table-column>
+            <el-table-column label="Số CMT/CMND" width="200">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.identify }}</span>
+                </template>
+            </el-table-column>
             <el-table-column prop="gender" label="Giới tính" width="140">
                 <template slot-scope="scope">
                     <span>{{ gender(scope.row.gender) }}</span>
@@ -39,11 +44,6 @@
             <el-table-column prop="totalReward" label="Tổng phần thưởng" width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.totalReward | formatPrice }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column label="Created At" width="200">
-                <template slot-scope="scope">
-                    <span>{{ formatDate(scope.row.createdAt) }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="Operations" fixed="right" width="220">

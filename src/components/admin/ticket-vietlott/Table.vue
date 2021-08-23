@@ -1,27 +1,27 @@
 <template>
     <div>
         <el-table :data="changeData" class="w-full">
-            <el-table-column prop="name" label="Mã vé" width="80">
+            <el-table-column prop="id" label="Mã vé" width="80">
                 <template slot-scope="scope">
                     <span>{{ scope.row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="city" label="Khách hàng" width="180">
+            <el-table-column prop="name" label="Khách hàng" width="160">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.user.name }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="phone" label="Số điện thoại" width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.user.phone }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="phone" label="Thời gian đặt" width="220">
-                <template slot-scope="scope">
-                    <span>{{ formatDate(scope.row.createdAt) }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="transporter" label="Loại vé" width="220">
+            <el-table-column prop="type" label="Loại vé" width="180">
                 <template slot-scope="scope">
                     <span>{{ checkType(scope.row.type) }} {{ checkLevel(scope.row.orders[0].orderDetail) }} </span>
                 </template>
             </el-table-column>
-            <el-table-column prop="total" label="Nội dung" width="350">
+            <el-table-column prop="total" label="Nội dung" width="320">
                 <template slot-scope="scope">
                     <p v-for="orderDetail in scope.row.orders[0].orderDetail.data" :key="orderDetail">
                         {{ orderDetail }}
@@ -33,7 +33,7 @@
                     <span>{{ scope.row.preriod }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="orderStatus" label="Trạng thái" width="240">
+            <el-table-column prop="orderStatus" label="Trạng thái" width="180">
                 <template slot-scope="scope">
                     <div style="height: 40px; line-height:40px;">
                         <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : scope.row.resultDetail == 'TRÚNG GIẢI' ? 'active-winned': ''">
@@ -42,7 +42,12 @@
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column label="Công cụ" width="200">
+            <el-table-column prop="createdAt" label="Thời gian đặt" width="220">
+                <template slot-scope="scope">
+                    <span>{{ formatDate(scope.row.createdAt) }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="Công cụ" width="180">
                 <template slot-scope="scope">
                     <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/ticket-vietlott/${scope.row.id}/edit`">
                         <el-button

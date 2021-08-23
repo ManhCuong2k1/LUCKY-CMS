@@ -22,7 +22,14 @@
                 <div class="mt-5 flex">
                     <el-input
                         v-model="tableFilter.searchKey"
-                        placeholder="Tìm kiếm theo số điện thoại"
+                        placeholder="Tìm kiếm theo tên"
+                        class="input-with-select mr-5"
+                        clearable
+                        @clear="updateSearchKey"
+                    />
+                    <el-input
+                        v-model="tableFilter.searchCardId"
+                        placeholder="Tìm kiếm theo số CMT/CMND"
                         class="input-with-select mr-5"
                         clearable
                         @clear="updateSearchKey"
@@ -71,6 +78,7 @@
         async asyncData({ query, store }) {
             const initFilter = {
                 searchKey: null,
+                searchCardId: null,
                 page: query.page || 1,
             };
             const filter = { ...initFilter, ...query };
