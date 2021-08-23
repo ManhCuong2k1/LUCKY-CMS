@@ -35,6 +35,13 @@
                         clearable
                         @clear="updatePage"
                     />
+                    <el-input
+                        v-model="tableFilter.searchCardId"
+                        placeholder="Tìm theo CMT/CMND"
+                        class="input-with-select mr-5"
+                        clearable
+                        @clear="updatePage"
+                    />
                     <el-button type="primary" icon="el-icon-search" @click="updateSearchKeyTicket">
                         Tìm kiếm
                     </el-button>
@@ -81,6 +88,7 @@
         async asyncData({ query, store }) {
             const initFilter = {
                 searchKey: null,
+                searchCardId: null,
                 page: query.page || 1,
             };
             const filter = { ...initFilter, ...query };
@@ -133,7 +141,7 @@
                 this.fetchData({ custody, page });
             },
             updateSearchKeyTicket() {
-                if (this.tableFilter.searchKey) {
+                if (this.tableFilter.searchKey || this.tableFilter.searchCardId) {
                     const page = null;
                     this.fetchData({ page });
                 }

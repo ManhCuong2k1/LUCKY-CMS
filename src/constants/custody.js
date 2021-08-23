@@ -1,6 +1,6 @@
 export const OPTION_CUSTODY = {
     BIG_WIN: {
-        label: 'Tiền vé giữ hộ',
+        label: 'Tất cả',
         slug: 'big_win',
     },
 };
