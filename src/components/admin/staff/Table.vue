@@ -8,7 +8,7 @@
             <el-table-column
                 fixed
                 prop="name"
-                label="Name"
+                label="Nhân viên"
                 width="200"
             />
             <el-table-column prop="phone" label="Số điện thoại" width="200">
