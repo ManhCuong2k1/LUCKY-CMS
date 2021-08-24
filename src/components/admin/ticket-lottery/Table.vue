@@ -11,9 +11,14 @@
                     <span>{{ scope.row.user.name }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="phone" label="Số điện thoại" width="160">
+            <el-table-column prop="phone" label="Số điện thoại" width="140">
                 <template slot-scope="scope">
                     <span>{{ scope.row.user.phone }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="name" label="Nhân viên in vé" width="150">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.name ? scope.row.name: '_' }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="type" label="Loại vé" width="180">
@@ -24,7 +29,7 @@
             <el-table-column
                 prop="orderDetail"
                 label="Nội dung"
-                width="320"
+                width="280"
             >
                 <template slot-scope="scope">
                     <div class="scroll-loto">
@@ -39,7 +44,7 @@
                     <span>{{ scope.row.preriod }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="orderStatus" label="Trạng thái" width="160">
+            <el-table-column prop="orderStatus" label="Trạng thái" width="140">
                 <template slot-scope="scope">
                     <div style="height: 40px; line-height:40px;">
                         <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : scope.row.resultDetail == 'TRÚNG GIẢI' ? 'active-winned': ''">
@@ -48,12 +53,12 @@
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column prop="createdAt" label="Thời gian đặt" width="220">
+            <el-table-column prop="createdAt" label="Thời gian đặt" width="200">
                 <template slot-scope="scope">
                     <span>{{ formatDate(scope.row.createdAt) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="Công cụ" width="200">
+            <el-table-column label="Công cụ" width="170">
                 <template slot-scope="scope">
                     <router-link v-if="scope.row.orderStatus == 'delay'" :to="`/admin/ticket-lottery/${scope.row.id}/edit`">
                         <el-button

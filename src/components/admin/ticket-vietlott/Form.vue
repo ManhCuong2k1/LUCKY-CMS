@@ -16,6 +16,11 @@
                     <p>{{ luckyData.user.phone }}</p>
                 </el-col>
             </el-form-item>
+            <el-form-item label="Nhân viên in vé" prop="">
+                <el-col :span="12" class="order-detail">
+                    <p>{{ luckyData.name ? luckyData.name : '_' }}</p>
+                </el-col>
+            </el-form-item>
             <el-form-item label="Loại vé" prop="">
                 <el-col :span="6" class="order-detail">
                     <p>{{ checkType(luckyData.type) }} {{ checkLevel(luckyData.orders[0].orderDetail) }}</p>
@@ -169,9 +174,9 @@
             },
             saveImages() {
                 if (this.dataImage.data === null) {
-                    this.$store.dispatch('admin/orderLucky/createImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter }, id: this.luckyData.id });
+                    this.$store.dispatch('admin/orderLucky/createImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter, employeId: this.$auth.user.id }, id: this.luckyData.id });
                 } else {
-                    this.$store.dispatch('admin/orderLucky/updateImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter }, id: this.luckyData.id });
+                    this.$store.dispatch('admin/orderLucky/updateImage', { data: { imageBefore: this.imagesBefore, imageAfter: this.imagesAfter, employeId: this.$auth.user.id }, id: this.luckyData.id });
                 }
                 this.$message({
                     message: 'Gửi ảnh thành công!',
