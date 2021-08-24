@@ -11,9 +11,14 @@
                     <span>{{ scope.row.user.name }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="phone" label="Số điện thoại" width="160">
+            <el-table-column prop="phone" label="Số điện thoại" width="140">
                 <template slot-scope="scope">
                     <span>{{ scope.row.user.phone }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="name" label="Nhân viên in vé" width="150">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.name ? scope.row.name: '_' }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="type" label="Loại vé" width="160">
@@ -21,7 +26,7 @@
                     <span>{{ scope.row.type === 'kienthiet' ? 'Kiến thiết' : '' }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="orderDetail" label="Nội dung" width="320">
+            <el-table-column prop="orderDetail" label="Nội dung" width="240">
                 <template slot-scope="scope">
                     <p v-for="orderDetail in scope.row.orders[0].orderDetail.data" :key="orderDetail">
                         {{ orderDetail }}
@@ -33,7 +38,7 @@
                     <span>{{ scope.row.preriod }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="orderStatus" label="Trạng thái" width="180">
+            <el-table-column prop="orderStatus" label="Trạng thái" width="160">
                 <template slot-scope="scope">
                     <div style="height: 40px; line-height:40px;">
                         <span :class="scope.row.orderStatus == 'printed' ? 'active-order' : scope.row.resultDetail == 'TRÚNG GIẢI' ? 'active-winned': ''">
