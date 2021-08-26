@@ -6,7 +6,7 @@
         :default-openeds="defaultOpeneds"
         :class="{ collapsed }"
         class="admin-sidebar h-full flex-col"
-        text-color="#fff"
+        :text-color="!collapsed ? '#fff' : '#909399'"
         active-text-color="#ffd04b"
         :collapse-transition="false"
     >
@@ -17,7 +17,7 @@
             </div>
         </nuxt-link>
 
-        <el-scrollbar wrap-class="overflow-hidden">
+        <el-scrollbar wrap-class="overflow-hidden" native="false">
             <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-s-home" link="/admin/dashboard">
                 Tổng quan
             </SidebarItem>
