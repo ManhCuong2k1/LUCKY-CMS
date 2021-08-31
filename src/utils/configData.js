@@ -40,6 +40,9 @@ export const checkType = (type) => {
         case 'loto5':
             message = 'Loto 5 số';
             break;
+        case 'kienthiet':
+            message = 'Kiến thiết';
+            break;
         default:
             message = '';
             break;

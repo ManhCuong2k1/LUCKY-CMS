@@ -25,7 +25,7 @@
         methods: {
             async updateStatusGame(form) {
                 try {
-                    if (this.status.data === null) {
+                    if (this.status.data.length === 0) {
                         await this.$store.dispatch('admin/statusGame/fetch', { data: form });
                     } else {
                         await this.$store.dispatch('admin/statusGame/update', { data: form });
