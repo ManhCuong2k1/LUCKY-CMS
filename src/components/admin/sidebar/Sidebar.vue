@@ -60,6 +60,9 @@
                 <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-user" link="/admin/staff">
                     Nhân viên
                 </SidebarItem>
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="el-icon-s-flag" link="/admin/status-game">
+                    Trạng thái trò chơi
+                </SidebarItem>
                 <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-money-check-alt pr-3" link="/admin/limit-exchange">
                     Hạn mức
                 </SidebarItem>
