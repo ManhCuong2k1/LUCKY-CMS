@@ -146,7 +146,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        if (/^[0-9]{1,3}$/.test(this.limitForm.storageFee.value)) {
+                        if (/^[0-9]{1,2}$/.test(this.limitForm.storageFee.value)) {
                             this.$emit('submitForm', this.limitForm);
                         } else {
                             this.$message({
