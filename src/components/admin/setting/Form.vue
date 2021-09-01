@@ -5,41 +5,20 @@
             :model="limitForm"
             label-width="120px"
             class="w-full"
-            :rules="rules"
         >
             <div class="flex">
                 <div class="clearfix vi-header w-1/2">
                     <h3 class="vi-left-title pull-left">
                         Hạn mức tối thiểu
                     </h3>
-                    <el-form-item label="Nạp MOMO" prop="recharge_momo_min">
+                    <el-form-item
+                        v-for="item in limitForm.minLimit"
+                        :key="item.id"
+                        :label="checkKey(item.key)"
+                        :prop="item.key"
+                    >
                         <el-col :span="18">
-                            <money v-model="limitForm.recharge_momo_min" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Nạp VNPAY" prop="recharge_vnpay_min">
-                        <el-col :span="18">
-                            <money v-model="limitForm.recharge_vnpay_min" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút ví LUCKY" prop="exchange_local_min">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_local_min" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút ví MOMO" prop="exchange_momo_min">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_momo_min" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút ví VNPAY" prop="exchange_vnpay_min">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_vnpay_min" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút TK Bank" prop="exchange_bank_min">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_bank_min" v-bind="money" class="input-money" />
+                            <money v-model="item.value" v-bind="money" class="input-money" />
                         </el-col>
                     </el-form-item>
                 </div>
@@ -47,41 +26,21 @@
                     <h3 class="vi-left-title pull-left">
                         Hạn mức tối đa
                     </h3>
-                    <el-form-item label="Nạp MOMO" prop="recharge_momo_max">
+                    <el-form-item
+                        v-for="item in limitForm.maxLimit"
+                        :key="item.id"
+                        :label="checkKey(item.key)"
+                        :prop="item.key"
+                    >
                         <el-col :span="18">
-                            <money v-model="limitForm.recharge_momo_max" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Nạp VNPAY" prop="recharge_vnpay_max">
-                        <el-col :span="18">
-                            <money v-model="limitForm.recharge_vnpay_max" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút ví LUCKY" prop="exchange_local_max">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_local_max" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút ví MOMO" prop="exchange_momo_max">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_momo_max" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút ví VNPAY" prop="exchange_vnpay_max">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_vnpay_max" v-bind="money" class="input-money" />
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="Rút TK Bank" prop="exchange_bank_max">
-                        <el-col :span="18">
-                            <money v-model="limitForm.exchange_bank_max" v-bind="money" class="input-money" />
+                            <money v-model="item.value" v-bind="money" class="input-money" />
                         </el-col>
                     </el-form-item>
                 </div>
             </div>
-            <el-form-item label="% Phí lưu vé" prop="ticket_storage_fee">
+            <el-form-item :label="checkKey(limitForm.storageFee.key)" :prop="limitForm.storageFee.key">
                 <el-col :span="6">
-                    <el-input v-model="limitForm.ticket_storage_fee" placeholder="Phí lưu vé %" />
+                    <el-input v-model="limitForm.storageFee.value" placeholder="Phí lưu vé %" />
                 </el-col>
             </el-form-item>
 
@@ -97,35 +56,66 @@
 <script>
     import cloneDeep from 'lodash/cloneDeep';
     import { Money } from 'v-money';
+    import { checkKey } from '~/utils/configData';
 
     const modelForm = {
-        recharge_momo_min: '',
-        recharge_vnpay_min: '',
-        exchange_local_min: '',
-        exchange_momo_min: '',
-        exchange_vnpay_min: '',
-        exchange_bank_min: '',
-        recharge_momo_max: '',
-        recharge_vnpay_max: '',
-        exchange_local_max: '',
-        exchange_momo_max: '',
-        exchange_vnpay_max: '',
-        exchange_bank_max: '',
-        ticket_storage_fee: '',
-    };
-    const validate = [
-        { required: true, message: 'Vui lòng nhập số tiền', trigger: 'blur' },
-        {
-            trigger: 'blur',
-            validator(rule, value, callback) {
-                if (/^[0-9]{5,}$/.test(value)) {
-                    callback();
-                } else {
-                    callback(new Error('Số tiền không được dưới 10000VND và là số'));
-                }
+        minLimit: [
+            {
+                key: 'exchange_local_min',
+                value: 0,
             },
+            {
+                key: 'exchange_momo_min',
+                value: 0,
+            },
+            {
+                key: 'exchange_vnpay_min',
+                value: 0,
+            },
+            {
+                key: 'exchange_bank_min',
+                value: 0,
+            },
+            {
+                key: 'recharge_momo_min',
+                value: 0,
+            },
+            {
+                key: 'recharge_vnpay_min',
+                value: 0,
+            },
+        ],
+        maxLimit: [
+            {
+                key: 'exchange_local_max',
+                value: 0,
+            },
+            {
+                key: 'exchange_momo_max',
+                value: 0,
+            },
+            {
+                key: 'exchange_vnpay_max',
+                value: 0,
+            },
+            {
+                key: 'exchange_bank_max',
+                value: 0,
+            },
+            {
+                key: 'recharge_momo_max',
+                value: 0,
+            },
+            {
+                key: 'recharge_vnpay_max',
+                value: 0,
+            },
+        ],
+        storageFee: {
+            key: 'ticket_storage_fee',
+            value: 0,
         },
-    ];
+    };
     export default {
         components: {
             Money,
@@ -149,40 +139,21 @@
                 limitForm: this.dataForm.data
                     ? cloneDeep(this.dataForm.data)
                     : cloneDeep(modelForm),
-                rules: {
-                    recharge_momo_min: validate,
-                    recharge_vnpay_min: validate,
-                    exchange_local_min: validate,
-                    exchange_momo_min: validate,
-                    exchange_vnpay_min: validate,
-                    exchange_bank_min: validate,
-                    recharge_momo_max: validate,
-                    recharge_vnpay_max: validate,
-                    exchange_local_max: validate,
-                    exchange_momo_max: validate,
-                    exchange_vnpay_max: validate,
-                    exchange_bank_max: validate,
-                    ticket_storage_fee: [
-                        { required: true, message: 'Hãy nhập % phí lưu vé ', trigger: 'blur' },
-                        {
-                            trigger: 'blur',
-                            validator(rule, value, callback) {
-                                if (/^[0-9]{1,3}$/.test(value)) {
-                                    callback();
-                                } else {
-                                    callback(new Error('Nhập % phí lưu vé'));
-                                }
-                            },
-                        },
-                    ],
-                },
             };
         },
         methods: {
+            checkKey,
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$emit('submitForm', this.limitForm);
+                        if (/^[0-9]{1,3}$/.test(this.limitForm.storageFee.value)) {
+                            this.$emit('submitForm', this.limitForm);
+                        } else {
+                            this.$message({
+                                message: 'Nhập phí lưu vé',
+                                type: 'error',
+                            });
+                        }
                     } else {
                         return false;
                     }
