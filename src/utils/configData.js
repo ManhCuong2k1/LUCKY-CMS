@@ -160,3 +160,52 @@ export const statusExchange = (status) => {
     }
     return message;
 };
+
+export const checkKey = (key) => {
+    let message = '';
+    switch (key) {
+        case 'exchange_local_min':
+            message = 'Rút ví LUCKY';
+            break;
+        case 'exchange_momo_min':
+            message = 'Rút ví MOMO';
+            break;
+        case 'exchange_vnpay_min':
+            message = 'Rút ví VNPAY';
+            break;
+        case 'exchange_bank_min':
+            message = 'Rút TK Bank';
+            break;
+        case 'recharge_momo_min':
+            message = 'Nạp MOMO';
+            break;
+        case 'recharge_vnpay_min':
+            message = 'Nạp VNPAY';
+            break;
+        case 'exchange_local_max':
+            message = 'Rút ví LUCKY';
+            break;
+        case 'exchange_momo_max':
+            message = 'Rút ví MOMO';
+            break;
+        case 'exchange_vnpay_max':
+            message = 'Rút ví VNPAY';
+            break;
+        case 'exchange_bank_max':
+            message = 'Rút TK Bank';
+            break;
+        case 'recharge_momo_max':
+            message = 'Nạp MOMO';
+            break;
+        case 'recharge_vnpay_max':
+            message = 'Nạp VNPAY';
+            break;
+        case 'ticket_storage_fee':
+            message = '% Phí lưu vé';
+            break;
+        default:
+            message = 'Khác';
+            break;
+    }
+    return message;
+};

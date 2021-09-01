@@ -34,7 +34,7 @@
                         message: 'Thành công',
                         type: 'success',
                     });
-                    this.$router.push('/admin/limit-exchange/');
+                    this.$router.push('/admin/setting/');
                 } catch ($e) {
                     this.$message({
                         message: 'Thất bại',
