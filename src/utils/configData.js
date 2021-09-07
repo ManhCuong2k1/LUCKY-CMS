@@ -203,6 +203,15 @@ export const checkKey = (key) => {
         case 'ticket_storage_fee':
             message = '% Phí lưu vé';
             break;
+        case 'recharge_momo_status':
+            message = 'Nạp MOMO';
+            break;
+        case 'recharge_vnpay_status':
+            message = 'Nạp VNPAY';
+            break;
+        case 'recharge_bank_status':
+            message = 'Nạp TK Bank';
+            break;
         default:
             message = 'Khác';
             break;

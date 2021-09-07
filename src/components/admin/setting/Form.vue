@@ -43,6 +43,24 @@
                     <el-input v-model="limitForm.storageFee.value" placeholder="Phí lưu vé %" />
                 </el-col>
             </el-form-item>
+            <h3 class="vi-left-title pull-left">
+                Trạng thái phương thức thanh toán
+            </h3>
+            <div>
+                <el-form-item
+                    v-for="item in limitForm.statusRecharge"
+                    :key="item.id"
+                    :label="checkKey(item.key)"
+                    class="w-1/2"
+                >
+                    <el-col :span="10">
+                        <el-select v-model="item.value" placeholder="Trạng thái">
+                            <el-option label="Hiện" value="true" />
+                            <el-option label="Ẩn" value="false" />
+                        </el-select>
+                    </el-col>
+                </el-form-item>
+            </div>
 
             <el-form-item>
                 <el-button type="primary" @click="submitForm('limitForm')">
@@ -115,6 +133,20 @@
             key: 'ticket_storage_fee',
             value: 0,
         },
+        statusRecharge: [
+            {
+                key: 'recharge_momo_status',
+                value: 'true',
+            },
+            {
+                key: 'recharge_vnpay_status',
+                value: 'true',
+            },
+            {
+                key: 'recharge_bank_status',
+                value: 'true',
+            },
+        ],
     };
     export default {
         components: {
