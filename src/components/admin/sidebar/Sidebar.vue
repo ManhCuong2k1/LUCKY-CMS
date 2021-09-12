@@ -69,6 +69,9 @@
                 <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-phone-alt pr-3 pl-1" link="/admin/hotline">
                     Hotline
                 </SidebarItem>
+                <SidebarItem v-if="userLoged.role === 'admin'" icon="fas fa-university pr-3 pl-1" link="/admin/bank-account">
+                    Tài khoản ngân hàng
+                </SidebarItem>
             </el-submenu>
         </el-scrollbar>
         <ElMenuItem class="toggle-sidebar" @click="toggleSidebar">
