@@ -18,7 +18,14 @@
                 </el-form-item>
                 <el-form-item label="Tên ngân hàng" prop="bank_name">
                     <el-col :span="12">
-                        <el-input v-model="bankForm.bank_name" placeholder="Tên ngân hàng" />
+                        <el-select v-model="bankForm.bank_name" placeholder="Chọn ngân hàng">
+                            <el-option
+                                v-for="item in banks"
+                                :key="item.code"
+                                :label="item.name"
+                                :value="item.code"
+                            />
+                        </el-select>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="Số tài khoản" prop="bank_number">
@@ -43,6 +50,7 @@
 
 <script>
     import PageHeader from '~/components/admin/shared/PageHeader.vue';
+    import { bankCode } from '~/constants/bank';
 
     export default {
         layout: 'admin',
@@ -58,6 +66,7 @@
             };
             return {
                 bankForm,
+                banks: bankCode,
                 rules: {
                     bank_user: [
                         {
