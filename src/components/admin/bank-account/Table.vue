@@ -38,7 +38,6 @@
         },
         data() {
             const dataForm = cloneDeep(this.dataBank);
-            console.log(dataForm);
             return {
                 dataForm,
             };

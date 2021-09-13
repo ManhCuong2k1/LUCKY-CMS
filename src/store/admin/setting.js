@@ -39,7 +39,6 @@ export const actions = {
     },
 
     async updateHotline({ commit }, payload) {
-        console.log(payload.data);
         await this.$axios.put('/admin/setting/hotline', payload.data);
         commit('setHotline', payload.data);
     },
