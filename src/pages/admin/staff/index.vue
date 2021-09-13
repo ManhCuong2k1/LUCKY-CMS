@@ -96,7 +96,6 @@
                 const filter = cleanObject({ ...this.$route.query, ...this.tableFilter, ...newFilter });
                 // await this.$store.dispatch('admin/user/fetchStaff', filter);
                 this.$router.push({ query: filter });
-                console.log(this.users);
             },
             updatePage(page) {
                 this.fetchData({ page });

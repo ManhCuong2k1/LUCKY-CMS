@@ -54,7 +54,6 @@
         },
         data() {
             const dataForm = cloneDeep(this.dataHistory);
-            console.log(dataForm);
             return {
                 dataForm,
                 showImages: false,

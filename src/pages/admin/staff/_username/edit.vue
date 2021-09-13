@@ -19,9 +19,6 @@
         async asyncData({ params, store }) {
             await store.dispatch('admin/user/show', params.username);
             const user = cloneDeep(store.state.admin.user.user);
-            console.log(user);
-            // user.is_active = user.deletedAt === null;
-            // user.is_admin = user.is_admin === 1;
             return {
                 user,
             };

@@ -25,10 +25,10 @@
             PageHeader,
         },
         async asyncData({ store }) {
-            await store.dispatch('admin/bank-account/fetch');
+            await store.dispatch('admin/bankAccount/fetch');
         },
         computed: {
-            ...mapState('admin/bank-account', ['banks']),
+            ...mapState('admin/bankAccount', ['banks']),
         },
         methods: {
             createBank() {

@@ -109,8 +109,8 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         try {
-                            this.$store.dispatch('admin/bank-account/update', this.bankForm);
-                            this.$store.dispatch('admin/bank-account/fetch');
+                            this.$store.dispatch('admin/bankAccount/create', this.bankForm);
+                            this.$store.dispatch('admin/bankAccount/fetch');
                             this.$router.push('/admin/bank-account');
                             this.$message({
                                 message: 'Thêm thành công',

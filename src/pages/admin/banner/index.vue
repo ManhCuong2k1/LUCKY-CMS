@@ -110,7 +110,6 @@
             confirmPick(name) {
                 this.dialogVisible = false;
                 this.tableData[this.editRow].image = name.imageUrl;
-                // console.log(name);
                 this.editRow = -1;
             },
             removeRow(index) {
