@@ -9,7 +9,7 @@
             </el-table-column>
             <el-table-column prop="phone" label="Tên ngân hàng">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.bank_name }}</span>
+                    <span>{{ scope.row.bankcode }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="identify" label="Số tài khoản">
@@ -38,6 +38,7 @@
         },
         data() {
             const dataForm = cloneDeep(this.dataBank);
+            console.log(dataForm);
             return {
                 dataForm,
             };
